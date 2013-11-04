@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFLoginViewController : UIViewController <UITextFieldDelegate> {
+@interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
     BOOL keyboardIsShown;
 }

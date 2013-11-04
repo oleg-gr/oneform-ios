@@ -8,6 +8,7 @@
 
 #import "OFAppDelegate.h"
 #import "OFLoginViewController.h"
+#import "OFInternetUtility.h"
 
 @implementation OFAppDelegate
 
@@ -18,6 +19,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     OFLoginViewController *loginController = [[OFLoginViewController alloc] init];
     self.window.rootViewController = loginController;
+    [OFInternetUtility checkInternetConnection];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "OFLoginViewController.h"
+#import "OFInternetUtility.h"
 
 @interface OFLoginViewController ()
 

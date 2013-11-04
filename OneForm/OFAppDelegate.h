@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFAppDelegate : UIResponder <UIApplicationDelegate>
+@interface OFAppDelegate : UIResponder <UIApplicationDelegate> {
+    BOOL isNoInternetScreen;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

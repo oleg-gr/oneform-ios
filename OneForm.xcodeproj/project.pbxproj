@@ -20,6 +20,8 @@
 		7AAE39431827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39411827962C009BE7B3 /* InfoPlist.strings */; };
 		7AAE39451827962C009BE7B3 /* OneFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39441827962C009BE7B3 /* OneFormTests.m */; };
 		7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */; };
+		7AAE39691827C6A3009BE7B3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39681827C6A3009BE7B3 /* Reachability.m */; };
+		7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		7AAE395E18279E8A009BE7B3 /* OFLoginMockup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OFLoginMockup.xib; sourceTree = "<group>"; };
 		7AAE395F1827A04A009BE7B3 /* OFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFLoginViewController.h; sourceTree = "<group>"; };
 		7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFLoginViewController.m; sourceTree = "<group>"; };
+		7AAE39671827C6A3009BE7B3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		7AAE39681827C6A3009BE7B3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		7AAE396A1827CF3C009BE7B3 /* OFInternetUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFInternetUtility.h; sourceTree = "<group>"; };
+		7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFInternetUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,8 @@
 		7AAE39251827962C009BE7B3 /* OneForm */ = {
 			isa = PBXGroup;
 			children = (
+				7AAE396D1827CF41009BE7B3 /* Utilities */,
+				7AAE39661827C638009BE7B3 /* External */,
 				7AAE394E18279950009BE7B3 /* Login Screen */,
 				7AAE392E1827962C009BE7B3 /* OFAppDelegate.h */,
 				7AAE392F1827962C009BE7B3 /* OFAppDelegate.m */,
@@ -157,6 +165,24 @@
 				7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */,
 			);
 			name = "Login Screen";
+			sourceTree = "<group>";
+		};
+		7AAE39661827C638009BE7B3 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				7AAE39671827C6A3009BE7B3 /* Reachability.h */,
+				7AAE39681827C6A3009BE7B3 /* Reachability.m */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		7AAE396D1827CF41009BE7B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7AAE396A1827CF3C009BE7B3 /* OFInternetUtility.h */,
+				7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +283,8 @@
 			files = (
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
+				7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */,
+				7AAE39691827C6A3009BE7B3 /* Reachability.m in Sources */,
 				7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
