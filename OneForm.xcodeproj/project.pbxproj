@@ -19,6 +19,7 @@
 		7AAE393B1827962C009BE7B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39231827962C009BE7B3 /* UIKit.framework */; };
 		7AAE39431827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39411827962C009BE7B3 /* InfoPlist.strings */; };
 		7AAE39451827962C009BE7B3 /* OneFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39441827962C009BE7B3 /* OneFormTests.m */; };
+		7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,9 @@
 		7AAE39401827962C009BE7B3 /* OneFormTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OneFormTests-Info.plist"; sourceTree = "<group>"; };
 		7AAE39421827962C009BE7B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7AAE39441827962C009BE7B3 /* OneFormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFormTests.m; sourceTree = "<group>"; };
+		7AAE395E18279E8A009BE7B3 /* OFLoginMockup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OFLoginMockup.xib; sourceTree = "<group>"; };
+		7AAE395F1827A04A009BE7B3 /* OFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFLoginViewController.h; sourceTree = "<group>"; };
+		7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		7AAE39251827962C009BE7B3 /* OneForm */ = {
 			isa = PBXGroup;
 			children = (
+				7AAE394E18279950009BE7B3 /* Login Screen */,
 				7AAE392E1827962C009BE7B3 /* OFAppDelegate.h */,
 				7AAE392F1827962C009BE7B3 /* OFAppDelegate.m */,
 				7AAE39311827962C009BE7B3 /* Images.xcassets */,
@@ -142,6 +147,16 @@
 				7AAE39411827962C009BE7B3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7AAE394E18279950009BE7B3 /* Login Screen */ = {
+			isa = PBXGroup;
+			children = (
+				7AAE395E18279E8A009BE7B3 /* OFLoginMockup.xib */,
+				7AAE395F1827A04A009BE7B3 /* OFLoginViewController.h */,
+				7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */,
+			);
+			name = "Login Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +257,7 @@
 			files = (
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
+				7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +458,7 @@
 				7AAE394A1827962C009BE7B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7AAE394B1827962C009BE7B3 /* Build configuration list for PBXNativeTarget "OneFormTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +467,7 @@
 				7AAE394D1827962C009BE7B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
