@@ -21,4 +21,12 @@
 @property (nonatomic, strong) UITextField *passwordTextfield;
 @property (nonatomic, strong) UILabel *passwordLabel;
 
+@property (nonatomic, strong) UITextField *emailTextfield;
+@property (nonatomic, strong) UILabel *emailLabel;
+
+@property (nonatomic, strong) UITextField *confirmPasswordTextfield;
+@property (nonatomic, strong) UILabel *confirmPasswordLabel;
+
+@property (nonatomic, strong) UIButton *joinButton;
+
 @end

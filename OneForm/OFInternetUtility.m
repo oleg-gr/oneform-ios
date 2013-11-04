@@ -16,7 +16,7 @@
     
     NetworkStatus internetStatus = [r currentReachabilityStatus];
     
-    if ((internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
+    if (NO && (internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
                                                           message:@"OneForm requires internet connection"
                                                          delegate:self

@@ -69,6 +69,7 @@
     self.passwordTextfield.secureTextEntry = YES;
     self.passwordTextfield.delegate = self;
     [self.scrollContainer addSubview:self.passwordTextfield];
+    
     //label
     //design
     self.passwordLabel = [[UILabel alloc]
@@ -77,7 +78,68 @@
     //logic
     [self.scrollContainer addSubview:self.passwordLabel];
     
+    
+    
+    //JOIN NOW
+    
+    //join now button
+    //design
+    self.joinButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.joinButton setTitle:@"Join now" forState:UIControlStateNormal];
+    self.joinButton.frame = CGRectMake(125.0f, 530.0f, 70.0f, 25.0f);
+    //logic
+    [self.joinButton addTarget:self
+                        action:@selector(joinAnimation)
+              forControlEvents:UIControlEventTouchDown];
+    [self.scrollContainer addSubview:self.joinButton];
+    
+    
+    
+    //EMAIL
+    
+    //textfield
+    //design
+    self.emailTextfield = [[UITextField alloc]
+                              initWithFrame:CGRectMake(850.0f, 203.0f, 150.0f, 30.0f)];
+    self.emailTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    //logic
+    self.emailTextfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.emailTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.emailTextfield.delegate = self;
+    [self.scrollContainer addSubview:self.emailTextfield];
+    
+    //label
+    //design
+    self.emailLabel = [[UILabel alloc]
+                          initWithFrame:CGRectMake(85.0f, 174.0f, 80.0f, 21.0f)];
+    self.emailLabel.text = @"Email";
+    //logic
+    [self.scrollContainer addSubview:self.emailLabel];
 
+    
+    
+    //CONFIRM PASSWORD
+    
+    //textfield
+    //design
+    self.confirmPasswordTextfield = [[UITextField alloc]
+                           initWithFrame:CGRectMake(85.0f, 404.0f, 150.0f, 30.0f)];
+    self.confirmPasswordTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    //logic
+    self.confirmPasswordTextfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.confirmPasswordTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.confirmPasswordTextfield.delegate = self;
+    [self.scrollContainer addSubview:self.confirmPasswordTextfield];
+    
+    //label
+    //design
+    self.confirmPasswordLabel = [[UILabel alloc]
+                       initWithFrame:CGRectMake(85.0f, 375.0f, 80.0f, 21.0f)];
+    self.confirmPasswordLabel.text = @"Confirm password";
+    //logic
+    [self.scrollContainer addSubview:self.confirmPasswordLabel];
+
+    
     //KEYBOARD
     UITapGestureRecognizer *tapOutOfText = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -93,7 +155,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma Keyboard And Next Field Logic
+#pragma mark Text fields animation
+
+- (void) joinAnimation
+{
+    
+}
+
+#pragma mark Keyboard And Next Field Logic
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -112,6 +181,8 @@
 {
     [self.usernameTextfield resignFirstResponder];
     [self.passwordTextfield resignFirstResponder];
+    [self.emailTextfield resignFirstResponder];
+    [self.confirmPasswordTextfield resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -142,7 +213,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 20, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0f, 0.0f, kbSize.height + 20.0f, 0.0f);
     self.scrollContainer.contentInset = contentInsets;
     self.scrollContainer.scrollIndicatorInsets = contentInsets;
     
