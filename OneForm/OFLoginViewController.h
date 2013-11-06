@@ -11,6 +11,7 @@
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
     BOOL keyboardIsShown;
+    BOOL isJoinScreen;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollContainer;
@@ -28,5 +29,6 @@
 @property (nonatomic, strong) UILabel *confirmPasswordLabel;
 
 @property (nonatomic, strong) UIButton *joinButton;
+@property (nonatomic, strong) UIButton *signInButton;
 
 @end
