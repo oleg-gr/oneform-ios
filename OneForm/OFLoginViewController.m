@@ -8,6 +8,7 @@
 
 #import "OFLoginViewController.h"
 #import "OFInternetUtility.h"
+#import "OFHelperMethods.h"
 
 @interface OFLoginViewController ()
 
@@ -152,7 +153,7 @@
     self.signInButton.frame = CGRectMake(85.0, self.confirmPasswordLabel.frame.origin.y, 150.0, 25.0);
     //logic
     [self.signInButton addTarget:self
-                    action:@selector(joinAnimation)
+                    action:@selector(signInButonAction)
           forControlEvents:UIControlEventTouchDown];
     [self.scrollContainer addSubview:self.signInButton];
     
@@ -176,6 +177,59 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Sign up and Sign in responses
+
+-(void) signUpResponseLogic
+{
+    NSString *response = [OFHelperMethods signUp:self.emailTextfield.text
+                                    withUsername:self.usernameTextfield.text
+                                    withPassword:self.passwordTextfield.text
+                             withConfirmPassword:self.confirmPasswordTextfield.text];
+    if (![response  isEqual: @"OK"]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign up failed"
+                                                          message:response
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    else
+    {
+        //data model assignment logic
+    }
+}
+
+-(void) signInResponseLogic
+{
+    NSString *response = [OFHelperMethods signIn:self.usernameTextfield.text
+                                    withPassword:self.passwordTextfield.text];
+    if (![response  isEqual: @"OK"]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign in failed"
+                                                          message:response
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    else
+    {
+        //data model assignment logic
+    }
+}
+
+#pragma mark Sign in adn Sign up button logic
+- (void) signInButonAction
+{
+    if (isJoinScreen)
+    {
+        [self signUpResponseLogic];
+    }
+    else
+    {
+        [self signInResponseLogic];
+    }
 }
 
 #pragma mark Text fields animation
@@ -243,7 +297,7 @@
         }
         else
         {
-            //sign in logic
+            [self signInResponseLogic];
         }
     }
     if (tag == 3)
@@ -252,7 +306,7 @@
     }
     if (tag == 4)
     {
-        //sign up logic
+        [self signUpResponseLogic];
     }
     else
     {

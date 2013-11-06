@@ -31,4 +31,7 @@
 @property (nonatomic, strong) UIButton *joinButton;
 @property (nonatomic, strong) UIButton *signInButton;
 
+-(void) signUpResponseLogic;
+-(void) signInResponseLogic;
+
 @end

@@ -22,6 +22,7 @@
 		7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */; };
 		7AAE39691827C6A3009BE7B3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE39681827C6A3009BE7B3 /* Reachability.m */; };
 		7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */; };
+		7ADB5CF7182A96AC009D2739 /* OFHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		7AAE39681827C6A3009BE7B3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		7AAE396A1827CF3C009BE7B3 /* OFInternetUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFInternetUtility.h; sourceTree = "<group>"; };
 		7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFInternetUtility.m; sourceTree = "<group>"; };
+		7ADB5CF5182A96AC009D2739 /* OFHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFHelperMethods.h; sourceTree = "<group>"; };
+		7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFHelperMethods.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 			children = (
 				7AAE396A1827CF3C009BE7B3 /* OFInternetUtility.h */,
 				7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */,
+				7ADB5CF5182A96AC009D2739 /* OFHelperMethods.h */,
+				7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
 				7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */,
+				7ADB5CF7182A96AC009D2739 /* OFHelperMethods.m in Sources */,
 				7AAE39691827C6A3009BE7B3 /* Reachability.m in Sources */,
 				7AAE39611827A04A009BE7B3 /* OFLoginViewController.m in Sources */,
 			);
