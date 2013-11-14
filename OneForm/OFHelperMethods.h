@@ -11,6 +11,6 @@
 @interface OFHelperMethods : NSObject
 
 +(NSString *) createSHA512:(NSString *)source;
-+(NSString *) signUp:(NSString*) email withUsername:(NSString*) userName withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword;
++(NSString *) signUp:(NSString*) email withUsername:(NSString*) userName withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString*) firstName withLastName:(NSString*) lastName;
 +(NSString *) signIn:(NSString*) username withPassword:(NSString*) password;
 @end

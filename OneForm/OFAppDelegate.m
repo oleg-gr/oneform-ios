@@ -8,12 +8,32 @@
 
 #import "OFAppDelegate.h"
 #import "OFLoginViewController.h"
+#import "OFSearchFormsViewController.h"
 #import "OFInternetUtility.h"
+#import "OFMenuViewController.h"
+#import "SWRevealViewController.h"
+
+@interface OFAppDelegate()<SWRevealViewControllerDelegate>
+@end
 
 @implementation OFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //setting up menu controller
+//    OFMenuViewController *frontViewController = [[OFMenuViewController alloc] init];
+//	OFSearchFormsViewController *rearViewController = [[OFSearchFormsViewController alloc] init];
+//    
+//    self.mainRevealController = [[SWRevealViewController alloc]
+//                                                    initWithRearViewController:frontViewController frontViewController:rearViewController];
+//    self.mainRevealController.rearViewRevealWidth = 60;
+//    self.mainRevealController.rearViewRevealOverdraw = 120;
+//    self.mainRevealController.bounceBackOnOverdraw = NO;
+//    self.mainRevealController.stableDragOnOverdraw = YES;
+//    [self.mainRevealController setFrontViewPosition:FrontViewPositionRight];
+//
+//    self.mainRevealController.delegate = self;
+//    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

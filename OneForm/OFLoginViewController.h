@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OFTextField.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
@@ -16,22 +17,27 @@
 
 @property (nonatomic, strong) UIScrollView *scrollContainer;
 
-@property (nonatomic, strong) UITextField *usernameTextfield;
-@property (nonatomic, strong) UILabel *usernameLabel;
+@property (nonatomic, strong) OFTextField *usernameUI;
 
-@property (nonatomic, strong) UITextField *passwordTextfield;
-@property (nonatomic, strong) UILabel *passwordLabel;
+@property (nonatomic, strong) OFTextField *passwordUI;
 
-@property (nonatomic, strong) UITextField *emailTextfield;
-@property (nonatomic, strong) UILabel *emailLabel;
+@property (nonatomic, strong) OFTextField *firstNameUI;
 
-@property (nonatomic, strong) UITextField *confirmPasswordTextfield;
-@property (nonatomic, strong) UILabel *confirmPasswordLabel;
+@property (nonatomic, strong) OFTextField *lastNameUI;
+
+@property (nonatomic, strong) OFTextField *emailUI;
+
+@property (nonatomic, strong) OFTextField *confirmPasswordUI;
 
 @property (nonatomic, strong) UIButton *joinButton;
 @property (nonatomic, strong) UIButton *signInButton;
 
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;
+
+enum
+{
+    LEFT_ALIGN_LINE = 85,
+};
 
 @end

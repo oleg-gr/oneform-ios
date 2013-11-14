@@ -36,9 +36,17 @@
 
 #pragma mark Sign up and Sign in
 
-+(NSString *) signUp:(NSString*) email withUsername:(NSString*) username withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword
++(NSString *) signUp:(NSString*) email withUsername:(NSString*) username withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString *)firstName withLastName:(NSString *)lastName
 {
-    if (email.length == 0)
+    if (firstName.length == 0)
+    {
+        return @"First Name cannot be empty";
+    }
+    else if (lastName.length == 0)
+    {
+        return @"Last Name cannot be empty";
+    }
+    else if (email.length == 0)
     {
         return @"Email cannot be empty";
     }
@@ -80,7 +88,7 @@
     }
     else
     {
-        return @"sign-in";
+        return @"OK";
     }
 }
 

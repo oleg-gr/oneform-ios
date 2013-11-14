@@ -9,6 +9,8 @@
 #import "OFLoginViewController.h"
 #import "OFInternetUtility.h"
 #import "OFHelperMethods.h"
+#import "OFAppDelegate.h"
+#import "OFTextField.h"
 
 @interface OFLoginViewController ()
 
@@ -30,32 +32,28 @@
 {
     [super viewDidLoad];
     
-    //USERNAME
-    
     //scrollview
     self.scrollContainer = [[UIScrollView alloc]
                             initWithFrame: self.view.frame];
     self.scrollContainer.contentSize = CGSizeMake(320, 380);
     [self.view addSubview:self.scrollContainer];
     
+    
+    //USERNAME
     //textfield
     //design
-    self.usernameTextfield = [[UITextField alloc]
-                              initWithFrame:CGRectMake(85.0, 270.0, 150.0, 30.0)];
-    self.usernameTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    self.usernameUI = [[OFTextField alloc]
+                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 270.0, 150.0, 60.0) andLabel:@"Username"];
     //logic
-    self.usernameTextfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.usernameTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.usernameTextfield.tag = 1;
-    self.usernameTextfield.delegate = self;
-    [self.scrollContainer addSubview:self.usernameTextfield];
+    self.usernameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.usernameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.usernameUI.textFieldInput.tag = 1;
+    self.usernameUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.usernameUI];
     //label
     //design
-    self.usernameLabel = [[ UILabel alloc]
-                          initWithFrame:CGRectMake(85.0, 240.0, 150.0, 21.0)];
-    self.usernameLabel.text = @"Username";
     //logic
-    [self.scrollContainer addSubview:self.usernameLabel];
+    [self.scrollContainer addSubview:self.usernameUI];
     
     
     
@@ -63,22 +61,14 @@
     
     //textfield
     //design
-    self.passwordTextfield = [[UITextField alloc]
-                              initWithFrame:CGRectMake(85.0, 337.0, 150.0, 30.0)];
-    self.passwordTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    self.passwordUI = [[OFTextField alloc]
+                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 340.0, 150.0, 60.0) andLabel:@"Password"];
     //logic
-    self.passwordTextfield.secureTextEntry = YES;
-    self.passwordTextfield.delegate = self;
-    self.passwordTextfield.tag = 2;
-    [self.scrollContainer addSubview:self.passwordTextfield];
-    
-    //label
-    //design
-    self.passwordLabel = [[UILabel alloc]
-                          initWithFrame:CGRectMake(85.0, 308.0, 150.0, 21.0)];
-    self.passwordLabel.text = @"Password";
-    //logic
-    [self.scrollContainer addSubview:self.passwordLabel];
+    self.passwordUI.textFieldInput.secureTextEntry = YES;
+    self.passwordUI.textFieldInput.delegate = self;
+    self.passwordUI.textFieldInput.tag = 2;
+    [self.scrollContainer addSubview:self.passwordUI];
+    [self.scrollContainer addSubview:self.passwordUI];
 
     
     
@@ -86,48 +76,58 @@
     
     //textfield
     //design
-    self.emailTextfield = [[UITextField alloc]
-                              initWithFrame:CGRectMake(320.0, 203.0, 150.0, 30.0)];
-    self.emailTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    self.emailUI = [[OFTextField alloc]
+                    initWithFrame:CGRectMake(320.0, 210.0, 150.0, 60.0) andLabel:@"Email"];
     //logic
-    self.emailTextfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.emailTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.emailTextfield.delegate = self;
-    self.emailTextfield.tag = 3;
-    [self.scrollContainer addSubview:self.emailTextfield];
-    
-    //label
-    //design
-    self.emailLabel = [[UILabel alloc]
-                          initWithFrame:CGRectMake(320.0, 174.0, 150.0, 21.0)];
-    self.emailLabel.text = @"Email";
-    //logic
-    [self.scrollContainer addSubview:self.emailLabel];
-
+    self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.emailUI.textFieldInput.delegate = self;
+    self.emailUI.textFieldInput.tag = 3;
+    [self.scrollContainer addSubview:self.emailUI];
     
     
     //CONFIRM PASSWORD
     
     //textfield
     //design
-    self.confirmPasswordTextfield = [[UITextField alloc]
-                           initWithFrame:CGRectMake(320.0, 404.0, 150.0, 30.0)];
-    self.confirmPasswordTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    self.confirmPasswordUI = [[OFTextField alloc]
+                       initWithFrame:CGRectMake(320.0, 400.0, 150.0, 60.0) andLabel:@"Confirm password"];
     //logic
-    self.confirmPasswordTextfield.secureTextEntry = YES;
-    self.confirmPasswordTextfield.tag = 4;
-    self.confirmPasswordTextfield.delegate = self;
-    [self.scrollContainer addSubview:self.confirmPasswordTextfield];
+    self.confirmPasswordUI.textFieldInput.secureTextEntry = YES;
+    self.confirmPasswordUI.textFieldInput.tag = 4;
+    self.confirmPasswordUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.confirmPasswordUI];
     
-    //label
+    
+    
+    
+    //FIRST NAME
+    
+    //textfield
     //design
-    self.confirmPasswordLabel = [[UILabel alloc]
-                       initWithFrame:CGRectMake(320.0, 375.0, 150.0, 21.0)];
-    self.confirmPasswordLabel.text = @"Confirm password";
+    self.firstNameUI = [[OFTextField alloc]
+                              initWithFrame:CGRectMake(320.0, 90.0, 150.0, 60.0) andLabel:@"First Name"];
     //logic
-    [self.scrollContainer addSubview:self.confirmPasswordLabel];
+    self.firstNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.firstNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.firstNameUI.textFieldInput.tag = 5;
+    self.firstNameUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.firstNameUI];
     
     
+    
+    //LAST NAME
+    
+    //textfield
+    //design
+    self.lastNameUI = [[OFTextField alloc]
+                        initWithFrame:CGRectMake(320.0, 150.0, 150.0, 60.0) andLabel:@"Last Name"];
+    //logic
+    self.lastNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.lastNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.lastNameUI.textFieldInput.tag = 6;
+    self.lastNameUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.lastNameUI];
     
     //JOIN NOW
     
@@ -135,7 +135,7 @@
     //design
     self.joinButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.joinButton setTitle:@"First time?" forState:UIControlStateNormal];
-    self.joinButton.frame = CGRectMake(85.0, 530.0, 150.0, 25.0);
+    self.joinButton.frame = CGRectMake(LEFT_ALIGN_LINE, 530.0, 150.0, 25.0);
     //logic
     [self.joinButton addTarget:self
                         action:@selector(joinAnimation)
@@ -150,7 +150,7 @@
     //design
     self.signInButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    self.signInButton.frame = CGRectMake(85.0, self.confirmPasswordLabel.frame.origin.y, 150.0, 25.0);
+    self.signInButton.frame = CGRectMake(LEFT_ALIGN_LINE, self.confirmPasswordUI.frame.origin.y, 150.0, 25.0);
     //logic
     [self.signInButton addTarget:self
                     action:@selector(signInButonAction)
@@ -183,10 +183,13 @@
 
 -(void) signUpResponseLogic
 {
-    NSString *response = [OFHelperMethods signUp:self.emailTextfield.text
-                                    withUsername:self.usernameTextfield.text
-                                    withPassword:self.passwordTextfield.text
-                             withConfirmPassword:self.confirmPasswordTextfield.text];
+    NSString *response = [OFHelperMethods signUp:[self.emailUI getTextInput]
+                                    withUsername:[self.usernameUI getTextInput]
+                                    withPassword:[self.passwordUI getTextInput]
+                             withConfirmPassword:[self.confirmPasswordUI getTextInput]
+                                   withFirstName:[self.firstNameUI getTextInput]
+                                    withLastName:[self.lastNameUI getTextInput]
+                          ];
     if (![response  isEqual: @"OK"]) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign up failed"
                                                           message:response
@@ -203,8 +206,8 @@
 
 -(void) signInResponseLogic
 {
-    NSString *response = [OFHelperMethods signIn:self.usernameTextfield.text
-                                    withPassword:self.passwordTextfield.text];
+    NSString *response = [OFHelperMethods signIn:[self.usernameUI getTextInput]
+                                    withPassword:[self.passwordUI getTextInput]];
     if (![response  isEqual: @"OK"]) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign in failed"
                                                           message:response
@@ -215,7 +218,8 @@
     }
     else
     {
-        //data model assignment logic
+        OFAppDelegate *temp = (OFAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [self presentViewController:temp.mainRevealController animated:YES completion:nil];
     }
 }
 
@@ -236,29 +240,29 @@
 
 - (void) joinAnimation
 {
-    CGRect emailFrame = self.emailTextfield.frame;
-    CGRect emailLabelForm = self.emailLabel.frame;
-    CGRect passwordFrame = self.confirmPasswordTextfield.frame;
-    CGRect passwordLabelFrame = self.confirmPasswordLabel.frame;
+    CGRect emailFrame = self.emailUI.frame;
+    CGRect passwordConfirmFrame = self.confirmPasswordUI.frame;
+    CGRect firstNameFrame = self.firstNameUI.frame;
+    CGRect lastNameFrame = self.lastNameUI.frame;
     CGRect signInFrame = self.signInButton.frame;
     __block NSString *newJoinTitle;
     __block NSString *newSignInTitle;
     if (isJoinScreen)
     {
         emailFrame.origin.x = 320.0;
-        emailLabelForm.origin.x = 320.0;
-        passwordFrame.origin.x = 320.0;
-        passwordLabelFrame.origin.x = 320.0;
-        signInFrame.origin.y = self.confirmPasswordLabel.frame.origin.y;
+        passwordConfirmFrame.origin.x = 320.0;
+        firstNameFrame.origin.x = 320.0;
+        lastNameFrame.origin.x = 320.0;
+        signInFrame.origin.y = self.confirmPasswordUI.frame.origin.y;
         newJoinTitle = @"First time?";
         newSignInTitle = @"Sign in";
     } else
     {
-        emailFrame.origin.x = 85.0;
-        emailLabelForm.origin.x = 85.0;
-        passwordFrame.origin.x = 85.0;
-        passwordLabelFrame.origin.x = 85.0;
-        signInFrame.origin.y = 440.0;
+        emailFrame.origin.x = LEFT_ALIGN_LINE;
+        passwordConfirmFrame.origin.x = LEFT_ALIGN_LINE;
+        firstNameFrame.origin.x = LEFT_ALIGN_LINE;
+        lastNameFrame.origin.x = LEFT_ALIGN_LINE;
+        signInFrame.origin.y = self.confirmPasswordUI.frame.origin.y + 60;
         newJoinTitle = @"Back to login";
         newSignInTitle = @"Join now";
     };
@@ -269,10 +273,10 @@
                             delay:0.0
                           options:UIViewAnimationOptionCurveEaseIn
                        animations:^{
-                           self.emailTextfield.frame = emailFrame;
-                           self.emailLabel.frame = emailLabelForm;
-                           self.confirmPasswordTextfield.frame = passwordFrame;
-                           self.confirmPasswordLabel.frame = passwordLabelFrame;
+                           self.confirmPasswordUI.frame = passwordConfirmFrame;
+                           self.firstNameUI.frame = firstNameFrame;
+                           self.lastNameUI.frame = lastNameFrame;
+                           self.emailUI.frame = emailFrame;
                            self.signInButton.frame = signInFrame;
                            [self.joinButton setTitle:newJoinTitle forState:UIControlStateNormal];
                            [self.signInButton setTitle:newSignInTitle forState:UIControlStateNormal];
@@ -287,26 +291,34 @@
     int tag = textField.tag;
     if (tag == 1)
     {
-        [self.passwordTextfield becomeFirstResponder];
+        [self.passwordUI.textFieldInput becomeFirstResponder];
     }
     else if (tag == 2)
     {
         if (isJoinScreen)
         {
-            [self.confirmPasswordTextfield becomeFirstResponder];
+            [self.confirmPasswordUI.textFieldInput becomeFirstResponder];
         }
         else
         {
             [self signInResponseLogic];
         }
     }
-    if (tag == 3)
+    else if (tag == 3)
     {
-        [self.usernameTextfield becomeFirstResponder];
+        [self.usernameUI.textFieldInput becomeFirstResponder];
     }
-    if (tag == 4)
+    else if (tag == 4)
     {
         [self signUpResponseLogic];
+    }
+    else if (tag == 5)
+    {
+        [self.lastNameUI.textFieldInput becomeFirstResponder];
+    }
+    else if (tag == 6)
+    {
+        [self.emailUI.textFieldInput becomeFirstResponder];
     }
     else
     {
@@ -317,10 +329,7 @@
 
 -(void)dismissKeyboard
 {
-    [self.usernameTextfield resignFirstResponder];
-    [self.passwordTextfield resignFirstResponder];
-    [self.emailTextfield resignFirstResponder];
-    [self.confirmPasswordTextfield resignFirstResponder];
+    [activeField resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
