@@ -44,7 +44,7 @@
     //textfield
     //design
     self.usernameUI = [[OFTextField alloc]
-                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 200.0, 150.0, 60.0) andLabel:@"Username"];
+                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 260.0, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Username"];
     //logic
     self.usernameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.usernameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -63,7 +63,7 @@
     //textfield
     //design
     self.passwordUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP, 150.0, 60.0) andLabel:@"Password"];
+                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Password"];
     //logic
     self.passwordUI.textFieldInput.secureTextEntry = YES;
     self.passwordUI.textFieldInput.delegate = self;
@@ -78,7 +78,7 @@
     //textfield
     //design
     self.emailUI = [[OFTextField alloc]
-                    initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP, 150.0, 60.0) andLabel:@"Email"];
+                    initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
     //logic
     self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -92,7 +92,7 @@
     //textfield
     //design
     self.confirmPasswordUI = [[OFTextField alloc]
-                       initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP*2, 150.0, 60.0) andLabel:@"Confirm password"];
+                       initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Confirm password"];
     //logic
     self.confirmPasswordUI.textFieldInput.secureTextEntry = YES;
     self.confirmPasswordUI.textFieldInput.tag = 4;
@@ -107,9 +107,8 @@
     //textfield
     //design
     self.firstNameUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*3, 150.0, 60.0) andLabel:@"First Name"];
+                              initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*3, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"First Name"];
     //logic
-    self.firstNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.firstNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameUI.textFieldInput.tag = 5;
     self.firstNameUI.textFieldInput.delegate = self;
@@ -122,9 +121,8 @@
     //textfield
     //design
     self.lastNameUI = [[OFTextField alloc]
-                        initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*2, 150.0, 60.0) andLabel:@"Last Name"];
+                        initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Last Name"];
     //logic
-    self.lastNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.lastNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastNameUI.textFieldInput.tag = 6;
     self.lastNameUI.textFieldInput.delegate = self;
@@ -135,8 +133,11 @@
     //join now button
     //design
     self.joinButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.joinButton setTitle:@"First time?" forState:UIControlStateNormal];
-    self.joinButton.frame = CGRectMake(LEFT_ALIGN_LINE, 530.0, 150.0, 25.0);
+    [self.joinButton setTitle:@"first time?" forState:UIControlStateNormal];
+    self.joinButton.frame = CGRectMake(0, 0, 130, 50);
+    self.joinButton.center = CGPointMake(160.0, 546.0);
+    [self.joinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.joinButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:21]];
     //logic
     [self.joinButton addTarget:self
                         action:@selector(joinAnimation)
@@ -151,7 +152,10 @@
     //design
     self.signInButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    self.signInButton.frame = CGRectMake(LEFT_ALIGN_LINE, self.confirmPasswordUI.frame.origin.y, 150.0, 25.0);
+    self.signInButton.frame = CGRectMake(0, 0, 150.0, 25.0);
+    self.signInButton.center = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
+    [self.signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.signInButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:36]];
     //logic
     [self.signInButton addTarget:self
                     action:@selector(signInButonAction)
@@ -245,7 +249,7 @@
     CGRect passwordConfirmFrame = self.confirmPasswordUI.frame;
     CGRect firstNameFrame = self.firstNameUI.frame;
     CGRect lastNameFrame = self.lastNameUI.frame;
-    CGRect signInFrame = self.signInButton.frame;
+    CGPoint signInCenter;
     __block NSString *newJoinTitle;
     __block NSString *newSignInTitle;
     if (isJoinScreen)
@@ -254,8 +258,8 @@
         passwordConfirmFrame.origin.x = 320.0;
         firstNameFrame.origin.x = 320.0;
         lastNameFrame.origin.x = 320.0;
-        signInFrame.origin.y = self.confirmPasswordUI.frame.origin.y;
-        newJoinTitle = @"First time?";
+        signInCenter = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
+        newJoinTitle = @"first time?";
         newSignInTitle = @"Sign in";
     } else
     {
@@ -263,7 +267,7 @@
         passwordConfirmFrame.origin.x = LEFT_ALIGN_LINE;
         firstNameFrame.origin.x = LEFT_ALIGN_LINE;
         lastNameFrame.origin.x = LEFT_ALIGN_LINE;
-        signInFrame.origin.y = self.confirmPasswordUI.frame.origin.y + 60;
+        signInCenter = CGPointMake(160.0, self.confirmPasswordUI.frame.origin.y + 104);
         newJoinTitle = @"Back to login";
         newSignInTitle = @"Join now";
     };
@@ -278,7 +282,7 @@
                            self.firstNameUI.frame = firstNameFrame;
                            self.lastNameUI.frame = lastNameFrame;
                            self.emailUI.frame = emailFrame;
-                           self.signInButton.frame = signInFrame;
+                           self.signInButton.center = signInCenter;
                            [self.joinButton setTitle:newJoinTitle forState:UIControlStateNormal];
                            [self.signInButton setTitle:newSignInTitle forState:UIControlStateNormal];
                        }

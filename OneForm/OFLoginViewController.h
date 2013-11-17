@@ -38,7 +38,8 @@
 enum
 {
     LEFT_ALIGN_LINE = 35,
-    UI_ELEMENTS_GAP = 70
+    UI_ELEMENTS_GAP = 68,
+    UI_TEXT_WIDTH = 320 - LEFT_ALIGN_LINE
 };
 
 @end
