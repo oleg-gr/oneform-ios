@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.caption = [[UILabel alloc] initWithFrame:CGRectMake(85.0, 20.0, 150.0, 21.0)];
+    self.caption = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 20.0, 150.0, 21.0)];
     [self.caption setText:@"Menu"];
     [self.caption setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:self.caption];

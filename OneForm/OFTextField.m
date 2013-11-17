@@ -14,18 +14,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        //text input
         self.textFieldInput = [[UITextField alloc]
-                                  initWithFrame:CGRectMake(0, 30, 150, 30)];
-        self.textFieldInput.borderStyle = UITextBorderStyleRoundedRect;
-        //logic
+                                  initWithFrame:CGRectMake(0, 30, 320 - 35, 40)];
+        self.textFieldInput.adjustsFontSizeToFitWidth = YES;
         [self addSubview:self.textFieldInput];
         //label
-        //design
         self.labelInput = [[ UILabel alloc]
-                              initWithFrame:CGRectMake(0, 0, 150, 20)];
+                              initWithFrame:CGRectMake(0, 0, 150, 30)];
+        self.labelInput.textColor = [UIColor whiteColor];
+        self.labelInput.adjustsFontSizeToFitWidth = YES;
         self.labelInput.text = label;
         [self addSubview:self.labelInput];
-        
+        //line
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.textFieldInput.frame.size.height + self.labelInput.frame.size.height, self.textFieldInput.frame.size.width, 3)];
+        lineView.backgroundColor = [UIColor grayColor];
+        [self addSubview:lineView];
         
     }
     return self;

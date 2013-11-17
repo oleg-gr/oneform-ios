@@ -36,6 +36,7 @@
     self.scrollContainer = [[UIScrollView alloc]
                             initWithFrame: self.view.frame];
     self.scrollContainer.contentSize = CGSizeMake(320, 380);
+    self.view.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:8.0/255.0 blue:83.0/255.0 alpha:1];
     [self.view addSubview:self.scrollContainer];
     
     
@@ -43,7 +44,7 @@
     //textfield
     //design
     self.usernameUI = [[OFTextField alloc]
-                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 270.0, 150.0, 60.0) andLabel:@"Username"];
+                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 200.0, 150.0, 60.0) andLabel:@"Username"];
     //logic
     self.usernameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.usernameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -62,7 +63,7 @@
     //textfield
     //design
     self.passwordUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 340.0, 150.0, 60.0) andLabel:@"Password"];
+                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP, 150.0, 60.0) andLabel:@"Password"];
     //logic
     self.passwordUI.textFieldInput.secureTextEntry = YES;
     self.passwordUI.textFieldInput.delegate = self;
@@ -77,7 +78,7 @@
     //textfield
     //design
     self.emailUI = [[OFTextField alloc]
-                    initWithFrame:CGRectMake(320.0, 210.0, 150.0, 60.0) andLabel:@"Email"];
+                    initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP, 150.0, 60.0) andLabel:@"Email"];
     //logic
     self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -91,7 +92,7 @@
     //textfield
     //design
     self.confirmPasswordUI = [[OFTextField alloc]
-                       initWithFrame:CGRectMake(320.0, 400.0, 150.0, 60.0) andLabel:@"Confirm password"];
+                       initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP*2, 150.0, 60.0) andLabel:@"Confirm password"];
     //logic
     self.confirmPasswordUI.textFieldInput.secureTextEntry = YES;
     self.confirmPasswordUI.textFieldInput.tag = 4;
@@ -106,7 +107,7 @@
     //textfield
     //design
     self.firstNameUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(320.0, 90.0, 150.0, 60.0) andLabel:@"First Name"];
+                              initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*3, 150.0, 60.0) andLabel:@"First Name"];
     //logic
     self.firstNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.firstNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -121,7 +122,7 @@
     //textfield
     //design
     self.lastNameUI = [[OFTextField alloc]
-                        initWithFrame:CGRectMake(320.0, 150.0, 150.0, 60.0) andLabel:@"Last Name"];
+                        initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*2, 150.0, 60.0) andLabel:@"Last Name"];
     //logic
     self.lastNameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.lastNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;

@@ -32,7 +32,7 @@
 
     UIButton *reveal = [UIButton buttonWithType:UIButtonTypeSystem];
     [reveal setTitle:@"Menu" forState:UIControlStateNormal];
-    reveal.frame = CGRectMake(85, 50, 150.0, 25.0);
+    reveal.frame = CGRectMake(0.0, 20.0, 20.0, 25.0);
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
     //logic
     [reveal addTarget:revealController
@@ -45,7 +45,7 @@
 	
     //CAPTION
     self.caption = [[UILabel alloc] initWithFrame:CGRectMake(85.0, 20.0, 150.0, 21.0)];
-    [self.caption setText:@"Search Forms"];
+    [self.caption setText:@"oneForm/searchforms"];
     [self.caption setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:self.caption];
     

@@ -26,12 +26,13 @@
 	
 	self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
     
-    self.revealController.rearViewRevealWidth = 60;
-    self.revealController.rearViewRevealOverdraw = 120;
-    self.revealController.bounceBackOnOverdraw = NO;
-    self.revealController.stableDragOnOverdraw = YES;
+    //menu width
+    self.revealController.rearViewRevealWidth = 200;
+    self.revealController.rearViewRevealOverdraw = 200;
+    self.revealController.draggableBorderWidth = 50;
+    self.revealController.frontViewShadowRadius = 0;
     
-    frontViewController.view.backgroundColor = [UIColor whiteColor];
+    frontViewController.view.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:8.0/255.0 blue:83.0/255.0 alpha:1];
     rearViewController.view.backgroundColor = [UIColor whiteColor];
     
     self.revealController.delegate = self;
