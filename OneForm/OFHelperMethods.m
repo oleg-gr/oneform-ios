@@ -72,7 +72,8 @@
     }
     else
     {
-        return @"Placeholder for sign up...";
+        //logic for sign up check
+        return @"OK";
     }
 }
 
@@ -88,6 +89,7 @@
     }
     else
     {
+        //logic for sign in check
         return @"OK";
     }
 }

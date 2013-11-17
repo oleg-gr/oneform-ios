@@ -219,7 +219,7 @@
     else
     {
         OFAppDelegate *temp = (OFAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [self presentViewController:temp.mainRevealController animated:YES completion:nil];
+        [self presentViewController:temp.revealController animated:YES completion:nil];
     }
 }
 

@@ -20,20 +20,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //setting up menu controller
-//    OFMenuViewController *frontViewController = [[OFMenuViewController alloc] init];
-//	OFSearchFormsViewController *rearViewController = [[OFSearchFormsViewController alloc] init];
-//    
-//    self.mainRevealController = [[SWRevealViewController alloc]
-//                                                    initWithRearViewController:frontViewController frontViewController:rearViewController];
-//    self.mainRevealController.rearViewRevealWidth = 60;
-//    self.mainRevealController.rearViewRevealOverdraw = 120;
-//    self.mainRevealController.bounceBackOnOverdraw = NO;
-//    self.mainRevealController.stableDragOnOverdraw = YES;
-//    [self.mainRevealController setFrontViewPosition:FrontViewPositionRight];
-//
-//    self.mainRevealController.delegate = self;
-//    
+    
+    OFSearchFormsViewController *frontViewController= [[OFSearchFormsViewController alloc] init];
+    OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
+	
+	self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
+    
+    self.revealController.rearViewRevealWidth = 60;
+    self.revealController.rearViewRevealOverdraw = 120;
+    self.revealController.bounceBackOnOverdraw = NO;
+    self.revealController.stableDragOnOverdraw = YES;
+    
+    frontViewController.view.backgroundColor = [UIColor whiteColor];
+    rearViewController.view.backgroundColor = [UIColor whiteColor];
+    
+    self.revealController.delegate = self;
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
