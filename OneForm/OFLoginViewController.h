@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OFTextField.h"
 #import "OFBottomNotification.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
@@ -17,7 +18,7 @@
     BOOL isNotification;
 }
 
-@property (nonatomic, strong) UIScrollView *scrollContainer;
+@property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollContainer;
 
 @property (nonatomic, strong) OFTextField *usernameUI;
 
