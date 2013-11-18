@@ -18,5 +18,6 @@
 -(void)hide;
 
 @property (nonatomic, strong) UILabel *notification;
+@property BOOL isShown;
 
 @end

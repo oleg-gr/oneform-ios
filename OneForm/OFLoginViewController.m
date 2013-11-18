@@ -176,7 +176,6 @@
     
     //ADDITIONAL SETUP
     isJoinScreen = NO;
-    isNotification = NO;
     
     self.bottomNotificationSignIn = [[OFBottomNotification alloc] initWithHeight: 568.0 - self.signInButton.frame.origin.y];
     [self.view addSubview:self.bottomNotificationSignIn];
@@ -219,6 +218,7 @@
     if (![response  isEqual: @"OK"]) {
         [self.bottomNotificationSignIn.notification setText:response];
         [self.bottomNotificationSignIn show];
+        
     }
     else
     {

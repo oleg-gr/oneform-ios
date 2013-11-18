@@ -15,7 +15,6 @@
     UITextField *activeField;
     BOOL keyboardIsShown;
     BOOL isJoinScreen;
-    BOOL isNotification;
 }
 
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollContainer;

@@ -29,25 +29,36 @@
 
 -(void)show
 {
-    [self animate:-1];
-    NSTimeInterval delay = 4.0;
-    [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:-1] afterDelay:delay];
+    [self animate:[NSNumber numberWithInt:-1]];
+    [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:1] afterDelay:2.0];
 }
 
 -(void)hide
 {
-    [self animate:1];
+    [self animate:[NSNumber numberWithInt:1]];
 }
 
--(void) animate:(int) mode
+-(void) animate:(NSNumber*) mode
 {
-    [UIView animateWithDuration:0.2
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.center = CGPointMake(160.0, 568.0 + mode*height/2);
-                     }
-                     completion:nil];
+    if([mode intValue ] == (self.isShown ? 1:-1))
+    {
+        [UIView animateWithDuration:0.2
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             self.center = CGPointMake(160.0, 568.0 + [mode intValue]*height/2);
+                         }
+                         completion:^(BOOL finished){
+                             if([mode intValue] == -1)
+                             {
+                                 [self setIsShown:YES];
+                             }
+                             else
+                             {
+                                 [self setIsShown:NO];
+                             }
+                         }];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.
