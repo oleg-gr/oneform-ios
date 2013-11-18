@@ -30,6 +30,8 @@
 -(void)show
 {
     [self animate:-1];
+    NSTimeInterval delay = 4.0;
+    [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:-1] afterDelay:delay];
 }
 
 -(void)hide
@@ -39,7 +41,7 @@
 
 -(void) animate:(int) mode
 {
-    [UIView animateWithDuration:0.1
+    [UIView animateWithDuration:0.2
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
