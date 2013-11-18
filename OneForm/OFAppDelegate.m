@@ -20,7 +20,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     OFSearchFormsViewController *frontViewController= [[OFSearchFormsViewController alloc] init];
     OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
 	

@@ -12,6 +12,7 @@
 #import "OFAppDelegate.h"
 #import "OFTextField.h"
 
+
 @interface OFLoginViewController ()
 
 @end
@@ -152,7 +153,7 @@
     //design
     self.signInButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
-    self.signInButton.frame = CGRectMake(0, 0, 150.0, 25.0);
+    self.signInButton.frame = CGRectMake(0, 0, 150.0, 45.0);
     self.signInButton.center = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
     [self.signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.signInButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:36]];
@@ -175,10 +176,16 @@
     
     //ADDITIONAL SETUP
     isJoinScreen = NO;
+    isNotification = NO;
+    
+    self.bottomNotificationSignIn = [[OFBottomNotification alloc] initWithHeight: 568.0 - self.signInButton.frame.origin.y];
+    [self.view addSubview:self.bottomNotificationSignIn];
+    self.bottomNotificationSignUp = [[OFBottomNotification alloc] initWithHeight: 84];
+    [self.view addSubview:self.bottomNotificationSignUp];
     
 }
 
-- (void)didReceiveMemoryWarning
+- (void)didReceiveMemoryWarningisNotificationisNotificationisNotification
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -196,12 +203,8 @@
                                     withLastName:[self.lastNameUI getTextInput]
                           ];
     if (![response  isEqual: @"OK"]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign up failed"
-                                                          message:response
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
+        [self.bottomNotificationSignUp.notification setText:response];
+        [self.bottomNotificationSignUp show];
     }
     else
     {
@@ -214,12 +217,8 @@
     NSString *response = [OFHelperMethods signIn:[self.usernameUI getTextInput]
                                     withPassword:[self.passwordUI getTextInput]];
     if (![response  isEqual: @"OK"]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Sign in failed"
-                                                          message:response
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
+        [self.bottomNotificationSignIn.notification setText:response];
+        [self.bottomNotificationSignIn show];
     }
     else
     {
@@ -293,7 +292,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    int tag = textField.tag;
+    long tag = textField.tag;
     if (tag == 1)
     {
         [self.passwordUI.textFieldInput becomeFirstResponder];
@@ -306,6 +305,7 @@
         }
         else
         {
+            [textField resignFirstResponder];
             [self signInResponseLogic];
         }
     }
@@ -315,6 +315,7 @@
     }
     else if (tag == 4)
     {
+        [textField resignFirstResponder];
         [self signUpResponseLogic];
     }
     else if (tag == 5)
@@ -335,12 +336,25 @@
 -(void)dismissKeyboard
 {
     [activeField resignFirstResponder];
+    [self hideBottomNotifications];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     activeField = textField;
-    
+    [self hideBottomNotifications];
+}
+
+- (void)hideBottomNotifications
+{
+    if (isJoinScreen)
+    {
+        [self.bottomNotificationSignUp hide];
+    }
+    else
+    {
+        [self.bottomNotificationSignIn hide];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

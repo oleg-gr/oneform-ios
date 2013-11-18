@@ -14,14 +14,23 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        //line
+        UIView *lineView = [[UIView alloc]
+                            initWithFrame:CGRectMake(0, 49, self.frame.size.width, 1.5)];
+        lineView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+        [self addSubview:lineView];
+        
         //text input
         self.textFieldInput = [[UITextField alloc]
-                                  initWithFrame:CGRectMake(0, 29, self.frame.size.width, 20)];
+                                  initWithFrame:CGRectMake(0, 26, self.frame.size.width, 21)];
         self.textFieldInput.font = [UIFont fontWithName:@"Roboto-Light" size:20];
-        self.textFieldInput.textColor = [UIColor whiteColor];
+        self.textFieldInput.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
         self.textFieldInput.adjustsFontSizeToFitWidth = YES;
+        self.textFieldInput.tintColor = [UIColor colorWithWhite:1.0 alpha:0.6];
         
         [self addSubview:self.textFieldInput];
+        
         //label
         self.labelInput = [[ UILabel alloc]
                               initWithFrame:CGRectMake(0, 0, 150, 30)];
@@ -31,11 +40,6 @@
         self.labelInput.text = label;
         [self addSubview:self.labelInput];
         [self.labelInput sizeToFit];
-        //line
-        UIView *lineView = [[UIView alloc]
-                            initWithFrame:CGRectMake(0, 49, self.textFieldInput.frame.size.width, 1)];
-        lineView.backgroundColor = [UIColor grayColor];
-        [self addSubview:lineView];
         
         UITapGestureRecognizer *singleFingerTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self

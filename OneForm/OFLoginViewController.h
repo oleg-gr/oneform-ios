@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "OFTextField.h"
+#import "OFBottomNotification.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
     BOOL keyboardIsShown;
     BOOL isJoinScreen;
+    BOOL isNotification;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollContainer;
@@ -31,6 +33,9 @@
 
 @property (nonatomic, strong) UIButton *joinButton;
 @property (nonatomic, strong) UIButton *signInButton;
+
+@property (nonatomic, strong) OFBottomNotification *bottomNotificationSignIn;
+@property (nonatomic, strong) OFBottomNotification *bottomNotificationSignUp;
 
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;

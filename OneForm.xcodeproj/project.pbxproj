@@ -40,6 +40,7 @@
 		7ABB213B1839069C0089B3B6 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB212A1839069C0089B3B6 /* Roboto-Regular.ttf */; };
 		7ABB213C1839069C0089B3B6 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB212B1839069C0089B3B6 /* Roboto-Thin.ttf */; };
 		7ABB213D1839069C0089B3B6 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB212C1839069C0089B3B6 /* Roboto-ThinItalic.ttf */; };
+		7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABB213F183921A00089B3B6 /* OFBottomNotification.m */; };
 		7ADB5CF7182A96AC009D2739 /* OFHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */; };
 		7ADB5CFA182AC41F009D2739 /* OFSearchFormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */; };
 		7ADB5CFD182AC4BE009D2739 /* OFSearchFormsMockup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB5CFC182AC4BE009D2739 /* OFSearchFormsMockup.xib */; };
@@ -101,6 +102,8 @@
 		7ABB212A1839069C0089B3B6 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		7ABB212B1839069C0089B3B6 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		7ABB212C1839069C0089B3B6 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		7ABB213E183921A00089B3B6 /* OFBottomNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFBottomNotification.h; sourceTree = "<group>"; };
+		7ABB213F183921A00089B3B6 /* OFBottomNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFBottomNotification.m; sourceTree = "<group>"; };
 		7ADB5CF5182A96AC009D2739 /* OFHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFHelperMethods.h; sourceTree = "<group>"; };
 		7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFHelperMethods.m; sourceTree = "<group>"; };
 		7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFSearchFormsViewController.h; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 			children = (
 				7AA983AE1834C5B400A9F375 /* OFTextField.h */,
 				7AA983AF1834C5B400A9F375 /* OFTextField.m */,
+				7ABB213E183921A00089B3B6 /* OFBottomNotification.h */,
+				7ABB213F183921A00089B3B6 /* OFBottomNotification.m */,
 			);
 			name = UIelements;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */,
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
