@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFSearchFormsViewController : UIViewController
+@interface OFSearchFormsViewController : UINavigationController
 
 @property (nonatomic, strong) UILabel *caption;
 

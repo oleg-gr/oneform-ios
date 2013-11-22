@@ -40,8 +40,8 @@
         self.labelInput.numberOfLines = 0;
         self.labelInput.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
         self.labelInput.text = label;
-        [self addSubview:self.labelInput];
         [self.labelInput sizeToFit];
+        [self addSubview:self.labelInput];
         
         UITapGestureRecognizer *singleFingerTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self

@@ -27,10 +27,13 @@
     return self;
 }
 
--(void)show
+-(void)showWithAutohide:(BOOL)autohide
 {
     [self animate:[NSNumber numberWithInt:-1]];
-    [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:1] afterDelay:2.0];
+    if (autohide)
+    {
+        [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:1] afterDelay:2.0];
+    }
 }
 
 -(void)hide

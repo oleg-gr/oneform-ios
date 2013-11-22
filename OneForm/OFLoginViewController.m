@@ -12,7 +12,9 @@
 #import "OFAppDelegate.h"
 #import "OFTextField.h"
 #import "OFBackButton.h"
-
+#define LEFT_ALIGN_LINE 35
+#define UI_ELEMENTS_GAP 68
+#define UI_TEXT_WIDTH 320 - LEFT_ALIGN_LINE
 
 @interface OFLoginViewController ()
 
@@ -214,7 +216,7 @@
                           ];
     if (![response  isEqual: @"OK"]) {
         [self.bottomNotificationSignUp.notification setText:response];
-        [self.bottomNotificationSignUp show];
+        [self.bottomNotificationSignUp showWithAutohide:YES];
     }
     else
     {
@@ -228,7 +230,7 @@
                                     withPassword:[self.passwordUI getTextInput]];
     if (![response  isEqual: @"OK"]) {
         [self.bottomNotificationSignIn.notification setText:response];
-        [self.bottomNotificationSignIn show];
+        [self.bottomNotificationSignIn showWithAutohide:YES];
         
     }
     else

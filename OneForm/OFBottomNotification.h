@@ -14,7 +14,7 @@
 }
 
 -(id)initWithHeight:(float)height;
--(void)show;
+-(void)showWithAutohide:(BOOL)autohide;
 -(void)hide;
 
 @property (nonatomic, strong) UILabel *notification;

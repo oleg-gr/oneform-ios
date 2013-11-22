@@ -26,8 +26,8 @@
 	self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
     
     //menu width
-    self.revealController.rearViewRevealWidth = 200;
-    self.revealController.rearViewRevealOverdraw = 200;
+    self.revealController.rearViewRevealWidth = 175;
+    self.revealController.rearViewRevealOverdraw = 175;
     self.revealController.draggableBorderWidth = 50;
     self.revealController.frontViewShadowRadius = 0;
     
