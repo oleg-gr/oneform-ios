@@ -12,11 +12,11 @@
 @implementation OFInternetUtility
 
 +(void)checkInternetConnection {
-    Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];
+    Reachability *r = [Reachability reachabilityWithHostname:@"www.google.com"];
     
     NetworkStatus internetStatus = [r currentReachabilityStatus];
     
-    if (NO && (internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
+    if ((internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
                                                           message:@"OneForm requires internet connection"
                                                          delegate:self

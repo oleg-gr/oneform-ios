@@ -1,0 +1,16 @@
+PODS:
+  - Reachability (3.1.1)
+  - SWRevealViewController (HEAD based on 1.0.8)
+  - TPKeyboardAvoiding (HEAD based on 1.2.1)
+
+DEPENDENCIES:
+  - Reachability
+  - SWRevealViewController (HEAD)
+  - TPKeyboardAvoiding (HEAD)
+
+SPEC CHECKSUMS:
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
+  SWRevealViewController: 5688d9d017e228c9edd92db359f670d8c47ab8e6
+  TPKeyboardAvoiding: 0536c563e6c8b8e95a7c4bf87fca9c0991f5e826
+
+COCOAPODS: 0.28.0

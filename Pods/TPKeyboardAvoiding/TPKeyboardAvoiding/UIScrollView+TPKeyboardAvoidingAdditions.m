@@ -3,7 +3,7 @@
 //  TPKeyboardAvoidingSample
 //
 //  Created by Michael Tyson on 30/09/2013.
-//
+//  Copyright 2013 A Tasty Pixel. All rights reserved.
 //
 
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
@@ -55,8 +55,9 @@ static const int kStateKey;
     if ( [self isKindOfClass:[TPKeyboardAvoidingScrollView class]] ) {
         state.priorContentSize = self.contentSize;
         
-        if ( CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
-            // Set the content size, if it's not set
+        if ( self.constraints.count == 0 && CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
+            // Set the content size, if it's not set. Do not set content size explicitly if auto-layout
+            // is being used to manage subviews
             self.contentSize = [self TPKeyboardAvoiding_calculatedContentSizeFromSubviewFrames];
         }
     }
@@ -65,11 +66,12 @@ static const int kStateKey;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:[[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];
     [UIView setAnimationDuration:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]];
-    
+
     self.contentInset = [self TPKeyboardAvoiding_contentInsetForKeyboard];
+    CGFloat viewableHeight = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
     [self setContentOffset:CGPointMake(self.contentOffset.x,
                                        [self TPKeyboardAvoiding_idealOffsetForView:firstResponder
-                                                             withViewingAreaHeight:CGRectGetMinY(state.keyboardRect) - CGRectGetMinY(self.bounds)])
+                                                             withViewingAreaHeight:viewableHeight])
                   animated:NO];
     self.scrollIndicatorInsets = self.contentInset;
     
@@ -144,8 +146,12 @@ static const int kStateKey;
     
     CGPoint idealOffset = CGPointMake(0, [self TPKeyboardAvoiding_idealOffsetForView:[self TPKeyboardAvoiding_findFirstResponderBeneathView:self]
                                                                withViewingAreaHeight:visibleSpace]);
-    
-    [self setContentOffset:idealOffset animated:YES];
+
+    // Ordinarily we'd use -setContentOffset:animated:YES here, but it does not appear to
+    // scroll to the desired content offset. So we wrap in our own animation block.
+    [UIView animateWithDuration:0.25 animations:^{
+        [self setContentOffset:idealOffset animated:NO];
+    }];
 }
 
 #pragma mark - Helpers
@@ -205,32 +211,34 @@ static const int kStateKey;
 }
 
 -(CGFloat)TPKeyboardAvoiding_idealOffsetForView:(UIView *)view withViewingAreaHeight:(CGFloat)viewAreaHeight {
+    CGSize contentSize = self.contentSize;
+    CGFloat offset = 0.0;
+
+    CGRect subviewRect = [view convertRect:view.bounds toView:self];
     
-    // Convert the rect to get the view's distance from the top of the scrollView.
-    CGRect rect = CGRectInset([view convertRect:view.bounds toView:self], 0, -kMinimumScrollOffsetPadding);
+    // Attempt to center the subview in the visible space, but if that means there will be less than kMinimumScrollOffsetPadding
+    // pixels above the view, then substitute kMinimumScrollOffsetPadding
+    CGFloat padding = (viewAreaHeight - subviewRect.size.height) / 2;
+    if ( padding < kMinimumScrollOffsetPadding ) {
+        padding = kMinimumScrollOffsetPadding;
+    }
+
+    // Ideal offset places the subview rectangle origin "padding" points from the top of the scrollview.
+    // If there is a top contentInset, also compensate for this so that subviewRect will not be placed under
+    // things like navigation bars.
+    offset = subviewRect.origin.y - padding - self.contentInset.top;
     
-    CGFloat offset;
-    
-    if ( self.contentSize.height - rect.origin.y < viewAreaHeight ) {
-        // Scroll to the bottom
-        offset = self.contentSize.height - viewAreaHeight;
-    } else {
-        offset = CGRectGetMinY(rect);
-        
-        if ( view.bounds.size.height < viewAreaHeight ) {
-            // Center vertically if there's room
-            offset = CGRectGetMinY(rect) - floor((viewAreaHeight-rect.size.height)/2.0);
-        }
-        if ( rect.origin.y + viewAreaHeight > self.contentSize.height ) {
-            // Clamp to content size
-            offset = self.contentSize.height - viewAreaHeight;
-        }
+    // Constrain the new contentOffset so we can't scroll past the bottom. Note that we don't take the bottom
+    // inset into account, as this is manipulated to make space for the keyboard.
+    if ( offset > (contentSize.height - viewAreaHeight) ) {
+        offset = contentSize.height - viewAreaHeight;
     }
     
-    if ( offset < 0 ) {
-        offset = 0;
+    // Constrain the new contentOffset so we can't scroll past the top, taking contentInsets into account
+    if ( offset < -self.contentInset.top ) {
+        offset = -self.contentInset.top;
     }
-    
+
     return offset;
 }
 

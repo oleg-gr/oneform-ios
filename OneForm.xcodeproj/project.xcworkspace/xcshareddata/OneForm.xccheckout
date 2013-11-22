@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>148884DD-A99A-4E3A-AB9A-3DCD5081E488</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OneForm</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>09DA3DCD-5B6B-4BE6-8388-BB788A2823BF</key>
+		<string>https://github.com/grishinoleg/oneform-ios</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OneForm.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>09DA3DCD-5B6B-4BE6-8388-BB788A2823BF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/grishinoleg/oneform-ios</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>09DA3DCD-5B6B-4BE6-8388-BB788A2823BF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>09DA3DCD-5B6B-4BE6-8388-BB788A2823BF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>oneform-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
