@@ -10,11 +10,10 @@
 
 @interface OFTextField : UIView
 
--(id)initWithFrame:(CGRect)frame andLabel:(NSString*) label;
-
 @property (nonatomic, strong) UITextField *textFieldInput;
 @property (nonatomic, strong) UILabel *labelInput;
 
+-(id)initWithFrame:(CGRect)frame andLabel:(NSString*) label;
 -(NSString*)getTextInput;
 
 @end

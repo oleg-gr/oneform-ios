@@ -11,7 +11,7 @@
 #import "OFHelperMethods.h"
 #import "OFAppDelegate.h"
 #import "OFTextField.h"
-#define UI_COLOR [UIColor colorWithRed:29.0/255.0 green:23.0/255.0 blue:83/255.0 alpha:1.0]
+#import "OFBackButton.h"
 
 
 @interface OFLoginViewController ()
@@ -42,21 +42,21 @@
     [self.view addSubview:self.scrollContainer];
     
     
-    //USERNAME
+    //USERNAME (became EMAIL)
     //textfield
     //design
-    self.usernameUI = [[OFTextField alloc]
-                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 260.0, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Username"];
+    self.emailUI = [[OFTextField alloc]
+                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 260.0, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
     //logic
-    self.usernameUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.usernameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.usernameUI.textFieldInput.tag = 1;
-    self.usernameUI.textFieldInput.delegate = self;
-    [self.scrollContainer addSubview:self.usernameUI];
+    self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.emailUI.textFieldInput.tag = 1;
+    self.emailUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.emailUI];
     //label
     //design
     //logic
-    [self.scrollContainer addSubview:self.usernameUI];
+    [self.scrollContainer addSubview:self.emailUI];
     
     
     
@@ -65,7 +65,7 @@
     //textfield
     //design
     self.passwordUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Password"];
+                              initWithFrame:CGRectMake(LEFT_ALIGN_LINE, self.emailUI.frame.origin.y + UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Password"];
     //logic
     self.passwordUI.textFieldInput.secureTextEntry = YES;
     self.passwordUI.textFieldInput.delegate = self;
@@ -79,14 +79,14 @@
     
     //textfield
     //design
-    self.emailUI = [[OFTextField alloc]
-                    initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
-    //logic
-    self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.emailUI.textFieldInput.delegate = self;
-    self.emailUI.textFieldInput.tag = 3;
-    [self.scrollContainer addSubview:self.emailUI];
+//    self.emailUI = [[OFTextField alloc]
+//                    initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
+//    //logic
+//    self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//    self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+//    self.emailUI.textFieldInput.delegate = self;
+//    self.emailUI.textFieldInput.tag = 3;
+//    [self.scrollContainer addSubview:self.emailUI];
     
     
     //CONFIRM PASSWORD
@@ -94,7 +94,7 @@
     //textfield
     //design
     self.confirmPasswordUI = [[OFTextField alloc]
-                       initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y + UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Confirm password"];
+                       initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y + UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Confirm password"];
     //logic
     self.confirmPasswordUI.textFieldInput.secureTextEntry = YES;
     self.confirmPasswordUI.textFieldInput.tag = 4;
@@ -109,7 +109,7 @@
     //textfield
     //design
     self.firstNameUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*3, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"First Name"];
+                              initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"First Name"];
     //logic
     self.firstNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameUI.textFieldInput.tag = 5;
@@ -123,7 +123,7 @@
     //textfield
     //design
     self.lastNameUI = [[OFTextField alloc]
-                        initWithFrame:CGRectMake(320.0, self.usernameUI.frame.origin.y - UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Last Name"];
+                        initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Last Name"];
     //logic
     self.lastNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastNameUI.textFieldInput.tag = 6;
@@ -164,6 +164,17 @@
           forControlEvents:UIControlEventTouchDown];
     [self.scrollContainer addSubview:self.signInButton];
     
+    
+    
+    //GO BACK BUTTON
+    self.backToSignIn = [[OFBackButton alloc] initWithFrame:CGRectMake(25, 32.5f, 200, 40) andLabel:@"go back"];
+    UITapGestureRecognizer *backToSignInTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(joinAnimation)];
+    [self.backToSignIn addGestureRecognizer:backToSignInTap];
+    [self.backToSignIn setHidden:YES];
+    [self.scrollContainer addSubview:self.backToSignIn];
+    
 
     
     //KEYBOARD
@@ -196,7 +207,6 @@
 -(void) signUpResponseLogic
 {
     NSString *response = [OFHelperMethods signUp:[self.emailUI getTextInput]
-                                    withUsername:[self.usernameUI getTextInput]
                                     withPassword:[self.passwordUI getTextInput]
                              withConfirmPassword:[self.confirmPasswordUI getTextInput]
                                    withFirstName:[self.firstNameUI getTextInput]
@@ -214,7 +224,7 @@
 
 -(void) signInResponseLogic
 {
-    NSString *response = [OFHelperMethods signIn:[self.usernameUI getTextInput]
+    NSString *response = [OFHelperMethods signIn:[self.emailUI getTextInput]
                                     withPassword:[self.passwordUI getTextInput]];
     if (![response  isEqual: @"OK"]) {
         [self.bottomNotificationSignIn.notification setText:response];
@@ -245,30 +255,24 @@
 
 - (void) joinAnimation
 {
-    CGRect emailFrame = self.emailUI.frame;
     CGRect passwordConfirmFrame = self.confirmPasswordUI.frame;
     CGRect firstNameFrame = self.firstNameUI.frame;
     CGRect lastNameFrame = self.lastNameUI.frame;
     CGPoint signInCenter;
-    __block NSString *newJoinTitle;
     __block NSString *newSignInTitle;
     if (isJoinScreen)
     {
-        emailFrame.origin.x = 320.0;
         passwordConfirmFrame.origin.x = 320.0;
         firstNameFrame.origin.x = 320.0;
         lastNameFrame.origin.x = 320.0;
         signInCenter = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
-        newJoinTitle = @"first time?";
         newSignInTitle = @"Sign in";
     } else
     {
-        emailFrame.origin.x = LEFT_ALIGN_LINE;
         passwordConfirmFrame.origin.x = LEFT_ALIGN_LINE;
         firstNameFrame.origin.x = LEFT_ALIGN_LINE;
         lastNameFrame.origin.x = LEFT_ALIGN_LINE;
         signInCenter = CGPointMake(160.0, self.confirmPasswordUI.frame.origin.y + 104);
-        newJoinTitle = @"Back to login";
         newSignInTitle = @"Join now";
     };
     
@@ -281,9 +285,10 @@
                            self.confirmPasswordUI.frame = passwordConfirmFrame;
                            self.firstNameUI.frame = firstNameFrame;
                            self.lastNameUI.frame = lastNameFrame;
-                           self.emailUI.frame = emailFrame;
                            self.signInButton.center = signInCenter;
-                           [self.joinButton setTitle:newJoinTitle forState:UIControlStateNormal];
+                           //[self.joinButton setTitle:newJoinTitle forState:UIControlStateNormal];
+                           [self.joinButton setHidden:isJoinScreen];
+                           [self.backToSignIn setHidden:!isJoinScreen];
                            [self.signInButton setTitle:newSignInTitle forState:UIControlStateNormal];
                        }
                        completion:nil];
@@ -309,10 +314,6 @@
             [textField resignFirstResponder];
             [self signInResponseLogic];
         }
-    }
-    else if (tag == 3)
-    {
-        [self.usernameUI.textFieldInput becomeFirstResponder];
     }
     else if (tag == 4)
     {
@@ -362,44 +363,5 @@
 {
     activeField = nil;
 }
-
-//- (void)registerForKeyboardNotifications
-//{
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWasShown:)
-//                                                 name:UIKeyboardDidShowNotification object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillBeHidden:)
-//                                                 name:UIKeyboardWillHideNotification object:nil];
-//    
-//}
-
-// Called when the UIKeyboardDidShowNotification is sent.
-//- (void)keyboardWasShown:(NSNotification*)aNotification
-//{
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    
-//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-//    self.scrollContainer.contentInset = contentInsets;
-//    self.scrollContainer.scrollIndicatorInsets = contentInsets;
-//    
-//    // If active text field is hidden by keyboard, scroll it so it's visible
-//    // Your app might not need or want this behavior.
-//    CGRect aRect = self.view.frame;
-//    aRect.size.height -= kbSize.height;
-//    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-//        [self.scrollContainer scrollRectToVisible:activeField.frame animated:YES];
-//    }
-//}
-
-//// Called when the UIKeyboardWillHideNotification is sent
-//- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-//{
-//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-//    self.scrollContainer.contentInset = contentInsets;
-//    self.scrollContainer.scrollIndicatorInsets = contentInsets;
-//}
 
 @end

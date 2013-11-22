@@ -7,9 +7,9 @@
 //
 
 #import "OFTextField.h"
-#define UI_COLOR [UIColor colorWithRed:29.0/255.0 green:23.0/255.0 blue:83/255.0 alpha:1.0]
 
 @implementation OFTextField
+
 
 - (id)initWithFrame:(CGRect)frame andLabel:(NSString*) label
 {

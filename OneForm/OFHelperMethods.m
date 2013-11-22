@@ -36,7 +36,7 @@
 
 #pragma mark Sign up and Sign in
 
-+(NSString *) signUp:(NSString*) email withUsername:(NSString*) username withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString *)firstName withLastName:(NSString *)lastName
++(NSString *) signUp:(NSString*) email withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString *)firstName withLastName:(NSString *)lastName
 {
     if (firstName.length == 0)
     {
@@ -53,10 +53,6 @@
     else if (![OFHelperMethods validateEmail:email])
     {
         return @"Invalid email format";
-    }
-    else if (username.length == 0)
-    {
-        return @"Username cannot be empty";
     }
     else if (password.length == 0)
     {

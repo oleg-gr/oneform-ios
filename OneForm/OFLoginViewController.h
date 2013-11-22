@@ -10,6 +10,7 @@
 #import "OFTextField.h"
 #import "OFBottomNotification.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "OFBackButton.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
@@ -36,6 +37,8 @@
 
 @property (nonatomic, strong) OFBottomNotification *bottomNotificationSignIn;
 @property (nonatomic, strong) OFBottomNotification *bottomNotificationSignUp;
+
+@property (nonatomic, strong) OFBackButton *backToSignIn;
 
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;
