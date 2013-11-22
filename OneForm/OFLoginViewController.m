@@ -11,6 +11,7 @@
 #import "OFHelperMethods.h"
 #import "OFAppDelegate.h"
 #import "OFTextField.h"
+#define UI_COLOR [UIColor colorWithRed:29.0/255.0 green:23.0/255.0 blue:83/255.0 alpha:1.0]
 
 
 @interface OFLoginViewController ()
@@ -37,7 +38,7 @@
     self.scrollContainer = [[TPKeyboardAvoidingScrollView alloc]
                             initWithFrame: self.view.frame];
     self.scrollContainer.contentSize = CGSizeMake(320, 568);
-    self.view.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:8.0/255.0 blue:83.0/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollContainer];
     
     
@@ -137,7 +138,7 @@
     [self.joinButton setTitle:@"first time?" forState:UIControlStateNormal];
     self.joinButton.frame = CGRectMake(0, 0, 130, 50);
     self.joinButton.center = CGPointMake(160.0, 546.0);
-    [self.joinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.joinButton setTitleColor:UI_COLOR forState:UIControlStateNormal];
     [self.joinButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:21]];
     //logic
     [self.joinButton addTarget:self
@@ -155,7 +156,7 @@
     [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
     self.signInButton.frame = CGRectMake(0, 0, 150.0, 45.0);
     self.signInButton.center = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
-    [self.signInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.signInButton setTitleColor:UI_COLOR forState:UIControlStateNormal];
     [self.signInButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:36]];
     //logic
     [self.signInButton addTarget:self

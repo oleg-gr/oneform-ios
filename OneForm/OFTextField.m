@@ -7,6 +7,7 @@
 //
 
 #import "OFTextField.h"
+#define UI_COLOR [UIColor colorWithRed:29.0/255.0 green:23.0/255.0 blue:83/255.0 alpha:1.0]
 
 @implementation OFTextField
 
@@ -18,23 +19,24 @@
         //line
         UIView *lineView = [[UIView alloc]
                             initWithFrame:CGRectMake(0, 49, self.frame.size.width, 1.5)];
-        lineView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+        lineView.backgroundColor = UI_COLOR;
         [self addSubview:lineView];
         
         //text input
         self.textFieldInput = [[UITextField alloc]
                                   initWithFrame:CGRectMake(0, 26, self.frame.size.width, 21)];
         self.textFieldInput.font = [UIFont fontWithName:@"Roboto-Light" size:20];
-        self.textFieldInput.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+        self.textFieldInput.textColor = UI_COLOR;
+        
         self.textFieldInput.adjustsFontSizeToFitWidth = YES;
-        self.textFieldInput.tintColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+        self.textFieldInput.tintColor = UI_COLOR;
         
         [self addSubview:self.textFieldInput];
         
         //label
         self.labelInput = [[ UILabel alloc]
                               initWithFrame:CGRectMake(0, 0, 150, 30)];
-        self.labelInput.textColor = [UIColor whiteColor];
+        self.labelInput.textColor = UI_COLOR;
         self.labelInput.numberOfLines = 0;
         self.labelInput.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
         self.labelInput.text = label;

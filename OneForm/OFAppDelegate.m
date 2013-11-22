@@ -31,8 +31,8 @@
     self.revealController.draggableBorderWidth = 50;
     self.revealController.frontViewShadowRadius = 0;
     
-    frontViewController.view.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:8.0/255.0 blue:83.0/255.0 alpha:1];
-    rearViewController.view.backgroundColor = [UIColor whiteColor];
+    frontViewController.view.backgroundColor = [UIColor whiteColor];
+    rearViewController.view.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:203.0/255.0 blue:216.0/255.0 alpha:1];
     
     self.revealController.delegate = self;
     
