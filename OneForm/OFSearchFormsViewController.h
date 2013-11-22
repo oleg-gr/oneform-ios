@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OFNavigationBar.h"
 
 @interface OFSearchFormsViewController : UINavigationController
 
 @property (nonatomic, strong) UILabel *caption;
+@property (nonatomic, strong) OFNavigationBar *navBar;
 
 @end

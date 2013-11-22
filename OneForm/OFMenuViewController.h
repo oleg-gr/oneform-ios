@@ -10,10 +10,10 @@
 
 @interface OFMenuViewController : UIViewController
 
-@property (nonatomic, strong) UILabel *searchFormsLabel;
-@property (nonatomic, strong) UILabel *myFormsLabel;
-@property (nonatomic, strong) UILabel *myDataLabel;
-@property (nonatomic, strong) UILabel *settingsLabel;
-@property (nonatomic, strong) UILabel *logOutLabel;
+@property (nonatomic, strong) UIButton *searchFormsLabel;
+@property (nonatomic, strong) UIButton *myFormsLabel;
+@property (nonatomic, strong) UIButton *myDataLabel;
+@property (nonatomic, strong) UIButton *settingsLabel;
+@property (nonatomic, strong) UIButton *logOutLabel;
 
 @end

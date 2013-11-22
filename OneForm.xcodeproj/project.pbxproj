@@ -24,6 +24,8 @@
 		7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE396B1827CF3C009BE7B3 /* OFInternetUtility.m */; };
 		7AB6A449183FC2780034C796 /* OFBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A448183FC2780034C796 /* OFBackButton.m */; };
 		7AB6A44D183FC3510034C796 /* arrow_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A44C183FC3510034C796 /* arrow_back.png */; };
+		7AB6A45118401B860034C796 /* menu_bars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A45018401B860034C796 /* menu_bars.png */; };
+		7AB6A45418401BA80034C796 /* OFNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A45318401BA80034C796 /* OFNavigationBar.m */; };
 		7ABB212E1839069C0089B3B6 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */; };
 		7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */; };
 		7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */; };
@@ -88,6 +90,9 @@
 		7AB6A448183FC2780034C796 /* OFBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFBackButton.m; sourceTree = "<group>"; };
 		7AB6A44C183FC3510034C796 /* arrow_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_back.png; sourceTree = "<group>"; };
 		7AB6A44F183FC3CF0034C796 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7AB6A45018401B860034C796 /* menu_bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_bars.png; sourceTree = "<group>"; };
+		7AB6A45218401BA80034C796 /* OFNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFNavigationBar.h; sourceTree = "<group>"; };
+		7AB6A45318401BA80034C796 /* OFNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFNavigationBar.m; sourceTree = "<group>"; };
 		7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -151,6 +156,8 @@
 				7AB6A448183FC2780034C796 /* OFBackButton.m */,
 				7ABB213E183921A00089B3B6 /* OFBottomNotification.h */,
 				7ABB213F183921A00089B3B6 /* OFBottomNotification.m */,
+				7AB6A45218401BA80034C796 /* OFNavigationBar.h */,
+				7AB6A45318401BA80034C796 /* OFNavigationBar.m */,
 			);
 			name = UIelements;
 			sourceTree = "<group>";
@@ -281,6 +288,7 @@
 		7AB6A44B183FC29F0034C796 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				7AB6A45018401B860034C796 /* menu_bars.png */,
 				7AB6A44C183FC3510034C796 /* arrow_back.png */,
 			);
 			name = img;
@@ -399,6 +407,7 @@
 				7ABB21391839069C0089B3B6 /* Roboto-Medium.ttf in Resources */,
 				7ABB21371839069C0089B3B6 /* Roboto-Light.ttf in Resources */,
 				7AAE392A1827962C009BE7B3 /* InfoPlist.strings in Resources */,
+				7AB6A45118401B860034C796 /* menu_bars.png in Resources */,
 				7AAE39321827962C009BE7B3 /* Images.xcassets in Resources */,
 				7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */,
 				7ABB213C1839069C0089B3B6 /* Roboto-Thin.ttf in Resources */,
@@ -469,6 +478,7 @@
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
+				7AB6A45418401BA80034C796 /* OFNavigationBar.m in Sources */,
 				7ADB5D01182ACA9F009D2739 /* OFMenuViewController.m in Sources */,
 				7AB6A449183FC2780034C796 /* OFBackButton.m in Sources */,
 				7AAE396C1827CF3C009BE7B3 /* OFInternetUtility.m in Sources */,

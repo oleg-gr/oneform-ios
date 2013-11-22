@@ -29,25 +29,17 @@
     [super viewDidLoad];
     
     SWRevealViewController *revealController = [self revealViewController];
+    
+    [self setNavigationBarHidden:YES];
+    
+    self.navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];
+    
+    [self.view addSubview:self.navBar];
 
-    UIButton *reveal = [UIButton buttonWithType:UIButtonTypeSystem];
-    [reveal setTitle:@"Menu" forState:UIControlStateNormal];
-    reveal.frame = CGRectMake(0.0, 20.0, 20.0, 25.0);
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
-    //logic
-    [reveal addTarget:revealController
-               action:@selector(revealToggle:)
-                forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:reveal];
 
     
     NSLog(@"LOADED");
-	
-    //CAPTION
-    self.caption = [[UILabel alloc] initWithFrame:CGRectMake(85.0, 20.0, 150.0, 21.0)];
-    [self.caption setText:@"oneForm/searchforms"];
-    [self.caption setTextAlignment:NSTextAlignmentCenter];
-    [self.view addSubview:self.caption];
     
 }
 

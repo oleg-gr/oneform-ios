@@ -40,7 +40,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     OFLoginViewController *loginController = [[OFLoginViewController alloc] init];
-    self.window.rootViewController = loginController;
+    //self.window.rootViewController = loginController;
+    self.window.rootViewController = self.revealController;
     [OFInternetUtility checkInternetConnection];
     [self.window makeKeyAndVisible];
     return YES;

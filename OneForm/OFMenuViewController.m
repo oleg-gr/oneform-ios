@@ -39,15 +39,15 @@
     [self.view addSubview:self.logOutLabel];
 }
 
-- (UILabel*)getMenuItemWithYcoord:(float)coord andLabel:(NSString*)text
+- (UIButton*)getMenuItemWithYcoord:(float)coord andLabel:(NSString*)text
 {
-    UILabel *label = [[ UILabel alloc]
-                             initWithFrame:CGRectMake(LEFT_ALIGN_LINE, coord, 100, 40)];
-    label.textColor = UI_COLOR;
-    label.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
-    label.text = text;
-    [label sizeToFit];
-    return label;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setFrame:CGRectMake(LEFT_ALIGN_LINE, coord, 100, 40)];
+    [button setTitle:text forState:UIControlStateNormal];
+    [button setTitleColor:UI_COLOR forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:18]];
+    [button sizeToFit];
+    return button;
 }
 
 - (void)didReceiveMemoryWarning
