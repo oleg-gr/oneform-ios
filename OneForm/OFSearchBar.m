@@ -1,0 +1,65 @@
+//
+//  OFSearchBar.m
+//  OneForm
+//
+//  Created by Oleg Grishin on 11/23/13.
+//  Copyright (c) 2013 nyuad. All rights reserved.
+//
+
+#import "OFSearchBar.h"
+#define UI_HEIGHT 87
+
+@implementation OFSearchBar
+
+- (id)init
+{
+    self = [super initWithFrame:CGRectMake(0, 87, 320, UI_HEIGHT)];
+    if (self) {
+        [self setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:216.0/255.0 blue:227.0/255.0 alpha:1.0]];
+        self.textFieldInteractionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 213.5f, UI_HEIGHT)];
+        [self addSubview:self.textFieldInteractionView];
+        self.searchButtonInteractionView = [[UIView alloc] initWithFrame:CGRectMake(213.5f, 0, 54.5f, UI_HEIGHT)];
+        [self addSubview:self.searchButtonInteractionView];
+        self.qrCodeInteractionView = [[UIView alloc] initWithFrame:CGRectMake(213.5f + 54.5f, 0, 52, UI_HEIGHT)];
+        [self addSubview:self.qrCodeInteractionView];
+        UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(228, 24, 35.25f, 40.75f)];
+        [searchImage setImage:[UIImage imageNamed:@"search_icon.png"]];
+        [self addSubview:searchImage];
+        
+        UIImageView *qrCodeImage = [[UIImageView alloc] initWithFrame:CGRectMake(274.25f, 24, 32.75f, 32.75f)];
+        [qrCodeImage setImage:[UIImage imageNamed:@"qr_code.png"]];
+        [self addSubview:qrCodeImage];
+        
+        self.searchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 32.5f, 178.75f, 29.5)];
+        [self.searchQuery setFont:[UIFont fontWithName:@"Roboto-Light" size:25]];
+        [self.searchQuery setTextColor:UI_COLOR];
+        [self.searchQuery setPlaceholder:@"search forms"];
+        [self.searchQuery setAdjustsFontSizeToFitWidth:YES];
+        [self.searchQuery setTintColor:UI_COLOR];
+        [self addSubview:self.searchQuery];
+        
+        UITapGestureRecognizer *tapSearch =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(textFieldResponder)];
+        [self.textFieldInteractionView addGestureRecognizer:tapSearch];
+        
+        
+    }
+    return self;
+}
+
+-(void)textFieldResponder
+{
+    [self.searchQuery becomeFirstResponder];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "OFNavigationBar.h"
+#import "OFSearchBar.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface OFSearchFormsViewController : UINavigationController
 
 @property (nonatomic, strong) UILabel *caption;
 @property (nonatomic, strong) OFNavigationBar *navBar;
+@property (nonatomic, strong) OFSearchBar *searchBar;
+@property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollContainer;
+
 
 @end

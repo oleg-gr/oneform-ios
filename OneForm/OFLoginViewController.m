@@ -133,7 +133,6 @@
     [self.scrollContainer addSubview:self.lastNameUI];
     
     //JOIN NOW
-    
     //join now button
     //design
     self.joinButton = [UIButton buttonWithType:UIButtonTypeSystem];

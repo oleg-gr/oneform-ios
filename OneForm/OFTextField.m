@@ -25,21 +25,21 @@
         //text input
         self.textFieldInput = [[UITextField alloc]
                                   initWithFrame:CGRectMake(0, 26, self.frame.size.width, 21)];
-        self.textFieldInput.font = [UIFont fontWithName:@"Roboto-Light" size:20];
-        self.textFieldInput.textColor = UI_COLOR;
+        [self.textFieldInput setFont:[UIFont fontWithName:@"Roboto-Light" size:20]];
+        [self.textFieldInput setTextColor:UI_COLOR];
         
-        self.textFieldInput.adjustsFontSizeToFitWidth = YES;
-        self.textFieldInput.tintColor = UI_COLOR;
+        [self.textFieldInput setAdjustsFontSizeToFitWidth:YES];
+        [self.textFieldInput setTintColor:UI_COLOR];
         
         [self addSubview:self.textFieldInput];
         
         //label
         self.labelInput = [[ UILabel alloc]
                               initWithFrame:CGRectMake(0, 0, 150, 30)];
-        self.labelInput.textColor = UI_COLOR;
-        self.labelInput.numberOfLines = 0;
-        self.labelInput.font = [UIFont fontWithName:@"Roboto-Regular" size:18];
-        self.labelInput.text = label;
+        [self.labelInput setTextColor:UI_COLOR];
+        [self.labelInput setNumberOfLines:0];
+        [self.labelInput setFont:[UIFont fontWithName:@"Roboto-Regular" size:18]];
+        [self.labelInput setText:label];
         [self.labelInput sizeToFit];
         [self addSubview:self.labelInput];
         

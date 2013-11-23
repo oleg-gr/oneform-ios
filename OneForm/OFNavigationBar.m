@@ -16,13 +16,10 @@
 {
     self = [super initWithFrame:CGRectMake(0, 0, 320.0f, 96.5f)];
     if (self) {
-        self.menuBars = [[UIButton alloc]  initWithFrame:CGRectMake(9, 31.5f, 33.5f, 19.5f)];
+        self.menuBars = [[UIButton alloc]  initWithFrame:CGRectMake(4, 26.5f, 43.5f, 29.5f)];
         [self.menuBars setImage:[UIImage imageNamed:@"menu_bars.png"] forState:UIControlStateNormal];
+        [self.menuBars setAdjustsImageWhenHighlighted:NO];
         [self addSubview:self.menuBars];
-        if ([UIImage imageNamed:@"menu_bars.png"])
-        {
-            NSLog(@"asdasd");
-        }
         [self.menuBars addTarget:revealController
                    action:@selector(revealToggle:)
          forControlEvents:UIControlEventTouchUpInside];

@@ -8,6 +8,7 @@
 
 #import "OFSearchFormsViewController.h"
 #import "SWRevealViewController.h"
+#import "OFSearchBar.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -28,19 +29,40 @@
 {
     [super viewDidLoad];
     
+    self.scrollContainer = [[TPKeyboardAvoidingScrollView alloc]
+                            initWithFrame: self.view.frame];
+    self.scrollContainer.contentSize = CGSizeMake(320, 568);
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.scrollContainer];
+
+    
     SWRevealViewController *revealController = [self revealViewController];
     
     [self setNavigationBarHidden:YES];
     
     self.navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];
     
-    [self.view addSubview:self.navBar];
+    [self.scrollContainer addSubview:self.navBar];
 
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+    
+    OFSearchBar *searchBar = [[OFSearchBar alloc] init];
+    
+    [self.scrollContainer addSubview:searchBar];
 
+    UITapGestureRecognizer *tapOutOfText = [[UITapGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(dismissKeyboard)];
+    [tapOutOfText setCancelsTouchesInView:NO];
+    [self.scrollContainer addGestureRecognizer:tapOutOfText];
     
     NSLog(@"LOADED");
     
+}
+
+-(void)dismissKeyboard
+{
+    [self.searchBar.searchQuery resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
