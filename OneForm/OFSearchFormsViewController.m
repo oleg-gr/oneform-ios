@@ -9,7 +9,6 @@
 #import "OFSearchFormsViewController.h"
 #import "SWRevealViewController.h"
 #import "OFSearchBar.h"
-#import "OFFormProgress.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -52,7 +51,62 @@
     
     NSLog(@"LOADED");
     
+    
+    //DUMMY
+    
+    self.popularForms = @[@"UAE driver's license form", @"Naturalization form", @"Birth certificate", @"Change of address", @"Visa application form", @"Visa renewal form"];
+    
+    self.popularFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 262.5f, 237.75f, 260) style:UITableViewStylePlain];
+    [self.popularFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.popularFormsTable setShowsVerticalScrollIndicator:NO];
+    [self.popularFormsTable setDelegate:self];
+    [self.popularFormsTable setDataSource:self];
+    
+    [self.view addSubview:self.popularFormsTable];
+    
 }
+
+#pragma Table view related logic
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.popularForms count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 52;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *cellIdentifier = @"Cell";
+    
+    UILabel *cellLabel;
+    UIImageView *arrow;
+    float height = 52.5;
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 207.25, height)];
+        [cellLabel setTextColor:UI_COLOR];
+        [cellLabel setNumberOfLines:2];
+        [cellLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:21]];
+        [cell.contentView addSubview:cellLabel];
+        arrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.popularFormsTable.frame.size.width - 20.25f, 0, 20.25f, 33.75f)];
+        arrow.center = CGPointMake(arrow.center.x, height/2);
+        [arrow setImage:[UIImage imageNamed:@"form_choice_arrow.png"]];
+        [cell.contentView addSubview:arrow];
+    }
+    
+    [cellLabel setText:[self.popularForms objectAtIndex:indexPath.row]];
+    
+    return cell;
+    
+}
+
+#pragma Keyboard dismiss
 
 -(void)dismissKeyboard
 {

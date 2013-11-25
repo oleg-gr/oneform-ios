@@ -31,6 +31,7 @@
 		7AB6A45F1840D98D0034C796 /* qr_code.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A45E1840D98D0034C796 /* qr_code.png */; };
 		7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A461184375FD0034C796 /* OFFormTitle.m */; };
 		7AB6A46518437BD30034C796 /* OFFormProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A46418437BD30034C796 /* OFFormProgress.m */; };
+		7AB6A47018439B7F0034C796 /* form_choice_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */; };
 		7ABB212E1839069C0089B3B6 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */; };
 		7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */; };
 		7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */; };
@@ -106,6 +107,7 @@
 		7AB6A461184375FD0034C796 /* OFFormTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormTitle.m; sourceTree = "<group>"; };
 		7AB6A46318437BD30034C796 /* OFFormProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormProgress.h; sourceTree = "<group>"; };
 		7AB6A46418437BD30034C796 /* OFFormProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormProgress.m; sourceTree = "<group>"; };
+		7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_choice_arrow.png; sourceTree = "<group>"; };
 		7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		7AB6A44B183FC29F0034C796 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */,
 				7AB6A4551840CEE20034C796 /* arrow_back.png */,
 				7AB6A4571840D0360034C796 /* menu_bars.png */,
 				7AB6A45C1840D6320034C796 /* search_icon.png */,
@@ -442,6 +445,7 @@
 				7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */,
 				7ABB21311839069C0089B3B6 /* Roboto-BoldCondensed.ttf in Resources */,
 				7ABB21361839069C0089B3B6 /* Roboto-Italic.ttf in Resources */,
+				7AB6A47018439B7F0034C796 /* form_choice_arrow.png in Resources */,
 				7ABB213B1839069C0089B3B6 /* Roboto-Regular.ttf in Resources */,
 				7ABB21321839069C0089B3B6 /* Roboto-BoldCondensedItalic.ttf in Resources */,
 				7ABB213A1839069C0089B3B6 /* Roboto-MediumItalic.ttf in Resources */,
