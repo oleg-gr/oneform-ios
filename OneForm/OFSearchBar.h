@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFSearchBar : UIView
+@interface OFSearchBar : UIView <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *textFieldInteractionView;
 @property (nonatomic, strong) UIView *searchButtonInteractionView;
 @property (nonatomic, strong) UIView *qrCodeInteractionView;
 @property (nonatomic, strong) UITextField *searchQuery;
 
--(id)init;
+- (id)initWithBottomLabel:(NSString*)label;
 
 @end

@@ -16,7 +16,6 @@
 @property (nonatomic, strong) UILabel *caption;
 @property (nonatomic, strong) OFNavigationBar *navBar;
 @property (nonatomic, strong) OFSearchBar *searchBar;
-@property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollContainer;
 
 
 @end

@@ -7,13 +7,13 @@
 //
 
 #import "OFSearchBar.h"
-#define UI_HEIGHT 87
+#define UI_HEIGHT 84.5
 
 @implementation OFSearchBar
 
-- (id)init
+- (id)initWithBottomLabel:(NSString*)label
 {
-    self = [super initWithFrame:CGRectMake(0, 87, 320, UI_HEIGHT)];
+    self = [super initWithFrame:CGRectMake(0, 87, 320, UI_HEIGHT+43.5)];
     if (self) {
         [self setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:216.0/255.0 blue:227.0/255.0 alpha:1.0]];
         self.textFieldInteractionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 213.5f, UI_HEIGHT)];
@@ -42,6 +42,19 @@
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(textFieldResponder)];
         [self.textFieldInteractionView addGestureRecognizer:tapSearch];
+        
+        UIView *bottomSign = [[UIView alloc] initWithFrame:CGRectMake(0, 87, 320, 43.5)];
+        [bottomSign setBackgroundColor:[UIColor colorWithRed:184.0/255.0 green:186.0/255.0 blue:205/255.0 alpha:1.0]];
+        [self addSubview:bottomSign];
+        
+        UILabel *bottomCaption = [[ UILabel alloc]
+                           initWithFrame:CGRectMake(34.75f, 96.5f, 150, 30)];
+        [bottomCaption setTextColor:UI_COLOR];
+        [bottomCaption setFont:[UIFont fontWithName:@"Roboto-Regular" size:26]];
+        [bottomCaption setText:label];
+        [bottomCaption sizeToFit];
+        [self addSubview:bottomCaption];
+
         
         
     }

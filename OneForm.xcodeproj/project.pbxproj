@@ -29,6 +29,7 @@
 		7AB6A45B1840D36C0034C796 /* OFSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A45A1840D36C0034C796 /* OFSearchBar.m */; };
 		7AB6A45D1840D6320034C796 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A45C1840D6320034C796 /* search_icon.png */; };
 		7AB6A45F1840D98D0034C796 /* qr_code.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A45E1840D98D0034C796 /* qr_code.png */; };
+		7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A461184375FD0034C796 /* OFFormTitle.m */; };
 		7ABB212E1839069C0089B3B6 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */; };
 		7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */; };
 		7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */; };
@@ -100,6 +101,8 @@
 		7AB6A45A1840D36C0034C796 /* OFSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFSearchBar.m; sourceTree = "<group>"; };
 		7AB6A45C1840D6320034C796 /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
 		7AB6A45E1840D98D0034C796 /* qr_code.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_code.png; sourceTree = "<group>"; };
+		7AB6A460184375FD0034C796 /* OFFormTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormTitle.h; sourceTree = "<group>"; };
+		7AB6A461184375FD0034C796 /* OFFormTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormTitle.m; sourceTree = "<group>"; };
 		7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				7AB6A45318401BA80034C796 /* OFNavigationBar.m */,
 				7AB6A4591840D36C0034C796 /* OFSearchBar.h */,
 				7AB6A45A1840D36C0034C796 /* OFSearchBar.m */,
+				7AB6A460184375FD0034C796 /* OFFormTitle.h */,
+				7AB6A461184375FD0034C796 /* OFFormTitle.m */,
 			);
 			name = UIelements;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */,
 				7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */,
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
