@@ -9,7 +9,7 @@
 #import "OFSearchFormsViewController.h"
 #import "SWRevealViewController.h"
 #import "OFSearchBar.h"
-#import "OFFormTitle.h"
+#import "OFFormProgress.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -43,7 +43,6 @@
     self.searchBar = [[OFSearchBar alloc] initWithBottomLabel:@"Popular forms"];
     
     [self.view addSubview:self.searchBar];
-    
 
     UITapGestureRecognizer *tapOutOfText = [[UITapGestureRecognizer alloc]
                                             initWithTarget:self

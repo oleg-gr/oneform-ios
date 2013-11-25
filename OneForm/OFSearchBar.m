@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:CGRectMake(0, 87, 320, UI_HEIGHT+43.5)];
     if (self) {
-        [self setBackgroundColor:[UIColor colorWithRed:215.0/255.0 green:216.0/255.0 blue:227.0/255.0 alpha:1.0]];
+        [self setBackgroundColor:UI_COLOR_BACKGROUND_LIGHT];
         self.textFieldInteractionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 213.5f, UI_HEIGHT)];
         [self addSubview:self.textFieldInteractionView];
         self.searchButtonInteractionView = [[UIView alloc] initWithFrame:CGRectMake(213.5f, 0, 54.5f, UI_HEIGHT)];
@@ -44,7 +44,7 @@
         [self.textFieldInteractionView addGestureRecognizer:tapSearch];
         
         UIView *bottomSign = [[UIView alloc] initWithFrame:CGRectMake(0, 87, 320, 43.5)];
-        [bottomSign setBackgroundColor:[UIColor colorWithRed:184.0/255.0 green:186.0/255.0 blue:205/255.0 alpha:1.0]];
+        [bottomSign setBackgroundColor:UI_COLOR_BACKGROUND_DARK];
         [self addSubview:bottomSign];
         
         UILabel *bottomCaption = [[ UILabel alloc]
