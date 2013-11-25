@@ -17,4 +17,7 @@
 - (id)initWithFrame:(CGRect)frame andProgress:(float)progress andText:(NSString *)text andTextSize:(int)textSize andTextAlignment:(NSTextAlignment)alignment;
 //default text size is 26
 
+- (void)setText:(NSString*)text;
+- (void)setProgress:(float)progress;
+
 @end

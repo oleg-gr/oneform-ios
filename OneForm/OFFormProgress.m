@@ -42,6 +42,17 @@
     return self;
 }
 
+- (void)setText:(NSString*)text
+{
+    [self.labelTop setText:text];
+    [self.labelBottom setText:text];
+}
+
+- (void)setProgress:(float)progress
+{
+    [self.progressView setFrame:CGRectMake(0, 0, self.progressView.frame.size.width*progress, self.progressView.frame.size.height)];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

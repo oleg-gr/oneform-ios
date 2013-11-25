@@ -36,6 +36,7 @@
         [self.searchQuery setPlaceholder:@"search forms"];
         [self.searchQuery setAdjustsFontSizeToFitWidth:YES];
         [self.searchQuery setTintColor:UI_COLOR];
+        [self.searchQuery setValue:UI_COLOR forKeyPath:@"_placeholderLabel.textColor"];
         [self addSubview:self.searchQuery];
         
         UITapGestureRecognizer *tapSearch =
