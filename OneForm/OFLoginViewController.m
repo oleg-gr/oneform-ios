@@ -168,7 +168,7 @@
     
     
     //GO BACK BUTTON
-    self.backToSignIn = [[OFBackButton alloc] initWithFrame:CGRectMake(25, 32.5f, 200, 40) andLabel:@"go back"];
+    self.backToSignIn = [[OFBackButton alloc] initWithFrame:CGRectMake(25, 32.5f, 110, 40) andLabel:@"go back"];
     UITapGestureRecognizer *backToSignInTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(joinAnimation)];

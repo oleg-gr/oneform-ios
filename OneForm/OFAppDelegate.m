@@ -20,9 +20,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    OFSearchFormsViewController *frontViewController= [[OFSearchFormsViewController alloc] init];
+    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] init];
     OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
 	
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    
 	self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
     
     //menu width

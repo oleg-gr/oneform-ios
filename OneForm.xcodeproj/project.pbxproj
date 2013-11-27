@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA983AF1834C5B400A9F375 /* OFTextField.m */; };
-		7AAE39201827962C009BE7B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE391F1827962C009BE7B3 /* Foundation.framework */; };
-		7AAE39221827962C009BE7B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39211827962C009BE7B3 /* CoreGraphics.framework */; };
 		7AAE39241827962C009BE7B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39231827962C009BE7B3 /* UIKit.framework */; };
 		7AAE392A1827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39281827962C009BE7B3 /* InfoPlist.strings */; };
 		7AAE392C1827962C009BE7B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE392B1827962C009BE7B3 /* main.m */; };
@@ -32,6 +30,11 @@
 		7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A461184375FD0034C796 /* OFFormTitle.m */; };
 		7AB6A46518437BD30034C796 /* OFFormProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A46418437BD30034C796 /* OFFormProgress.m */; };
 		7AB6A47018439B7F0034C796 /* form_choice_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */; };
+		7AB6A4741843ADAB0034C796 /* OFQRCoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */; };
+		7AB6A4781843C1270034C796 /* OFMyFormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A4771843C1270034C796 /* OFMyFormsViewController.m */; };
+		7AB6A49D1843C9BA0034C796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB6A49C1843C9BA0034C796 /* AVFoundation.framework */; };
+		7AB6A4A51843C9EA0034C796 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB6A4A41843C9EA0034C796 /* QuartzCore.framework */; };
+		7AB6A4AA1845FE750034C796 /* qr_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A4A91845FE750034C796 /* qr_frame.png */; };
 		7ABB212E1839069C0089B3B6 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */; };
 		7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */; };
 		7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */; };
@@ -108,6 +111,17 @@
 		7AB6A46318437BD30034C796 /* OFFormProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormProgress.h; sourceTree = "<group>"; };
 		7AB6A46418437BD30034C796 /* OFFormProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormProgress.m; sourceTree = "<group>"; };
 		7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_choice_arrow.png; sourceTree = "<group>"; };
+		7AB6A4721843ADAB0034C796 /* OFQRCoderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFQRCoderViewController.h; sourceTree = "<group>"; };
+		7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFQRCoderViewController.m; sourceTree = "<group>"; };
+		7AB6A4761843C1270034C796 /* OFMyFormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFMyFormsViewController.h; sourceTree = "<group>"; };
+		7AB6A4771843C1270034C796 /* OFMyFormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFMyFormsViewController.m; sourceTree = "<group>"; };
+		7AB6A49C1843C9BA0034C796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7AB6A49E1843C9C90034C796 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7AB6A4A01843C9DC0034C796 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		7AB6A4A21843C9E40034C796 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7AB6A4A41843C9EA0034C796 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7AB6A4A61843C9F40034C796 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		7AB6A4A91845FE750034C796 /* qr_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_frame.png; sourceTree = "<group>"; };
 		7ABB211D1839069C0089B3B6 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7ABB211E1839069C0089B3B6 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		7ABB211F1839069C0089B3B6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -142,9 +156,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AAE39221827962C009BE7B3 /* CoreGraphics.framework in Frameworks */,
+				7AB6A4A51843C9EA0034C796 /* QuartzCore.framework in Frameworks */,
+				7AB6A49D1843C9BA0034C796 /* AVFoundation.framework in Frameworks */,
 				7AAE39241827962C009BE7B3 /* UIKit.framework in Frameworks */,
-				7AAE39201827962C009BE7B3 /* Foundation.framework in Frameworks */,
 				D380A24E48E5493F8233C298 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +176,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7AA983AD1834C56A00A9F375 /* UIelements */ = {
+		7AA983AD1834C56A00A9F375 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
 				7AA983AE1834C5B400A9F375 /* OFTextField.h */,
@@ -180,7 +194,7 @@
 				7AB6A46318437BD30034C796 /* OFFormProgress.h */,
 				7AB6A46418437BD30034C796 /* OFFormProgress.m */,
 			);
-			name = UIelements;
+			name = UIElements;
 			sourceTree = "<group>";
 		};
 		7AAE39131827962C009BE7B3 = {
@@ -206,6 +220,12 @@
 		7AAE391E1827962C009BE7B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AB6A4A61843C9F40034C796 /* libiconv.dylib */,
+				7AB6A4A41843C9EA0034C796 /* QuartzCore.framework */,
+				7AB6A4A21843C9E40034C796 /* CoreVideo.framework */,
+				7AB6A4A01843C9DC0034C796 /* CoreAudio.framework */,
+				7AB6A49E1843C9C90034C796 /* CoreMedia.framework */,
+				7AB6A49C1843C9BA0034C796 /* AVFoundation.framework */,
 				7AAE391F1827962C009BE7B3 /* Foundation.framework */,
 				7AAE39211827962C009BE7B3 /* CoreGraphics.framework */,
 				7AAE39231827962C009BE7B3 /* UIKit.framework */,
@@ -218,8 +238,9 @@
 		7AAE39251827962C009BE7B3 /* OneForm */ = {
 			isa = PBXGroup;
 			children = (
+				7AB6A4751843C0E00034C796 /* My Forms */,
 				7ABB211B183906780089B3B6 /* Resources */,
-				7AA983AD1834C56A00A9F375 /* UIelements */,
+				7AA983AD1834C56A00A9F375 /* UIElements */,
 				7AAE394E18279950009BE7B3 /* Login Screen */,
 				7ADB5CFE182ACA85009D2739 /* Menu */,
 				7ADB5CFB182AC425009D2739 /* Search Forms */,
@@ -314,8 +335,27 @@
 				7AB6A4571840D0360034C796 /* menu_bars.png */,
 				7AB6A45C1840D6320034C796 /* search_icon.png */,
 				7AB6A45E1840D98D0034C796 /* qr_code.png */,
+				7AB6A4A91845FE750034C796 /* qr_frame.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		7AB6A4711843AD8C0034C796 /* QR code reader */ = {
+			isa = PBXGroup;
+			children = (
+				7AB6A4721843ADAB0034C796 /* OFQRCoderViewController.h */,
+				7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */,
+			);
+			name = "QR code reader";
+			sourceTree = "<group>";
+		};
+		7AB6A4751843C0E00034C796 /* My Forms */ = {
+			isa = PBXGroup;
+			children = (
+				7AB6A4761843C1270034C796 /* OFMyFormsViewController.h */,
+				7AB6A4771843C1270034C796 /* OFMyFormsViewController.m */,
+			);
+			name = "My Forms";
 			sourceTree = "<group>";
 		};
 		7ABB211B183906780089B3B6 /* Resources */ = {
@@ -330,6 +370,7 @@
 		7ADB5CFB182AC425009D2739 /* Search Forms */ = {
 			isa = PBXGroup;
 			children = (
+				7AB6A4711843AD8C0034C796 /* QR code reader */,
 				7ADB5CFC182AC4BE009D2739 /* OFSearchFormsMockup.xib */,
 				7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */,
 				7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */,
@@ -431,6 +472,7 @@
 				7AB6A45F1840D98D0034C796 /* qr_code.png in Resources */,
 				7AB6A45D1840D6320034C796 /* search_icon.png in Resources */,
 				7ABB213D1839069C0089B3B6 /* Roboto-ThinItalic.ttf in Resources */,
+				7AB6A4AA1845FE750034C796 /* qr_frame.png in Resources */,
 				7ABB21391839069C0089B3B6 /* Roboto-Medium.ttf in Resources */,
 				7ABB21371839069C0089B3B6 /* Roboto-Light.ttf in Resources */,
 				7AB6A4581840D0360034C796 /* menu_bars.png in Resources */,
@@ -505,6 +547,8 @@
 				7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */,
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
+				7AB6A4741843ADAB0034C796 /* OFQRCoderViewController.m in Sources */,
+				7AB6A4781843C1270034C796 /* OFMyFormsViewController.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
 				7AB6A45B1840D36C0034C796 /* OFSearchBar.m in Sources */,
 				7AB6A45418401BA80034C796 /* OFNavigationBar.m in Sources */,
@@ -637,6 +681,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneForm/OneForm-Prefix.pch";
 				INFOPLIST_FILE = "OneForm/OneForm-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -651,6 +696,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneForm/OneForm-Prefix.pch";
 				INFOPLIST_FILE = "OneForm/OneForm-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

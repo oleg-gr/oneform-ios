@@ -7,7 +7,6 @@
 //
 
 #import "OFFormProgress.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation OFFormProgress
 

@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UIView *qrCodeInteractionView;
 @property (nonatomic, strong) UITextField *searchQuery;
 
-- (id)initWithBottomLabel:(NSString*)label;
+- (id)initWithBottomLabel:(NSString*)label withQR:(BOOL)isQR;
 
 @end

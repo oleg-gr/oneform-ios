@@ -11,7 +11,7 @@
 #import "OFSearchBar.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
-@interface OFSearchFormsViewController : UINavigationController <UITableViewDelegate, UITableViewDataSource>
+@interface OFSearchFormsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UILabel *caption;
 @property (nonatomic, strong) OFNavigationBar *navBar;

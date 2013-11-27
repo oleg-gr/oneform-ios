@@ -9,6 +9,8 @@
 #import "OFSearchFormsViewController.h"
 #import "SWRevealViewController.h"
 #import "OFSearchBar.h"
+#import "OFQRCoderViewController.h"
+#import "OFFormProgress.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -29,17 +31,15 @@
 {
     [super viewDidLoad];
     
-    SWRevealViewController *revealController = [self revealViewController];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     
     self.navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];
     
     [self.view addSubview:self.navBar];
-
-    [self.view addGestureRecognizer:revealController.panGestureRecognizer];
     
-    self.searchBar = [[OFSearchBar alloc] initWithBottomLabel:@"Popular forms"];
+    self.searchBar = [[OFSearchBar alloc] initWithBottomLabel:@"Popular forms" withQR:YES];
     
     [self.view addSubview:self.searchBar];
 
@@ -49,8 +49,13 @@
     [tapOutOfText setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapOutOfText];
     
-    NSLog(@"LOADED");
+    UITapGestureRecognizer *qrSearch =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(goToQR)];
+    [self.searchBar.qrCodeInteractionView addGestureRecognizer:qrSearch];
+
     
+    NSLog(@"LOADED SEARCH FORMS");
     
     //DUMMY
     
@@ -66,7 +71,22 @@
     
 }
 
-#pragma Table view related logic
+-(void) viewWillAppear:(BOOL)animated
+{
+    SWRevealViewController *revealController = [self revealViewController];
+    [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+}
+
+#pragma mark Controller view changes
+
+- (void) goToQR
+{
+    OFQRCoderViewController *qrController = [[OFQRCoderViewController alloc] init];
+    [self.navigationController pushViewController:qrController animated:YES];
+}
+
+#pragma mark Table view related logic
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.popularForms count];
 }
@@ -82,7 +102,7 @@
     
     UILabel *cellLabel;
     UIImageView *arrow;
-    float height = 52.5;
+    float height = 52;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -106,7 +126,7 @@
     
 }
 
-#pragma Keyboard dismiss
+#pragma mark Keyboard dismiss
 
 -(void)dismissKeyboard
 {

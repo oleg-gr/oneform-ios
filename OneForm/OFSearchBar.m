@@ -11,7 +11,7 @@
 
 @implementation OFSearchBar
 
-- (id)initWithBottomLabel:(NSString*)label
+- (id)initWithBottomLabel:(NSString*)label withQR:(BOOL)isQR
 {
     self = [super initWithFrame:CGRectMake(0, 87, 320, UI_HEIGHT+43.5)];
     if (self) {
@@ -26,9 +26,12 @@
         [searchImage setImage:[UIImage imageNamed:@"search_icon.png"]];
         [self addSubview:searchImage];
         
-        UIImageView *qrCodeImage = [[UIImageView alloc] initWithFrame:CGRectMake(274.25f, 24, 32.75f, 32.75f)];
-        [qrCodeImage setImage:[UIImage imageNamed:@"qr_code.png"]];
-        [self addSubview:qrCodeImage];
+        if (isQR)
+        {
+            UIImageView *qrCodeImage = [[UIImageView alloc] initWithFrame:CGRectMake(274.25f, 24, 32.75f, 32.75f)];
+            [qrCodeImage setImage:[UIImage imageNamed:@"qr_code.png"]];
+            [self addSubview:qrCodeImage];
+        }
         
         self.searchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 32.5f, 178.75f, 29.5)];
         [self.searchQuery setFont:[UIFont fontWithName:@"Roboto-Light" size:25]];
