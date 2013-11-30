@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OFSearchBar.h"
 
-@interface OFMyFormsViewController : UIViewController
+@interface OFMyFormsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) OFSearchBar *searchBar;
+@property (nonatomic, strong) UITableView *myFormsTable;
+@property (nonatomic, strong) NSArray *myForms;
 
 @end

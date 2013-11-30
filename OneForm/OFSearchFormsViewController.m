@@ -98,8 +98,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = @"Cell";
-    
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
     UILabel *cellLabel;
     UIImageView *arrow;
     float height = 52;
@@ -113,7 +112,6 @@
         [cellLabel setTextColor:UI_COLOR];
         [cellLabel setNumberOfLines:2];
         [cellLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:21]];
-        [cell.contentView addSubview:cellLabel];
         arrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.popularFormsTable.frame.size.width - 20.25f, 0, 20.25f, 33.75f)];
         arrow.center = CGPointMake(arrow.center.x, height/2);
         [arrow setImage:[UIImage imageNamed:@"form_choice_arrow.png"]];
@@ -121,7 +119,7 @@
     }
     
     [cellLabel setText:[self.popularForms objectAtIndex:indexPath.row]];
-    
+    [cell.contentView addSubview:cellLabel];
     return cell;
     
 }

@@ -190,7 +190,7 @@
     //ADDITIONAL SETUP
     isJoinScreen = NO;
     
-    self.bottomNotificationSignIn = [[OFBottomNotification alloc] initWithHeight: 568.0 - self.signInButton.frame.origin.y];
+    self.bottomNotificationSignIn = [[OFBottomNotification alloc] initWithHeight: 69];
     [self.view addSubview:self.bottomNotificationSignIn];
     self.bottomNotificationSignUp = [[OFBottomNotification alloc] initWithHeight: 84];
     [self.view addSubview:self.bottomNotificationSignUp];

@@ -49,7 +49,7 @@
 
 - (void)setProgress:(float)progress
 {
-    [self.progressView setFrame:CGRectMake(0, 0, self.progressView.frame.size.width*progress, self.progressView.frame.size.height)];
+    [self.progressView setFrame:CGRectMake(0, 0, self.frame.size.width*progress, self.progressView.frame.size.height)];
 }
 
 /*
