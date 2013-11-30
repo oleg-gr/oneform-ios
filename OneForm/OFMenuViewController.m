@@ -10,6 +10,7 @@
 #define LEFT_ALIGN_LINE 32
 #import "OFSearchFormsViewController.h"
 #import "OFMyFormsViewController.h"
+#import "OFMyDataViewController.h"
 
 @interface OFMenuViewController ()
 
@@ -45,6 +46,11 @@
     
     self.myDataLabel = [self getMenuItemWithYcoord:186.0 andLabel:@"My data"];
     [self.view addSubview:self.myDataLabel];
+    UITapGestureRecognizer *goToMyData =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(goToMyData)];
+    [self.myDataLabel addGestureRecognizer:goToMyData];
+    
     self.settingsLabel = [self getMenuItemWithYcoord:486.5 andLabel:@"Settings"];
     [self.view addSubview:self.settingsLabel];
     self.logOutLabel = [self getMenuItemWithYcoord:523.5 andLabel:@"Log out"];
@@ -62,6 +68,13 @@
 {
     OFMyFormsViewController *myForms= [[OFMyFormsViewController alloc] init];
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myForms];
+    [[self revealViewController] setFrontViewController:frontViewController animated:YES];
+}
+
+- (void) goToMyData
+{
+    OFMyDataViewController *myData= [[OFMyDataViewController alloc] init];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myData];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 

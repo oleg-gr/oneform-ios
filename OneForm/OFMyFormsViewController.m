@@ -47,8 +47,6 @@
     [tapOutOfText setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapOutOfText];
     
-    NSLog(@"MY FORMS LOADED");
-    
     //DUMMY
     
     self.myForms = @[
@@ -102,7 +100,7 @@
         arrow.center = CGPointMake(arrow.center.x, height/2);
         [cell.contentView addSubview:arrow];
         [arrow setImage:[UIImage imageNamed:@"form_choice_arrow.png"]];
-        progress = [[OFFormProgress alloc] initWithFrame:CGRectMake(0, 23.75, 160, 25) andProgress:0 andText:nil andTextSize:14 andTextAlignment:NSTextAlignmentLeft];
+        progress = [[OFFormProgress alloc] initWithFrame:CGRectMake(0, 24.75, 160, 25) andProgress:0 andText:nil andTextSize:14 andTextAlignment:NSTextAlignmentLeft];
         NSLog(@"new cell");
     }
     NSArray *info = [self.myForms objectAtIndex:indexPath.row];

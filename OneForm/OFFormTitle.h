@@ -10,6 +10,6 @@
 
 @interface OFFormTitle : UIView
 
-- (id)initWithYcoord:(float)yCoord height:(float)height andTitle:(NSString*)label;
+- (id)initWithYcoord:(float)yCoord andTitle:(NSString*)label;
 
 @end
