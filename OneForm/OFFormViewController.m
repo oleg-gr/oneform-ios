@@ -56,6 +56,17 @@
                                             action:@selector(goBack)];
     [self.backButton addGestureRecognizer:goBack];
     
+    self.forwardButton = [[OFForwardButton alloc] initWithFrame:CGRectMake(90, 210, 200, 40) andLabel:@"next empty field"];
+    [self.forwardButton setHidden:YES];
+    self.forwardButton.alpha = 0.0;
+    
+    [self.view addSubview:self.forwardButton];
+    
+    UITapGestureRecognizer *goNextEmpty =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(goNextEmpty)];
+    [self.forwardButton addGestureRecognizer:goNextEmpty];
+    
     UITapGestureRecognizer *test =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(test)];
@@ -82,11 +93,13 @@
     [self.horizontalScroll setClipsToBounds:NO];
     [self.horizontalScroll setPagingEnabled : YES];
     [self.horizontalScroll setShowsHorizontalScrollIndicator:NO];
+    self.horizontalScroll.delegate = self;
     
     for( int i = 0; i < [myData count]; i++)
     {
-        OFTextField *textField = [[OFTextField alloc] initWithFrame:CGRectMake(240*i + 20, 10, 200, 80) andLabel:myData[i][0]];
+        OFTextField *textField = [[OFTextField alloc] initWithFrame:CGRectMake(240*i+20, 10, 200, 80) andLabel:myData[i][0]];
         [textField setTextFieldText:myData[i][1]];
+        textField.textFieldInput.delegate = self;
         [textFields addObject:textField];
         [self.horizontalScroll addSubview:textField];
     }
@@ -96,17 +109,87 @@
     self.progressBar = [[OFFormProgress alloc] initWithFrame:CGRectMake(47, 510, 225, 40) andProgress:0 andText:@"" andTextSize:26 andTextAlignment:NSTextAlignmentCenter];
     [self updateProgressBar];
     [self.view addSubview:self.progressBar];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
 }
 
 -(void)test
 {
 }
 
+-(void)goNextEmpty
+{
+    int index = current;
+    int length = [myData count];
+    for (int i = (current + 1) % length; ![myData[i][1] isEqualToString:@""]; i = (i+1) % length)
+    {
+        index = i;
+    }
+    initialScroll = YES;
+    current = (index+1) % length;
+    [self.horizontalScroll setContentOffset:CGPointMake(240*(current), 0) animated:YES];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (isEditing)
+    {
+        previous = current;
+        current = self.horizontalScroll.contentOffset.x / self.horizontalScroll.frame.size.width;
+        [[textFields objectAtIndex:current] becomeFR];
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if (initialScroll && isEditing)
+    {
+        [[textFields objectAtIndex:current] becomeFR];
+        initialScroll = NO;
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activefield = textField;
+    NSLog(@"begin edit, counter:%d", counter);
+    if (counter < 2 && [textField.text isEqualToString:@""])
+    {
+        [self.forwardButton setHidden:YES];
+    }
+    else if (counter == 1)
+    {
+        [self.forwardButton setHidden:NO];
+    }
+}
+
+
+- (void)keyPressed:(NSNotification*)notification
+{
+    NSString *prevValue = myData[current][1];
+    myData[current][1] = [[textFields objectAtIndex:current] getTextInput];
+    NSString *curValue = myData[current][1];
+    //to reduce number of checks
+    if ((prevValue.length == 0 && curValue.length > 0))
+    {
+        [self updateProgressBar];
+    }
+    else if (prevValue.length > 0 && curValue.length == 0)
+    {
+        [self updateProgressBar];
+        if (counter > 1)
+        {
+            [self.forwardButton setHidden:NO];
+        }
+    }
+}
+
 -(void)updateProgressBar
 {
     if (status == nil)
     {
-        int counter = 0;
+        counter = 0;
         for (int i = 0; i < [myData count]; i++)
         {
             if ([myData[i][1] isEqualToString:@""])
@@ -117,7 +200,14 @@
         float num = counter;
         float den = [myData count];
         [self.progressBar setProgress:1 - num/den];
-        [self.progressBar setText:[NSString stringWithFormat:@"%d more", counter]];
+        if (counter == 0)
+        {
+            [self.progressBar setText:@"submit"];
+        }
+        else
+        {
+            [self.progressBar setText:[NSString stringWithFormat:@"%d more", counter]];
+        }
     }
     else
     {
@@ -140,7 +230,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //    No cell reuse because of the custom contentview
@@ -165,13 +255,33 @@
 {
     CGPoint tapLocation = [gestureRecognizer locationInView:self.myDataTable];
     NSIndexPath *tapIndexPath = [self.myDataTable indexPathForRowAtPoint:tapLocation];
-    [self.myDataTable setHidden:YES];
-    [self.horizontalScroll setHidden:NO];
-    [self.horizontalScroll scrollRectToVisible:CGRectMake(240*tapIndexPath.row, 0, 240, 90) animated:YES];
-    [self.formTitle setHidden:YES];
-    [self.backButton.buttonLabel setText:@"save and go back"];
-    [textFields[tapIndexPath.row] becomeFR];
-    
+    initialScroll = YES;
+    [self.horizontalScroll setContentOffset:CGPointMake(240*tapIndexPath.row, 0) animated:YES];
+    [self.forwardButton setHidden:NO];
+    [UIView animateWithDuration:0.15 animations:^() {
+        self.formTitle.alpha = 0.0;
+        self.myDataTable.alpha = 0.0;
+        self.horizontalScroll.alpha = 1.0;
+        self.forwardButton.alpha = 1.0;
+        [self.backButton.buttonLabel setText:@"save and go back"];
+        [self.progressBar setFrame:CGRectMake(47, 284, 225, 40)];
+    } completion:^(BOOL finished){
+        if (finished)
+        {
+            [self.formTitle setHidden:YES];
+            [self.myDataTable setHidden:YES];
+            [self.horizontalScroll setHidden:NO];
+        }
+    }];
+    isEditing = YES;
+    if (current == tapIndexPath.row)
+    {
+        [[textFields objectAtIndex:current] becomeFR];
+    }
+    else
+    {
+        current = tapIndexPath.row;
+    }
 }
 
 - (void)goBack
@@ -179,6 +289,29 @@
     if (!isEditing)
     {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [self.myDataTable reloadData];
+        [self updateProgressBar];
+        [UIView animateWithDuration:0.2 animations:^() {
+            self.formTitle.alpha = 1.0;
+            self.myDataTable.alpha = 1.0;
+            self.horizontalScroll.alpha = 0.0;
+            self.forwardButton.alpha = 0.0;
+            [self.backButton.buttonLabel setText:@"go back"];
+            [self.progressBar setFrame:CGRectMake(47, 510, 225, 40)];
+        } completion:^(BOOL finished){
+            if (finished)
+            {
+                [self.formTitle setHidden:NO];
+                [self.myDataTable setHidden:NO];
+                [self.horizontalScroll setHidden:YES];
+                [self.forwardButton setHidden:YES];
+            }
+        }];
+        [activefield resignFirstResponder];
+        isEditing = NO;
     }
 }
 

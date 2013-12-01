@@ -13,6 +13,8 @@
 		7A8EC490184B45E4006542FC /* OFOrganizationsAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */; };
 		7A8EC494184B56DF006542FC /* OFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC493184B56DF006542FC /* OFSettingsViewController.m */; };
 		7A8EC498184B74F9006542FC /* OFFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC497184B74F9006542FC /* OFFormViewController.m */; };
+		7A8EC49E184BAE4F006542FC /* OFForwardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC49D184BAE4F006542FC /* OFForwardButton.m */; };
+		7A8EC4A0184BAEC1006542FC /* arrow_forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A8EC49F184BAEC1006542FC /* arrow_forward.png */; };
 		7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA983AF1834C5B400A9F375 /* OFTextField.m */; };
 		7AAE39241827962C009BE7B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39231827962C009BE7B3 /* UIKit.framework */; };
 		7AAE392A1827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39281827962C009BE7B3 /* InfoPlist.strings */; };
@@ -87,6 +89,9 @@
 		7A8EC493184B56DF006542FC /* OFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFSettingsViewController.m; sourceTree = "<group>"; };
 		7A8EC496184B74F9006542FC /* OFFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormViewController.h; sourceTree = "<group>"; };
 		7A8EC497184B74F9006542FC /* OFFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormViewController.m; sourceTree = "<group>"; };
+		7A8EC49C184BAE4F006542FC /* OFForwardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFForwardButton.h; sourceTree = "<group>"; };
+		7A8EC49D184BAE4F006542FC /* OFForwardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFForwardButton.m; sourceTree = "<group>"; };
+		7A8EC49F184BAEC1006542FC /* arrow_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_forward.png; sourceTree = "<group>"; };
 		7AA983AE1834C5B400A9F375 /* OFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFTextField.h; sourceTree = "<group>"; };
 		7AA983AF1834C5B400A9F375 /* OFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFTextField.m; sourceTree = "<group>"; };
 		7AAE391C1827962C009BE7B3 /* OneForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +257,8 @@
 				7AB6A461184375FD0034C796 /* OFFormTitle.m */,
 				7AB6A46318437BD30034C796 /* OFFormProgress.h */,
 				7AB6A46418437BD30034C796 /* OFFormProgress.m */,
+				7A8EC49C184BAE4F006542FC /* OFForwardButton.h */,
+				7A8EC49D184BAE4F006542FC /* OFForwardButton.m */,
 			);
 			name = UIElements;
 			sourceTree = "<group>";
@@ -391,6 +398,7 @@
 		7AB6A44B183FC29F0034C796 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				7A8EC49F184BAEC1006542FC /* arrow_forward.png */,
 				7A8EC48B184B42F1006542FC /* my_data_qr.png */,
 				7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */,
 				7AB6A4551840CEE20034C796 /* arrow_back.png */,
@@ -541,6 +549,7 @@
 				7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */,
 				7ABB213C1839069C0089B3B6 /* Roboto-Thin.ttf in Resources */,
 				7ABB21341839069C0089B3B6 /* Roboto-Condensed.ttf in Resources */,
+				7A8EC4A0184BAEC1006542FC /* arrow_forward.png in Resources */,
 				7ABB21351839069C0089B3B6 /* Roboto-CondensedItalic.ttf in Resources */,
 				7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */,
 				7ABB21311839069C0089B3B6 /* Roboto-BoldCondensed.ttf in Resources */,
@@ -602,6 +611,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A8EC49E184BAE4F006542FC /* OFForwardButton.m in Sources */,
 				7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */,
 				7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */,
 				7A8EC494184B56DF006542FC /* OFSettingsViewController.m in Sources */,
