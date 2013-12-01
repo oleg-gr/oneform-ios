@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFOrganizationsAccessViewController : UIViewController
+@interface OFOrganizationsAccessViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    NSArray *organizations;
+}
+
+@property (strong, nonatomic) UITableView *organizationsTable;
 
 @end

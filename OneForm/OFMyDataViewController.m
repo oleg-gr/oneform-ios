@@ -104,7 +104,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.myDataTable.frame.size.width/2 - 10, 55, self.myDataTable.frame.size.width/2 - 10, 24)];
+        float width = self.myDataTable.frame.size.width;
+        bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(width/2 - 10, 55, width/2 - 10, 24)];
         [bottomLabel setTextColor:UI_COLOR];
         [bottomLabel setNumberOfLines:1];
         [bottomLabel setFont:[UIFont fontWithName:@"Roboto-Light" size:19]];
@@ -118,7 +119,7 @@
         [bottomLabel addGestureRecognizer:organizationsAccess];
         
         NSArray *info = [myData objectAtIndex:indexPath.row];
-        textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, self.myDataTable.frame.size.width, 65) andLabel:info[0] andEditable:NO];
+        textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, width, 65) andLabel:info[0] andEditable:NO];
         [textfield setTextFieldText:info[1]];
         [bottomLabel setText:[NSString stringWithFormat:@"%@ have access", info[2]]];
         [cell.contentView addSubview:textfield];
