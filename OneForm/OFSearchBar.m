@@ -64,8 +64,6 @@
         [bottomCaption setText:label];
         [bottomCaption sizeToFit];
         [self addSubview:bottomCaption];
-
-        
         
     }
     return self;

@@ -10,6 +10,8 @@
 #import "OFNavigationBar.h"
 #import "OFFormTitle.h"
 #import "OFTextField.h"
+#import "OFMyCardViewController.h"
+#import "OFOrganizationsAccessViewController.h"
 
 @interface OFMyDataViewController ()
 
@@ -49,6 +51,11 @@
     [qrCodeImage setImage:[UIImage imageNamed:@"qr_code.png"]];
     [self.view addSubview:qrCodeImage];
     
+    UITapGestureRecognizer *goToMyQR = [[UITapGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(goToMyQR)];
+    [self.qrCodeInteractionView addGestureRecognizer:goToMyQR];
+    
     myData = @[
                      @[@"Name", @"Mariko Kuroda", @15],
                      @[@"Birthdate", @"09-23-1993", @15],
@@ -66,6 +73,12 @@
     
     [self.view addSubview:self.myDataTable];
     
+}
+
+- (void) goToMyQR
+{
+    OFMyCardViewController *myCard = [[OFMyCardViewController alloc] init];
+    [self.navigationController pushViewController:myCard animated:YES];
 }
 
 
@@ -91,11 +104,19 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, self.myDataTable.frame.size.width - 10, 24)];
+        bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.myDataTable.frame.size.width/2 - 10, 55, self.myDataTable.frame.size.width/2 - 10, 24)];
         [bottomLabel setTextColor:UI_COLOR];
         [bottomLabel setNumberOfLines:1];
         [bottomLabel setFont:[UIFont fontWithName:@"Roboto-Light" size:19]];
         [bottomLabel setTextAlignment:NSTextAlignmentRight];
+        
+        UITapGestureRecognizer *organizationsAccess = [[UITapGestureRecognizer alloc]
+                                                initWithTarget:self
+                                                       action:@selector(goToOrganizationsWithAccess:)];
+//        [organizationsAccess setCancelsTouchesInView:NO];
+        [bottomLabel setUserInteractionEnabled:YES];
+        [bottomLabel addGestureRecognizer:organizationsAccess];
+        
         NSArray *info = [myData objectAtIndex:indexPath.row];
         textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, self.myDataTable.frame.size.width, 65) andLabel:info[0] andEditable:NO];
         [textfield setTextFieldText:info[1]];
@@ -104,6 +125,13 @@
         [cell.contentView addSubview:bottomLabel];
     }
     return cell;
+}
+
+-(void) goToOrganizationsWithAccess:(UILabel*)label
+{
+    //grab tag assigned to ID and display respective details
+    OFOrganizationsAccessViewController *organizations = [[OFOrganizationsAccessViewController alloc] init];
+    [self.navigationController pushViewController:organizations animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated

@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         [self setBackgroundColor:[UIColor colorWithRed:184.0/255.0 green:186.0/255.0 blue:205/255.0 alpha:1.0]];
-        UILabel *title = [[ UILabel alloc] initWithFrame:CGRectMake(0, yCoord, 320, 50)];
+        UILabel *title = [[ UILabel alloc] initWithFrame:CGRectMake(0, yCoord, 246.5f, 50)];
         [title setTextColor:UI_COLOR];
         [title setNumberOfLines:0];
         [title setFont:[UIFont fontWithName:@"Roboto-Regular" size:26]];

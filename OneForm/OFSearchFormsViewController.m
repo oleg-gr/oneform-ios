@@ -53,9 +53,6 @@
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(goToQR)];
     [self.searchBar.qrCodeInteractionView addGestureRecognizer:qrSearch];
-
-    
-    NSLog(@"LOADED SEARCH FORMS");
     
     //DUMMY
     
