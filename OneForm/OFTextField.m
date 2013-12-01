@@ -85,6 +85,16 @@
     return self.textFieldInput.text;
 }
 
+-(void)becomeFR
+{
+    [self.textFieldInput becomeFirstResponder];
+}
+
+-(void)resignFR
+{
+    [self.textFieldInput resignFirstResponder];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

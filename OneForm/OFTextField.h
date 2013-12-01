@@ -18,5 +18,7 @@
 -(NSString*)getTextInput;
 -(void)setLabelText:(NSString*)text;
 -(void)setTextFieldText:(NSString*)text;
+-(void)becomeFR;
+-(void)resignFR;
 
 @end
