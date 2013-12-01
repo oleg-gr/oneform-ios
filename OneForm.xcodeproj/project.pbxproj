@@ -12,6 +12,7 @@
 		7A8EC48C184B42F1006542FC /* my_data_qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A8EC48B184B42F1006542FC /* my_data_qr.png */; };
 		7A8EC490184B45E4006542FC /* OFOrganizationsAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */; };
 		7A8EC494184B56DF006542FC /* OFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC493184B56DF006542FC /* OFSettingsViewController.m */; };
+		7A8EC498184B74F9006542FC /* OFFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC497184B74F9006542FC /* OFFormViewController.m */; };
 		7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA983AF1834C5B400A9F375 /* OFTextField.m */; };
 		7AAE39241827962C009BE7B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39231827962C009BE7B3 /* UIKit.framework */; };
 		7AAE392A1827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39281827962C009BE7B3 /* InfoPlist.strings */; };
@@ -84,6 +85,8 @@
 		7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFOrganizationsAccessViewController.m; sourceTree = "<group>"; };
 		7A8EC492184B56DF006542FC /* OFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFSettingsViewController.h; sourceTree = "<group>"; };
 		7A8EC493184B56DF006542FC /* OFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFSettingsViewController.m; sourceTree = "<group>"; };
+		7A8EC496184B74F9006542FC /* OFFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormViewController.h; sourceTree = "<group>"; };
+		7A8EC497184B74F9006542FC /* OFFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormViewController.m; sourceTree = "<group>"; };
 		7AA983AE1834C5B400A9F375 /* OFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFTextField.h; sourceTree = "<group>"; };
 		7AA983AF1834C5B400A9F375 /* OFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFTextField.m; sourceTree = "<group>"; };
 		7AAE391C1827962C009BE7B3 /* OneForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +226,15 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		7A8EC495184B73CB006542FC /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				7A8EC496184B74F9006542FC /* OFFormViewController.h */,
+				7A8EC497184B74F9006542FC /* OFFormViewController.m */,
+			);
+			name = Form;
+			sourceTree = "<group>";
+		};
 		7AA983AD1834C56A00A9F375 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,7 @@
 		7AAE39251827962C009BE7B3 /* OneForm */ = {
 			isa = PBXGroup;
 			children = (
+				7A8EC495184B73CB006542FC /* Form */,
 				7A8EC491184B56CF006542FC /* Settings */,
 				7A8EC483184A5EEC006542FC /* My Data */,
 				7AB6A4751843C0E00034C796 /* My Forms */,
@@ -600,6 +613,7 @@
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
 				7AB6A45B1840D36C0034C796 /* OFSearchBar.m in Sources */,
 				7A8EC486184A5F04006542FC /* OFMyDataViewController.m in Sources */,
+				7A8EC498184B74F9006542FC /* OFFormViewController.m in Sources */,
 				7AB6A45418401BA80034C796 /* OFNavigationBar.m in Sources */,
 				7ADB5D01182ACA9F009D2739 /* OFMenuViewController.m in Sources */,
 				7AB6A449183FC2780034C796 /* OFBackButton.m in Sources */,

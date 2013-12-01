@@ -114,7 +114,7 @@
         UITapGestureRecognizer *organizationsAccess = [[UITapGestureRecognizer alloc]
                                                 initWithTarget:self
                                                        action:@selector(goToOrganizationsWithAccess:)];
-//        [organizationsAccess setCancelsTouchesInView:NO];
+        [organizationsAccess setCancelsTouchesInView:NO];
         [bottomLabel setUserInteractionEnabled:YES];
         [bottomLabel addGestureRecognizer:organizationsAccess];
         

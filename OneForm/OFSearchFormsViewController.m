@@ -11,6 +11,7 @@
 #import "OFSearchBar.h"
 #import "OFQRCoderViewController.h"
 #import "OFFormProgress.h"
+#import "OFFormViewController.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -113,12 +114,25 @@
         arrow.center = CGPointMake(arrow.center.x, height/2);
         [arrow setImage:[UIImage imageNamed:@"form_choice_arrow.png"]];
         [cell.contentView addSubview:arrow];
+        
+        UITapGestureRecognizer *goToForm = [[UITapGestureRecognizer alloc]
+                                                       initWithTarget:self
+                                                       action:@selector(goToForm)];
+        [goToForm setCancelsTouchesInView:NO];
+        [cell.contentView setUserInteractionEnabled:YES];
+        [cell.contentView  addGestureRecognizer:goToForm];
     }
     
     [cellLabel setText:[self.popularForms objectAtIndex:indexPath.row]];
     [cell.contentView addSubview:cellLabel];
     return cell;
     
+}
+
+-(void)goToForm
+{
+    OFFormViewController *form = [[OFFormViewController alloc] init];
+    [self.navigationController pushViewController:form animated:YES];
 }
 
 #pragma mark Keyboard dismiss

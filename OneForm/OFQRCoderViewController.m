@@ -35,8 +35,6 @@
     
     [self.view addSubview:navBar];
     
-    NSLog(@"QR CODE READER LOADED");
-    
     OFBackButton *backButton = [[OFBackButton alloc] initWithFrame:CGRectMake(25, 85.5f, 110, 40) andLabel:@"go back"];
     
     [self.view addSubview:backButton];
