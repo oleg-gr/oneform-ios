@@ -30,6 +30,7 @@
 -(void)showWithAutohide:(BOOL)autohide
 {
     [self animate:[NSNumber numberWithInt:-1]];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     if (autohide)
     {
         [self performSelector:@selector(animate:) withObject:[NSNumber numberWithInt:1] afterDelay:2.0];

@@ -138,7 +138,26 @@
 
 -(void)saveLogic
 {
-    
+    if (self.currentPassword.textFieldInput.text.length == 0)
+    {
+        [self.bottomNotification.notification setText:@"Password cannot be empty"];
+        [self.bottomNotification showWithAutohide:YES];
+    }
+    else if (self.aNewPassword.textFieldInput.text.length == 0)
+    {
+        [self.bottomNotification.notification setText:@"New password cannot be empty"];
+        [self.bottomNotification showWithAutohide:YES];
+    }
+    else if (self.aNewConfirmPassword.textFieldInput.text.length == 0)
+    {
+        [self.bottomNotification.notification setText:@"New password confirmation cannot be empty"];
+        [self.bottomNotification showWithAutohide:YES];
+    }
+    else if (![self.aNewConfirmPassword.textFieldInput.text isEqualToString:self.aNewPassword.textFieldInput.text])
+    {
+        [self.bottomNotification.notification setText:@"Passwords do not match"];
+        [self.bottomNotification showWithAutohide:YES];
+    }
 }
 
 -(void)tapEnglish
@@ -178,7 +197,8 @@
     }
     else
     {
-        [textField resignFirstResponder];
+        [self saveLogic];
+        [self dismissKeyboard];
     }
     return NO;
 }
