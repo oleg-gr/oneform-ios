@@ -35,6 +35,8 @@
     isEditing = NO;
     status = nil;
     textFields = [[NSMutableArray alloc] init];
+    df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"MM-dd-yyyy"];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -72,6 +74,9 @@
                                             action:@selector(test)];
     [self.formTitle addGestureRecognizer:test];
     
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     myData = @[
                [[NSMutableArray alloc] initWithArray: @[@"Name", @"Mariko Kuroda", @"text"]],
                [[NSMutableArray alloc] initWithArray: @[@"Birthdate", @"09-23-1993", @"date"]],
@@ -99,6 +104,22 @@
     {
         OFTextField *textField = [[OFTextField alloc] initWithFrame:CGRectMake(240*i+20, 10, 200, 80) andLabel:myData[i][0]];
         [textField setTextFieldText:myData[i][1]];
+        if ([myData[i][2] isEqualToString:@"date"])
+        {
+            if (![myData[i][1] isEqualToString:@""])
+            {
+                NSDate *date = [df dateFromString: myData[i][1]];
+                [datePicker setDate:date];
+            }
+            [textField.textFieldInput setInputView:datePicker];
+        }
+        else if ([myData[i][2] isEqualToString:@"radio"])
+        {
+            UIPickerView *pickerView = [[UIPickerView alloc] init];
+            pickerView.dataSource = self;
+            pickerView.delegate = self;
+            [textField.textFieldInput setInputView:pickerView];
+        }
         textField.textFieldInput.delegate = self;
         [textFields addObject:textField];
         [self.horizontalScroll addSubview:textField];
@@ -116,6 +137,34 @@
 
 -(void)test
 {
+}
+
+-(void)datePickerValueChanged:(id)sender
+{
+    UIDatePicker *picker = (UIDatePicker*) activefield.inputView;
+    [activefield setText:[df stringFromDate: picker.date]];
+    myData[current][1] = [df stringFromDate: picker.date];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [myData[current][3] count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return myData[current][3][row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [activefield setText:myData[current][3][row]];
+    myData[current][1] = myData[current][3][row];
 }
 
 -(void)goNextEmpty
@@ -153,7 +202,16 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     activefield = textField;
-    NSLog(@"begin edit, counter:%d", counter);
+    if ([activefield.inputView isMemberOfClass:[UIPickerView class]])
+    {
+        int myRow = (unsigned long)[myData[current][3] indexOfObject:myData[current][1]];
+        if (myRow > [myData[current][3] count])
+        {
+            myRow = 0;
+        }
+        NSLog(@"%d", myRow);
+        [(UIPickerView*)activefield.inputView selectRow:myRow inComponent:0 animated:NO];
+    }
     if (counter < 2 && [textField.text isEqualToString:@""])
     {
         [self.forwardButton setHidden:YES];

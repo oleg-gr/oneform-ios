@@ -12,7 +12,7 @@
 #import "OFBackButton.h"
 #import "OFForwardButton.h"
 
-@interface OFFormViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface OFFormViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {
     int count;
     int current;
@@ -25,6 +25,7 @@
     BOOL initialScroll;
     NSMutableArray *textFields;
     UITextField *activefield;
+    NSDateFormatter *df;
 }
 
 @property (strong, nonatomic) OFFormProgress *progressBar;
