@@ -14,6 +14,9 @@
 @property (nonatomic, strong) UILabel *labelInput;
 
 -(id)initWithFrame:(CGRect)frame andLabel:(NSString*) label;
+-(id)initWithFrame:(CGRect)frame andLabel:(NSString*) label andEditable:(BOOL) isEdit;
 -(NSString*)getTextInput;
+-(void)setLabelText:(NSString*)text;
+-(void)setTextFieldText:(NSString*)text;
 
 @end

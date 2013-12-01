@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OFMyDataViewController : UIViewController
+@interface OFMyDataViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    NSArray *myData;
+}
 
 @property (strong, nonatomic) UIView *qrCodeInteractionView;
+@property (strong, nonatomic) UITableView *myDataTable;
 
 @end
