@@ -11,6 +11,8 @@
 #import "OFSearchFormsViewController.h"
 #import "OFMyFormsViewController.h"
 #import "OFMyDataViewController.h"
+#import "OFLoginViewController.h"
+#import "OFSettingsViewController.h"
 
 @interface OFMenuViewController ()
 
@@ -53,8 +55,18 @@
     
     self.settingsLabel = [self getMenuItemWithYcoord:486.5 andLabel:@"Settings"];
     [self.view addSubview:self.settingsLabel];
+    UITapGestureRecognizer *goToSettings =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(goToSettings)];
+    [self.settingsLabel addGestureRecognizer:goToSettings];
+    
     self.logOutLabel = [self getMenuItemWithYcoord:523.5 andLabel:@"Log out"];
     [self.view addSubview:self.logOutLabel];
+    
+    UITapGestureRecognizer *logout =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(logout)];
+    [self.logOutLabel addGestureRecognizer:logout];
 }
 
 - (void) goToSearch
@@ -76,6 +88,19 @@
     OFMyDataViewController *myData= [[OFMyDataViewController alloc] init];
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myData];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
+}
+
+- (void) goToSettings
+{
+    OFSettingsViewController *settings= [[OFSettingsViewController alloc] init];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:settings];
+    [[self revealViewController] setFrontViewController:frontViewController animated:YES];
+}
+
+- (void) logout
+{
+    //log out logic
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIButton*)getMenuItemWithYcoord:(float)coord andLabel:(NSString*)text

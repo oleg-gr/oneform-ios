@@ -8,41 +8,21 @@
 
 #import "OFAppDelegate.h"
 #import "OFLoginViewController.h"
-#import "OFSearchFormsViewController.h"
 #import "OFInternetUtility.h"
-#import "OFMenuViewController.h"
-#import "SWRevealViewController.h"
 
-@interface OFAppDelegate()<SWRevealViewControllerDelegate>
+@interface OFAppDelegate()
 @end
 
 @implementation OFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] init];
-    OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
-	
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
-    
-	self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
-    
-    //menu width
-    self.revealController.rearViewRevealWidth = 175;
-    self.revealController.rearViewRevealOverdraw = 175;
-    self.revealController.draggableBorderWidth = 50;
-    self.revealController.frontViewShadowRadius = 0;
-    
-    frontViewController.view.backgroundColor = [UIColor whiteColor];
-    rearViewController.view.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:203.0/255.0 blue:216.0/255.0 alpha:1];
-    
-    self.revealController.delegate = self;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     OFLoginViewController *loginController = [[OFLoginViewController alloc] init];
-//    self.window.rootViewController = loginController;
-    self.window.rootViewController = self.revealController;
+    self.window.rootViewController = loginController;
+//    self.window.rootViewController = self.revealController;
     [OFInternetUtility checkInternetConnection];
     [self.window makeKeyAndVisible];
     return YES;

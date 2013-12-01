@@ -11,6 +11,7 @@
 #import "OFBottomNotification.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "OFBackButton.h"
+#import "SWRevealViewController.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
@@ -19,8 +20,6 @@
 }
 
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollContainer;
-
-@property (nonatomic, strong) OFTextField *usernameUI;
 
 @property (nonatomic, strong) OFTextField *passwordUI;
 
@@ -39,6 +38,8 @@
 @property (nonatomic, strong) OFBottomNotification *bottomNotificationSignUp;
 
 @property (nonatomic, strong) OFBackButton *backToSignIn;
+
+@property (strong, nonatomic) SWRevealViewController *revealController;
 
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;

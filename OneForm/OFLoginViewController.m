@@ -12,11 +12,14 @@
 #import "OFAppDelegate.h"
 #import "OFTextField.h"
 #import "OFBackButton.h"
+#import "OFSearchFormsViewController.h"
+#import "OFMenuViewController.h"
+
 #define LEFT_ALIGN_LINE 35
 #define UI_ELEMENTS_GAP 68
 #define UI_TEXT_WIDTH 320 - LEFT_ALIGN_LINE
 
-@interface OFLoginViewController ()
+@interface OFLoginViewController ()<SWRevealViewControllerDelegate>
 
 @end
 
@@ -26,8 +29,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-//        [self registerForKeyboardNotifications];
     }
     return self;
 }
@@ -35,7 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //scrollview
     self.scrollContainer = [[TPKeyboardAvoidingScrollView alloc]
                             initWithFrame: self.view.frame];
@@ -55,10 +55,6 @@
     self.emailUI.textFieldInput.tag = 1;
     self.emailUI.textFieldInput.delegate = self;
     [self.scrollContainer addSubview:self.emailUI];
-    //label
-    //design
-    //logic
-    [self.scrollContainer addSubview:self.emailUI];
     
     
     
@@ -72,7 +68,6 @@
     self.passwordUI.textFieldInput.secureTextEntry = YES;
     self.passwordUI.textFieldInput.delegate = self;
     self.passwordUI.textFieldInput.tag = 2;
-    [self.scrollContainer addSubview:self.passwordUI];
     [self.scrollContainer addSubview:self.passwordUI];
 
     
@@ -225,18 +220,46 @@
 
 -(void) signInResponseLogic
 {
+    //for quick debugging
+    [self showMainScreen];
+    
     NSString *response = [OFHelperMethods signIn:[self.emailUI getTextInput]
                                     withPassword:[self.passwordUI getTextInput]];
     if (![response  isEqual: @"OK"]) {
         [self.bottomNotificationSignIn.notification setText:response];
         [self.bottomNotificationSignIn showWithAutohide:YES];
-        
     }
     else
     {
-        OFAppDelegate *temp = (OFAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [self presentViewController:temp.revealController animated:YES completion:nil];
+        [self showMainScreen];
     }
+}
+
+- (void)showMainScreen
+{
+    [self.passwordUI setTextFieldText:@""];
+    [self.firstNameUI setTextFieldText:@""];
+    [self.lastNameUI setTextFieldText:@""];
+    [self.emailUI setTextFieldText:@""];
+    [self.confirmPasswordUI setTextFieldText:@""];
+    
+    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] init];
+    OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
+    
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    
+    self.revealController = [[SWRevealViewController alloc] initWithRearViewController:rearViewController frontViewController:frontViewController];
+    
+    //menu width
+    self.revealController.rearViewRevealWidth = 175;
+    self.revealController.rearViewRevealOverdraw = 175;
+    self.revealController.draggableBorderWidth = 50;
+    self.revealController.frontViewShadowRadius = 0;
+    
+    frontViewController.view.backgroundColor = [UIColor whiteColor];
+    rearViewController.view.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:203.0/255.0 blue:216.0/255.0 alpha:1];
+    self.revealController.delegate = self;
+    [self presentViewController:self.revealController animated:YES completion:nil];
 }
 
 #pragma mark Sign in adn Sign up button logic

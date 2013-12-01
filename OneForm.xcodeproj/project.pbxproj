@@ -11,6 +11,7 @@
 		7A8EC48A184B3FA6006542FC /* OFMyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC489184B3FA6006542FC /* OFMyCardViewController.m */; };
 		7A8EC48C184B42F1006542FC /* my_data_qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A8EC48B184B42F1006542FC /* my_data_qr.png */; };
 		7A8EC490184B45E4006542FC /* OFOrganizationsAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */; };
+		7A8EC494184B56DF006542FC /* OFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8EC493184B56DF006542FC /* OFSettingsViewController.m */; };
 		7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA983AF1834C5B400A9F375 /* OFTextField.m */; };
 		7AAE39241827962C009BE7B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE39231827962C009BE7B3 /* UIKit.framework */; };
 		7AAE392A1827962C009BE7B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AAE39281827962C009BE7B3 /* InfoPlist.strings */; };
@@ -58,9 +59,7 @@
 		7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABB213F183921A00089B3B6 /* OFBottomNotification.m */; };
 		7ADB5CF7182A96AC009D2739 /* OFHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */; };
 		7ADB5CFA182AC41F009D2739 /* OFSearchFormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */; };
-		7ADB5CFD182AC4BE009D2739 /* OFSearchFormsMockup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB5CFC182AC4BE009D2739 /* OFSearchFormsMockup.xib */; };
 		7ADB5D01182ACA9F009D2739 /* OFMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5D00182ACA9F009D2739 /* OFMenuViewController.m */; };
-		7ADB5D03182ACAB3009D2739 /* OFMenuMockup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB5D02182ACAB3009D2739 /* OFMenuMockup.xib */; };
 		D380A24E48E5493F8233C298 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DE445615D5404D888C0630 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +82,8 @@
 		7A8EC48B184B42F1006542FC /* my_data_qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_data_qr.png; sourceTree = "<group>"; };
 		7A8EC48E184B45E4006542FC /* OFOrganizationsAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFOrganizationsAccessViewController.h; sourceTree = "<group>"; };
 		7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFOrganizationsAccessViewController.m; sourceTree = "<group>"; };
+		7A8EC492184B56DF006542FC /* OFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFSettingsViewController.h; sourceTree = "<group>"; };
+		7A8EC493184B56DF006542FC /* OFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFSettingsViewController.m; sourceTree = "<group>"; };
 		7AA983AE1834C5B400A9F375 /* OFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFTextField.h; sourceTree = "<group>"; };
 		7AA983AF1834C5B400A9F375 /* OFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFTextField.m; sourceTree = "<group>"; };
 		7AAE391C1827962C009BE7B3 /* OneForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +102,6 @@
 		7AAE39401827962C009BE7B3 /* OneFormTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OneFormTests-Info.plist"; sourceTree = "<group>"; };
 		7AAE39421827962C009BE7B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7AAE39441827962C009BE7B3 /* OneFormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneFormTests.m; sourceTree = "<group>"; };
-		7AAE395E18279E8A009BE7B3 /* OFLoginMockup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OFLoginMockup.xib; sourceTree = "<group>"; };
 		7AAE395F1827A04A009BE7B3 /* OFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFLoginViewController.h; sourceTree = "<group>"; };
 		7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFLoginViewController.m; sourceTree = "<group>"; };
 		7AAE396A1827CF3C009BE7B3 /* OFInternetUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFInternetUtility.h; sourceTree = "<group>"; };
@@ -155,10 +155,8 @@
 		7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFHelperMethods.m; sourceTree = "<group>"; };
 		7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFSearchFormsViewController.h; sourceTree = "<group>"; };
 		7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFSearchFormsViewController.m; sourceTree = "<group>"; };
-		7ADB5CFC182AC4BE009D2739 /* OFSearchFormsMockup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OFSearchFormsMockup.xib; sourceTree = "<group>"; };
 		7ADB5CFF182ACA9F009D2739 /* OFMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFMenuViewController.h; sourceTree = "<group>"; };
 		7ADB5D00182ACA9F009D2739 /* OFMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFMenuViewController.m; sourceTree = "<group>"; };
-		7ADB5D02182ACAB3009D2739 /* OFMenuMockup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OFMenuMockup.xib; sourceTree = "<group>"; };
 		B4DE445615D5404D888C0630 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -214,6 +212,15 @@
 				7A8EC48F184B45E4006542FC /* OFOrganizationsAccessViewController.m */,
 			);
 			name = "Organizations with Access";
+			sourceTree = "<group>";
+		};
+		7A8EC491184B56CF006542FC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7A8EC492184B56DF006542FC /* OFSettingsViewController.h */,
+				7A8EC493184B56DF006542FC /* OFSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		7AA983AD1834C56A00A9F375 /* UIElements */ = {
@@ -278,6 +285,7 @@
 		7AAE39251827962C009BE7B3 /* OneForm */ = {
 			isa = PBXGroup;
 			children = (
+				7A8EC491184B56CF006542FC /* Settings */,
 				7A8EC483184A5EEC006542FC /* My Data */,
 				7AB6A4751843C0E00034C796 /* My Forms */,
 				7ABB211B183906780089B3B6 /* Resources */,
@@ -326,7 +334,6 @@
 		7AAE394E18279950009BE7B3 /* Login Screen */ = {
 			isa = PBXGroup;
 			children = (
-				7AAE395E18279E8A009BE7B3 /* OFLoginMockup.xib */,
 				7AAE395F1827A04A009BE7B3 /* OFLoginViewController.h */,
 				7AAE39601827A04A009BE7B3 /* OFLoginViewController.m */,
 			);
@@ -413,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				7AB6A4711843AD8C0034C796 /* QR code reader */,
-				7ADB5CFC182AC4BE009D2739 /* OFSearchFormsMockup.xib */,
 				7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */,
 				7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */,
 			);
@@ -425,7 +431,6 @@
 			children = (
 				7ADB5CFF182ACA9F009D2739 /* OFMenuViewController.h */,
 				7ADB5D00182ACA9F009D2739 /* OFMenuViewController.m */,
-				7ADB5D02182ACAB3009D2739 /* OFMenuMockup.xib */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -523,9 +528,7 @@
 				7ABB212F1839069C0089B3B6 /* Roboto-BlackItalic.ttf in Resources */,
 				7ABB213C1839069C0089B3B6 /* Roboto-Thin.ttf in Resources */,
 				7ABB21341839069C0089B3B6 /* Roboto-Condensed.ttf in Resources */,
-				7ADB5D03182ACAB3009D2739 /* OFMenuMockup.xib in Resources */,
 				7ABB21351839069C0089B3B6 /* Roboto-CondensedItalic.ttf in Resources */,
-				7ADB5CFD182AC4BE009D2739 /* OFSearchFormsMockup.xib in Resources */,
 				7ABB21301839069C0089B3B6 /* Roboto-Bold.ttf in Resources */,
 				7ABB21311839069C0089B3B6 /* Roboto-BoldCondensed.ttf in Resources */,
 				7ABB21361839069C0089B3B6 /* Roboto-Italic.ttf in Resources */,
@@ -588,6 +591,7 @@
 			files = (
 				7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */,
 				7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */,
+				7A8EC494184B56DF006542FC /* OFSettingsViewController.m in Sources */,
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7A8EC48A184B3FA6006542FC /* OFMyCardViewController.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
