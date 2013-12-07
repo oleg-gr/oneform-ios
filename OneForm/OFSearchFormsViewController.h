@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "OFNavigationBar.h"
-#import "OFSearchBar.h"
+#import "OFDoubleSearch.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
 @interface OFSearchFormsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UILabel *caption;
 @property (nonatomic, strong) OFNavigationBar *navBar;
-@property (nonatomic, strong) OFSearchBar *searchBar;
+@property (nonatomic, strong) OFDoubleSearch *searchBar;
 @property (nonatomic, strong) UITableView *popularFormsTable;
 @property (nonatomic, strong) NSArray *popularForms;
 

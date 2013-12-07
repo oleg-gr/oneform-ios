@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) OFTextField *lastNameUI;
 
+@property (nonatomic, strong) OFTextField *udidUI;
+
 @property (nonatomic, strong) OFTextField *emailUI;
 
 @property (nonatomic, strong) OFTextField *confirmPasswordUI;

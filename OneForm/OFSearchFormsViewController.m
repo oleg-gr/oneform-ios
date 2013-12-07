@@ -40,7 +40,7 @@
     
     [self.view addSubview:self.navBar];
     
-    self.searchBar = [[OFSearchBar alloc] initWithBottomLabel:@"Popular forms" withQR:YES];
+    self.searchBar = [[OFDoubleSearch alloc] initWithTopPlaceholder:@"form name" andBottom:@"agency name"];
     
     [self.view addSubview:self.searchBar];
 
@@ -49,11 +49,6 @@
                                             action:@selector(dismissKeyboard)];
     [tapOutOfText setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapOutOfText];
-    
-    UITapGestureRecognizer *qrSearch =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(goToQR)];
-    [self.searchBar.qrCodeInteractionView addGestureRecognizer:qrSearch];
     
     //DUMMY
     
@@ -75,13 +70,6 @@
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
 }
 
-#pragma mark Controller view changes
-
-- (void) goToQR
-{
-    OFQRCoderViewController *qrController = [[OFQRCoderViewController alloc] init];
-    [self.navigationController pushViewController:qrController animated:YES];
-}
 
 #pragma mark Table view related logic
 
@@ -140,6 +128,7 @@
 -(void)dismissKeyboard
 {
     [self.searchBar.searchQuery resignFirstResponder];
+    [self.searchBar.secondSearchQuery resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

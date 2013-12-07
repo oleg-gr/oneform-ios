@@ -48,7 +48,7 @@
     //textfield
     //design
     self.emailUI = [[OFTextField alloc]
-                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 260.0, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
+                               initWithFrame:CGRectMake(LEFT_ALIGN_LINE, 280.0, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Email"];
     //logic
     self.emailUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -85,6 +85,18 @@
 //    self.emailUI.textFieldInput.tag = 3;
 //    [self.scrollContainer addSubview:self.emailUI];
     
+    //UDID
+    //textfield
+    //design
+    self.udidUI = [[OFTextField alloc]
+                    initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"UDID"];
+    //logic
+    self.udidUI.textFieldInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.udidUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.udidUI.textFieldInput.tag = 7;
+    self.udidUI.textFieldInput.delegate = self;
+    [self.scrollContainer addSubview:self.udidUI];
+    
     
     //CONFIRM PASSWORD
     
@@ -106,7 +118,7 @@
     //textfield
     //design
     self.firstNameUI = [[OFTextField alloc]
-                              initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"First Name"];
+                              initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP*3, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"First Name"];
     //logic
     self.firstNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameUI.textFieldInput.tag = 5;
@@ -120,7 +132,7 @@
     //textfield
     //design
     self.lastNameUI = [[OFTextField alloc]
-                        initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Last Name"];
+                        initWithFrame:CGRectMake(320.0, self.emailUI.frame.origin.y - UI_ELEMENTS_GAP*2, UI_TEXT_WIDTH, UI_ELEMENTS_GAP) andLabel:@"Last Name"];
     //logic
     self.lastNameUI.textFieldInput.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastNameUI.textFieldInput.tag = 6;
@@ -282,6 +294,7 @@
     CGRect passwordConfirmFrame = self.confirmPasswordUI.frame;
     CGRect firstNameFrame = self.firstNameUI.frame;
     CGRect lastNameFrame = self.lastNameUI.frame;
+    CGRect udidFrame = self.udidUI.frame;
     CGPoint signInCenter;
     __block NSString *newSignInTitle;
     if (isJoinScreen)
@@ -289,6 +302,7 @@
         passwordConfirmFrame.origin.x = 320.0;
         firstNameFrame.origin.x = 320.0;
         lastNameFrame.origin.x = 320.0;
+        udidFrame.origin.x = 320.0;
         signInCenter = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
         newSignInTitle = @"Sign in";
     } else
@@ -296,6 +310,7 @@
         passwordConfirmFrame.origin.x = LEFT_ALIGN_LINE;
         firstNameFrame.origin.x = LEFT_ALIGN_LINE;
         lastNameFrame.origin.x = LEFT_ALIGN_LINE;
+        udidFrame.origin.x = LEFT_ALIGN_LINE;
         signInCenter = CGPointMake(160.0, self.confirmPasswordUI.frame.origin.y + 104);
         newSignInTitle = @"Join now";
     };
@@ -309,6 +324,7 @@
                            self.confirmPasswordUI.frame = passwordConfirmFrame;
                            self.firstNameUI.frame = firstNameFrame;
                            self.lastNameUI.frame = lastNameFrame;
+                           self.udidUI.frame = udidFrame;
                            self.signInButton.center = signInCenter;
                            //[self.joinButton setTitle:newJoinTitle forState:UIControlStateNormal];
                            [self.joinButton setHidden:isJoinScreen];
@@ -349,6 +365,10 @@
         [self.lastNameUI.textFieldInput becomeFirstResponder];
     }
     else if (tag == 6)
+    {
+        [self.udidUI.textFieldInput becomeFirstResponder];
+    }
+    else if (tag == 7)
     {
         [self.emailUI.textFieldInput becomeFirstResponder];
     }
