@@ -170,7 +170,7 @@
 -(void)goNextEmpty
 {
     int index = current;
-    int length = [myData count];
+    int length = (int) [myData count];
     for (int i = (current + 1) % length; ![myData[i][1] isEqualToString:@""]; i = (i+1) % length)
     {
         index = i;
@@ -204,7 +204,8 @@
     activefield = textField;
     if ([activefield.inputView isMemberOfClass:[UIPickerView class]])
     {
-        int myRow = (unsigned long)[myData[current][3] indexOfObject:myData[current][1]];
+        int myRow = (int)[myData[current][3] indexOfObject:myData[current][1]];
+        
         if (myRow > [myData[current][3] count])
         {
             myRow = 0;
@@ -338,7 +339,7 @@
     }
     else
     {
-        current = tapIndexPath.row;
+        current = (int) tapIndexPath.row;
     }
 }
 
