@@ -38,7 +38,6 @@
 		7AB6A462184375FD0034C796 /* OFFormTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A461184375FD0034C796 /* OFFormTitle.m */; };
 		7AB6A46518437BD30034C796 /* OFFormProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A46418437BD30034C796 /* OFFormProgress.m */; };
 		7AB6A47018439B7F0034C796 /* form_choice_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */; };
-		7AB6A4741843ADAB0034C796 /* OFQRCoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */; };
 		7AB6A4781843C1270034C796 /* OFMyFormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6A4771843C1270034C796 /* OFMyFormsViewController.m */; };
 		7AB6A49D1843C9BA0034C796 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB6A49C1843C9BA0034C796 /* AVFoundation.framework */; };
 		7AB6A4A51843C9EA0034C796 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB6A4A41843C9EA0034C796 /* QuartzCore.framework */; };
@@ -131,8 +130,6 @@
 		7AB6A46318437BD30034C796 /* OFFormProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFFormProgress.h; sourceTree = "<group>"; };
 		7AB6A46418437BD30034C796 /* OFFormProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFFormProgress.m; sourceTree = "<group>"; };
 		7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_choice_arrow.png; sourceTree = "<group>"; };
-		7AB6A4721843ADAB0034C796 /* OFQRCoderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFQRCoderViewController.h; sourceTree = "<group>"; };
-		7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFQRCoderViewController.m; sourceTree = "<group>"; };
 		7AB6A4761843C1270034C796 /* OFMyFormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFMyFormsViewController.h; sourceTree = "<group>"; };
 		7AB6A4771843C1270034C796 /* OFMyFormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFMyFormsViewController.m; sourceTree = "<group>"; };
 		7AB6A49C1843C9BA0034C796 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -415,15 +412,6 @@
 			name = img;
 			sourceTree = "<group>";
 		};
-		7AB6A4711843AD8C0034C796 /* QR code reader */ = {
-			isa = PBXGroup;
-			children = (
-				7AB6A4721843ADAB0034C796 /* OFQRCoderViewController.h */,
-				7AB6A4731843ADAB0034C796 /* OFQRCoderViewController.m */,
-			);
-			name = "QR code reader";
-			sourceTree = "<group>";
-		};
 		7AB6A4751843C0E00034C796 /* My Forms */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,7 +433,6 @@
 		7ADB5CFB182AC425009D2739 /* Search Forms */ = {
 			isa = PBXGroup;
 			children = (
-				7AB6A4711843AD8C0034C796 /* QR code reader */,
 				7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */,
 				7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */,
 			);
@@ -623,7 +610,6 @@
 				7AA983B01834C5B400A9F375 /* OFTextField.m in Sources */,
 				7A8EC48A184B3FA6006542FC /* OFMyCardViewController.m in Sources */,
 				7AAE392C1827962C009BE7B3 /* main.m in Sources */,
-				7AB6A4741843ADAB0034C796 /* OFQRCoderViewController.m in Sources */,
 				7AB6A4781843C1270034C796 /* OFMyFormsViewController.m in Sources */,
 				7AAE39301827962C009BE7B3 /* OFAppDelegate.m in Sources */,
 				7AB6A45B1840D36C0034C796 /* OFSearchBar.m in Sources */,
