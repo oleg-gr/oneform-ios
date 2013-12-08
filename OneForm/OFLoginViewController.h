@@ -43,6 +43,8 @@
 
 @property (strong, nonatomic) SWRevealViewController *revealController;
 
+@property (strong, nonatomic) UIImageView *mainIcon;
+
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;
 

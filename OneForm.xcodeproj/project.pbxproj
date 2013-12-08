@@ -60,6 +60,7 @@
 		7ABB213D1839069C0089B3B6 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ABB212C1839069C0089B3B6 /* Roboto-ThinItalic.ttf */; };
 		7ABB2140183921A00089B3B6 /* OFBottomNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABB213F183921A00089B3B6 /* OFBottomNotification.m */; };
 		7AD37F3E1853B6BD008ECDEA /* OFDoubleSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD37F3D1853B6BD008ECDEA /* OFDoubleSearch.m */; };
+		7AD37F441854A008008ECDEA /* main_screen_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AD37F431854A008008ECDEA /* main_screen_icon.png */; };
 		7ADB5CF7182A96AC009D2739 /* OFHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */; };
 		7ADB5CFA182AC41F009D2739 /* OFSearchFormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5CF9182AC41F009D2739 /* OFSearchFormsViewController.m */; };
 		7ADB5D01182ACA9F009D2739 /* OFMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB5D00182ACA9F009D2739 /* OFMenuViewController.m */; };
@@ -159,6 +160,7 @@
 		7ABB213F183921A00089B3B6 /* OFBottomNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFBottomNotification.m; sourceTree = "<group>"; };
 		7AD37F3C1853B6BD008ECDEA /* OFDoubleSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFDoubleSearch.h; sourceTree = "<group>"; };
 		7AD37F3D1853B6BD008ECDEA /* OFDoubleSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFDoubleSearch.m; sourceTree = "<group>"; };
+		7AD37F431854A008008ECDEA /* main_screen_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_screen_icon.png; sourceTree = "<group>"; };
 		7ADB5CF5182A96AC009D2739 /* OFHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFHelperMethods.h; sourceTree = "<group>"; };
 		7ADB5CF6182A96AC009D2739 /* OFHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFHelperMethods.m; sourceTree = "<group>"; };
 		7ADB5CF8182AC41F009D2739 /* OFSearchFormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFSearchFormsViewController.h; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 		7AB6A44B183FC29F0034C796 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				7AD37F431854A008008ECDEA /* main_screen_icon.png */,
 				7A8EC49F184BAEC1006542FC /* arrow_forward.png */,
 				7A8EC48B184B42F1006542FC /* my_data_qr.png */,
 				7AB6A46F18439B7F0034C796 /* form_choice_arrow.png */,
@@ -530,6 +533,7 @@
 				7ABB21331839069C0089B3B6 /* Roboto-BoldItalic.ttf in Resources */,
 				7ABB21381839069C0089B3B6 /* Roboto-LightItalic.ttf in Resources */,
 				7AB6A45F1840D98D0034C796 /* qr_code.png in Resources */,
+				7AD37F441854A008008ECDEA /* main_screen_icon.png in Resources */,
 				7AB6A45D1840D6320034C796 /* search_icon.png in Resources */,
 				7ABB213D1839069C0089B3B6 /* Roboto-ThinItalic.ttf in Resources */,
 				7AB6A4AA1845FE750034C796 /* qr_frame.png in Resources */,

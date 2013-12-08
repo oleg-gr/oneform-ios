@@ -44,18 +44,6 @@
     
     [self.view addSubview:formTitle];
     
-    self.qrCodeInteractionView = [[UIView alloc] initWithFrame:CGRectMake(267.5f, 80, 52, formTitle.frame.size.height)];
-    [self.view addSubview:self.qrCodeInteractionView];
-    UIImageView *qrCodeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32.75f, 32.75f)];
-    [qrCodeImage setCenter:CGPointMake(274.25f, 80 + formTitle.frame.size.height/2)];
-    [qrCodeImage setImage:[UIImage imageNamed:@"qr_code.png"]];
-    [self.view addSubview:qrCodeImage];
-    
-    UITapGestureRecognizer *goToMyQR = [[UITapGestureRecognizer alloc]
-                                            initWithTarget:self
-                                            action:@selector(goToMyQR)];
-    [self.qrCodeInteractionView addGestureRecognizer:goToMyQR];
-    
     myData = @[
                      @[@"Name", @"Mariko Kuroda", @15],
                      @[@"Birthdate", @"09-23-1993", @15],

@@ -183,7 +183,12 @@
     [self.backToSignIn setHidden:YES];
     [self.scrollContainer addSubview:self.backToSignIn];
     
-
+    
+    //MAIN ICON
+    
+    self.mainIcon = [[UIImageView alloc] initWithFrame:CGRectMake(81, 122, 161, 89.5)];
+    [self.mainIcon setImage:[UIImage imageNamed:@"main_screen_icon.png"]];
+    [self.scrollContainer addSubview:self.mainIcon];
     
     //KEYBOARD
     UITapGestureRecognizer *tapOutOfText = [[UITapGestureRecognizer alloc]
@@ -313,6 +318,7 @@
         udidFrame.origin.x = LEFT_ALIGN_LINE;
         signInCenter = CGPointMake(160.0, self.confirmPasswordUI.frame.origin.y + 104);
         newSignInTitle = @"Join now";
+        [self.mainIcon setHidden:YES];
     };
     
     isJoinScreen = !isJoinScreen;
@@ -331,7 +337,12 @@
                            [self.backToSignIn setHidden:!isJoinScreen];
                            [self.signInButton setTitle:newSignInTitle forState:UIControlStateNormal];
                        }
-                       completion:nil];
+                       completion:^(BOOL finished){
+                           if (finished && !isJoinScreen)
+                           {
+                               [self.mainIcon setHidden:NO];
+                           }
+                       }];
 }
 
 #pragma mark Keyboard And Next Field Logic
