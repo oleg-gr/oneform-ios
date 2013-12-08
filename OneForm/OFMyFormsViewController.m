@@ -16,9 +16,9 @@
 
 @implementation OFMyFormsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithUserData:(NSMutableArray*)userData;
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -81,7 +81,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
     OFFormProgress *progress;
     UILabel *cellLabel;
     UILabel *organizationName;

@@ -20,11 +20,14 @@
     
     uint8_t digest[CC_SHA512_DIGEST_LENGTH] = {0};
     
-    CC_SHA512(keyData.bytes, keyData.length, digest);
+    CC_SHA512(keyData.bytes, (int) keyData.length, digest);
     
     NSData *out = [NSData dataWithBytes:digest length:CC_SHA512_DIGEST_LENGTH];
     
-    return [out description];
+    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"< >"];
+    NSString *secret = [[[out description] componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString: @""];
+    
+    return secret;
 }
 
 +(BOOL)validateEmail: (NSString *) candidate {
@@ -73,9 +76,9 @@
     }
 }
 
-+(NSString *) signIn:(NSString *)username withPassword:(NSString *)password
++(NSString *) signIn:(NSString *)email withPassword:(NSString *)password
 {
-    if (username.length == 0)
+    if (email.length == 0)
     {
         return @"Username cannot be empty";
     }
@@ -83,9 +86,12 @@
     {
         return @"Password cannot be empty";
     }
+    else if (password.length <= 6)
+    {
+        return @"Password cannot be shorter than 6 characters";
+    }
     else
     {
-        //logic for sign in check
         return @"OK";
     }
 }

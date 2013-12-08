@@ -10,7 +10,6 @@
 #import "OFNavigationBar.h"
 #import "OFFormTitle.h"
 #import "OFTextField.h"
-#import "OFMyCardViewController.h"
 #import "OFOrganizationsAccessViewController.h"
 
 @interface OFMyDataViewController ()
@@ -19,9 +18,9 @@
 
 @implementation OFMyDataViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithUserData:(NSMutableArray*)userData;
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -63,12 +62,6 @@
     
 }
 
-- (void) goToMyQR
-{
-    OFMyCardViewController *myCard = [[OFMyCardViewController alloc] init];
-    [self.navigationController pushViewController:myCard animated:YES];
-}
-
 
 #pragma mark Table view related logic
 
@@ -83,7 +76,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
     UILabel *bottomLabel;
     OFTextField *textfield;
     

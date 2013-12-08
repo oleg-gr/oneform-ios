@@ -18,11 +18,11 @@
 
 @implementation OFSearchFormsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithUserData:(NSMutableArray*)userData
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.popularForms = @[@[@"UAE driver's license form", @"Abu Dhabi Customs Administration"], @[@"Naturalization form", @"Abu Dhabi Chamber of Commerce and Industry"], @[@"Birth certificate" , @"Abu Dhabi Education Council"], @[@"Change of address", @"Abu Dhabi home authority"], @[@"Visa application form", @"UAE Customs"], @[@"Visa renewal form", @"Immigration"]];
     }
     return self;
 }
@@ -50,8 +50,6 @@
     [self.view addGestureRecognizer:tapOutOfText];
     
     //DUMMY
-    
-    self.popularForms = @[@[@"UAE driver's license form", @"Abu Dhabi Customs Administration"], @[@"Naturalization form", @"Abu Dhabi Chamber of Commerce and Industry"], @[@"Birth certificate" , @"Abu Dhabi Education Council"], @[@"Change of address", @"Abu Dhabi home authority"], @[@"Visa application form", @"UAE Customs"], @[@"Visa renewal form", @"Immigration"]];
     
     self.popularFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 252.5f, 237.75f, 275) style:UITableViewStylePlain];
     [self.popularFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -94,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
     UILabel *cellLabel;
     UILabel *organizationName;
     UIImageView *arrow;

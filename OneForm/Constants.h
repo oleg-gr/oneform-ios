@@ -13,4 +13,9 @@
 #define UI_COLOR_BACKGROUND_DARK [UIColor colorWithRed:152.0/255.0 green:145.0/255.0 blue:179.0/255.0 alpha:1.0]
 #define UI_COLOR_BACKGROUND_LIGHT [UIColor colorWithRed:197.0/255.0 green:193.0/255.0 blue:212.0/255.0 alpha:1.0]
 
+#define SERVER @"http://ec2-54-218-85-114.us-west-2.compute.amazonaws.com"
+#define MY_DOMAIN @"oneform.in"
+
+#import "AFNetworking.h"
+
 #endif

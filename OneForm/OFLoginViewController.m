@@ -206,7 +206,13 @@
     [self.view addSubview:self.bottomNotificationSignIn];
     self.bottomNotificationSignUp = [[OFBottomNotification alloc] initWithHeight: 84];
     [self.view addSubview:self.bottomNotificationSignUp];
-    
+ 
+    self.connectionManager = [AFHTTPRequestOperationManager manager];
+    [self.connectionManager.securityPolicy setAllowInvalidCertificates:YES];
+    [self.connectionManager setRequestSerializer: [AFJSONRequestSerializer serializer]];
+    //FOR INITIAL TESTING
+    [self.emailUI.textFieldInput setText:@"moiri@oneform.in"];
+    [self.passwordUI.textFieldInput setText:@"password"];
 }
 
 - (void)didReceiveMemoryWarningisNotificationisNotificationisNotification
@@ -238,30 +244,62 @@
 -(void) signInResponseLogic
 {
     //for quick debugging
-    [self showMainScreen];
+    //[self showMainScreen];
     
-    NSString *response = [OFHelperMethods signIn:[self.emailUI getTextInput]
-                                    withPassword:[self.passwordUI getTextInput]];
-    if (![response  isEqual: @"OK"]) {
-        [self.bottomNotificationSignIn.notification setText:response];
+    NSString *fieldsCheck = [OFHelperMethods signIn:[self.emailUI getTextInput] withPassword:[self.passwordUI getTextInput]];
+    
+    if ([fieldsCheck isEqualToString:@"OK"])
+    {
+        NSString *shaReq = [NSString stringWithFormat:@"%@%@%@", [self.emailUI getTextInput], MY_DOMAIN, [self.passwordUI getTextInput]];
+        NSLog(@"%@%@%@", [self.emailUI getTextInput], MY_DOMAIN, [self.passwordUI getTextInput]);
+        NSDictionary *parameters = @{@"email": [self.emailUI getTextInput], @"secret": [OFHelperMethods createSHA512:shaReq]};
+        NSLog(@"%@", parameters);
+        NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/auth/users"];
+        
+        [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            [self signIn:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            [self signIn:nil andStatus:-200];
+        }];
+    }
+    else
+    {
+        [self.bottomNotificationSignIn.notification setText:fieldsCheck];
+        [self.bottomNotificationSignIn showWithAutohide:YES];
+    }
+    
+}
+
+- (void)signIn:(NSMutableArray*)userData andStatus:(int)status
+{
+    if (status == 200)
+    {
+        [self showMainScreen:userData];
+    }
+    else if (status == 401)
+    {
+        [self.bottomNotificationSignIn.notification setText:@"Wrong password"];
         [self.bottomNotificationSignIn showWithAutohide:YES];
     }
     else
     {
-        [self showMainScreen];
+        [self.bottomNotificationSignIn.notification setText:@"Error occured"];
+        [self.bottomNotificationSignIn showWithAutohide:YES];
     }
 }
 
-- (void)showMainScreen
+- (void)showMainScreen:(NSMutableArray*)userData
 {
     [self.passwordUI setTextFieldText:@""];
     [self.firstNameUI setTextFieldText:@""];
     [self.lastNameUI setTextFieldText:@""];
     [self.emailUI setTextFieldText:@""];
     [self.confirmPasswordUI setTextFieldText:@""];
-    
-    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] init];
-    OFMenuViewController *rearViewController = [[OFMenuViewController alloc] init];
+
+    OFMenuViewController *rearViewController = [[OFMenuViewController alloc] initWithUserData: userData];
+    OFSearchFormsViewController *searchController= rearViewController.searchController;
+    //[[OFSearchFormsViewController alloc] initWithUserData:userData]
     
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
     

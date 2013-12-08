@@ -20,4 +20,6 @@
 @property (nonatomic, strong) NSArray *popularForms;
 @property (nonatomic, strong) UILabel *cellHeightCheck;
 
+-(id) initWithUserData:(NSMutableArray*)userData;
+
 @end

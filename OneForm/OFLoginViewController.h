@@ -45,6 +45,8 @@
 
 @property (strong, nonatomic) UIImageView *mainIcon;
 
+@property (strong, nonatomic) AFHTTPRequestOperationManager *connectionManager;
+
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;
 

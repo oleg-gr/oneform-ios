@@ -8,11 +8,7 @@
 
 #import "OFMenuViewController.h"
 #define LEFT_ALIGN_LINE 32
-#import "OFSearchFormsViewController.h"
-#import "OFMyFormsViewController.h"
-#import "OFMyDataViewController.h"
-#import "OFLoginViewController.h"
-#import "OFSettingsViewController.h"
+
 
 @interface OFMenuViewController ()
 
@@ -20,11 +16,14 @@
 
 @implementation OFMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithUserData:(NSMutableArray*)userData
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.searchController= [[OFSearchFormsViewController alloc] initWithUserData:userData];
+        self.myForms= [[OFMyFormsViewController alloc] initWithUserData:userData];
+        self.myData= [[OFMyDataViewController alloc] initWithUserData:userData];
+        self.settings= [[OFSettingsViewController alloc] initWithUserData:userData];
     }
     return self;
 }
@@ -71,29 +70,25 @@
 
 - (void) goToSearch
 {
-    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] init];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.searchController];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyForms
 {
-    OFMyFormsViewController *myForms= [[OFMyFormsViewController alloc] init];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myForms];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myForms];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyData
 {
-    OFMyDataViewController *myData= [[OFMyDataViewController alloc] init];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myData];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myData];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToSettings
 {
-    OFSettingsViewController *settings= [[OFSettingsViewController alloc] init];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:settings];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.settings];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 

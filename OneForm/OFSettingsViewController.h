@@ -26,4 +26,6 @@
 @property (strong, nonatomic) UIButton *save;
 @property (strong, nonatomic) OFBottomNotification *bottomNotification;
 
+-(id) initWithUserData:(NSMutableArray*)userData;
+
 @end
