@@ -28,7 +28,7 @@
     NSDateFormatter *df;
 }
 
-@property (strong, nonatomic) OFFormProgress *progressBar;
+@property (strong, nonatomic) UIButton *submitButton;
 @property (strong, nonatomic) UITableView *myDataTable;
 @property (strong, nonatomic) UIScrollView *horizontalScroll;
 @property (strong, nonatomic) OFFormTitle *formTitle;

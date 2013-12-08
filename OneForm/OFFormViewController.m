@@ -127,16 +127,31 @@
     [self.horizontalScroll setHidden:YES];
     [self.view addSubview:self.horizontalScroll];
     
-    self.progressBar = [[OFFormProgress alloc] initWithFrame:CGRectMake(47, 510, 225, 40) andProgress:0 andText:@"" andTextSize:26 andTextAlignment:NSTextAlignmentCenter];
-    [self updateProgressBar];
-    [self.view addSubview:self.progressBar];
+    self.submitButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    self.submitButton.frame = CGRectMake(47, 510, 225, 40);
+    [self.submitButton setTitleColor:UI_COLOR forState:UIControlStateNormal];
+    [self.submitButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:36]];
+    //logic
+    [self.submitButton addTarget:self
+                          action:@selector(submitForm)
+                forControlEvents:UIControlEventTouchDown];
+    
+    [self.view addSubview:self.submitButton];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
+    
+    [self updateProgressBar];
 }
 
 -(void)test
 {
+}
+
+-(void)submitForm
+{
+    
 }
 
 -(void)datePickerValueChanged:(id)sender
@@ -165,6 +180,7 @@
 {
     [activefield setText:myData[current][3][row]];
     myData[current][1] = myData[current][3][row];
+    [self updateProgressBar];
 }
 
 -(void)goNextEmpty
@@ -210,7 +226,7 @@
         {
             myRow = 0;
         }
-        NSLog(@"%d", myRow);
+        
         [(UIPickerView*)activefield.inputView selectRow:myRow inComponent:0 animated:NO];
     }
     if (counter < 2 && [textField.text isEqualToString:@""])
@@ -244,36 +260,20 @@
     }
 }
 
--(void)updateProgressBar
+-(void)updateProgressBar //left here for counter calculations
 {
-    if (status == nil)
+    counter = 0;
+    for (int i = 0; i < [myData count]; i++)
     {
-        counter = 0;
-        for (int i = 0; i < [myData count]; i++)
+        if ([myData[i][1] isEqualToString:@""])
         {
-            if ([myData[i][1] isEqualToString:@""])
-            {
-                counter++;
-            }
-        }
-        float num = counter;
-        float den = [myData count];
-        [self.progressBar setProgress:1 - num/den];
-        if (counter == 0)
-        {
-            [self.progressBar setText:@"submit"];
-        }
-        else
-        {
-            [self.progressBar setText:[NSString stringWithFormat:@"%d more", counter]];
+            counter++;
         }
     }
-    else
+    if (counter == 0)
     {
-        [self.progressBar setProgress:1];
-        [self.progressBar setText:status];
+        [self.forwardButton setHidden:YES];
     }
-
 }
 
 #pragma mark Table view related logic
@@ -317,13 +317,14 @@
     initialScroll = YES;
     [self.horizontalScroll setContentOffset:CGPointMake(240*tapIndexPath.row, 0) animated:YES];
     [self.forwardButton setHidden:NO];
+    [self updateProgressBar];
     [UIView animateWithDuration:0.15 animations:^() {
         self.formTitle.alpha = 0.0;
         self.myDataTable.alpha = 0.0;
         self.horizontalScroll.alpha = 1.0;
         self.forwardButton.alpha = 1.0;
         [self.backButton.buttonLabel setText:@"save and go back"];
-        [self.progressBar setFrame:CGRectMake(47, 284, 225, 40)];
+        [self.submitButton setFrame:CGRectMake(47, 284, 225, 40)];
     } completion:^(BOOL finished){
         if (finished)
         {
@@ -359,7 +360,7 @@
             self.horizontalScroll.alpha = 0.0;
             self.forwardButton.alpha = 0.0;
             [self.backButton.buttonLabel setText:@"go back"];
-            [self.progressBar setFrame:CGRectMake(47, 510, 225, 40)];
+            [self.submitButton setFrame:CGRectMake(47, 510, 225, 40)];
         } completion:^(BOOL finished){
             if (finished)
             {
