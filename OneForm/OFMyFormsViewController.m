@@ -50,13 +50,13 @@
     //DUMMY
     
     self.myForms = @[
-                     @[@"UAE driver's license", @0.9f, @"2 more"],
-                     @[@"Birth certificate", @1.0f, @"Reviewed"],
-                     @[@"Change of address", @1.0f, @"Ready to submit"],
-                     @[@"Visa application form", @0.0f, @"New data requested"],
-                     @[@"Visa renewal form", @1.0f, @"Government processing in action"],
-                     @[@"Naturalization form", @0.5f, @"5 more"],
-                     @[@"Emirates ID application", @0.7f, @"1 more"]];
+                     @[@"UAE driver's license", @0.9f, @"2 more", @"Abu Dhabi Customs Administration"],
+                     @[@"Birth certificate", @1.0f, @"Reviewed", @"Abu Dhabi Chamber of Commerce and Industry"],
+                     @[@"Change of address", @1.0f, @"Ready to submit", @"Abu Dhabi Education Council"],
+                     @[@"Visa application form", @0.0f, @"New data requested", @"Abu Dhabi home authority"],
+                     @[@"Visa renewal form", @1.0f, @"Government processing in action", @"UAE Customs"],
+                     @[@"Naturalization form", @0.5f, @"5 more", @"Immigration"],
+                     @[@"Emirates ID application", @0.7f, @"1 more", @"Abu Dhabi Chamber of Commerce and Industry"]];
     
     self.myFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 234.5f, 246.75f, 314) style:UITableViewStylePlain];
     [self.myFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -76,7 +76,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 66;
+    return 108;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,8 +84,8 @@
     NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%i",indexPath.row];
     OFFormProgress *progress;
     UILabel *cellLabel;
+    UILabel *organizationName;
     UIImageView *arrow;
-    float height = 66;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -97,17 +97,24 @@
         [cellLabel setNumberOfLines:1];
         [cellLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:21]];
         arrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.myFormsTable.frame.size.width - 20.25f, 5, 20.25f, 33.75f)];
-        arrow.center = CGPointMake(arrow.center.x, height/2);
+        arrow.center = CGPointMake(arrow.center.x, 26);
         [cell.contentView addSubview:arrow];
         [arrow setImage:[UIImage imageNamed:@"form_choice_arrow.png"]];
-        progress = [[OFFormProgress alloc] initWithFrame:CGRectMake(0, 24.75, 160, 25) andProgress:0 andText:nil andTextSize:14 andTextAlignment:NSTextAlignmentLeft];
+        progress = [[OFFormProgress alloc] initWithFrame:CGRectMake(0, 66, 160, 25) andProgress:0 andText:nil andTextSize:14 andTextAlignment:NSTextAlignmentLeft];
+        organizationName = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 200, 38)];
+        [organizationName setTextColor:UI_COLOR];
+        [organizationName setNumberOfLines:2];
+        [organizationName setFont:[UIFont fontWithName:@"Roboto-Light" size:16]];
+        NSArray *info = [self.myForms objectAtIndex:indexPath.row];
+        [cellLabel setText:info[0]];
+        [progress setProgress:[info[1] floatValue]];
+        [progress setText:info[2]];
+        [organizationName setText:info[3]];
+        [cell.contentView addSubview:organizationName];
+        [cell.contentView addSubview:cellLabel];
+        [cell.contentView addSubview:progress];
     }
-    NSArray *info = [self.myForms objectAtIndex:indexPath.row];
-    [cellLabel setText:info[0]];
-    [progress setProgress:[info[1] floatValue]];
-    [progress setText:info[2]];
-    [cell.contentView addSubview:cellLabel];
-    [cell.contentView addSubview:progress];
+
     return cell;
 }
 
