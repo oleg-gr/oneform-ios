@@ -9,7 +9,6 @@
 #import "OFSearchFormsViewController.h"
 #import "SWRevealViewController.h"
 #import "OFSearchBar.h"
-#import "OFQRCoderViewController.h"
 #import "OFFormProgress.h"
 #import "OFFormViewController.h"
 
@@ -54,7 +53,7 @@
     
     self.popularForms = @[@[@"UAE driver's license form", @"Abu Dhabi Customs Administration"], @[@"Naturalization form", @"Abu Dhabi Chamber of Commerce and Industry"], @[@"Birth certificate" , @"Abu Dhabi Education Council Council Council Council"], @[@"Change of address", @"Abu Dhabi home authority"], @[@"Visa application form", @"UAE Customs"], @[@"Visa renewal form", @"Immigration"]];
     
-    self.popularFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 252.5f, 237.75f, 280) style:UITableViewStylePlain];
+    self.popularFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 252.5f, 237.75f, 275) style:UITableViewStylePlain];
     [self.popularFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.popularFormsTable setShowsVerticalScrollIndicator:NO];
     [self.popularFormsTable setDelegate:self];
@@ -62,6 +61,10 @@
     
     [self.view addSubview:self.popularFormsTable];
     
+    
+    self.cellHeightCheck = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 207.25, 52)];
+    [self.cellHeightCheck setNumberOfLines:2];
+    [self.cellHeightCheck setFont:[UIFont fontWithName:@"Roboto-Regular" size:21]];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -79,7 +82,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    NSArray *info = [self.popularForms objectAtIndex:indexPath.row];
+    [self.cellHeightCheck setText:info[0]];
+    [self.cellHeightCheck sizeToFit];
+    if ((int)(self.cellHeightCheck.frame.size.height/self.cellHeightCheck.font.leading) == 1)
+    {
+        return 85;
+    }
+    return 95;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

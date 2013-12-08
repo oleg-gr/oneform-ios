@@ -18,5 +18,6 @@
 @property (nonatomic, strong) OFDoubleSearch *searchBar;
 @property (nonatomic, strong) UITableView *popularFormsTable;
 @property (nonatomic, strong) NSArray *popularForms;
+@property (nonatomic, strong) UILabel *cellHeightCheck;
 
 @end

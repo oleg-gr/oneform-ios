@@ -40,7 +40,7 @@
         self.searchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 32.5f, textfieldWidth - 34.75f, 29.5f)];
         [self.searchQuery setFont:[UIFont fontWithName:@"Roboto-Light" size:25]];
         [self.searchQuery setTextColor:UI_COLOR];
-        [self.searchQuery setPlaceholder:@"search forms"];
+        [self.searchQuery setPlaceholder:@"form name"];
         [self.searchQuery setAdjustsFontSizeToFitWidth:YES];
         [self.searchQuery setTintColor:UI_COLOR];
         [self.searchQuery setValue:UI_COLOR forKeyPath:@"_placeholderLabel.textColor"];
