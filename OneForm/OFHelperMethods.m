@@ -80,7 +80,7 @@
 {
     if (email.length == 0)
     {
-        return @"Username cannot be empty";
+        return @"Email cannot be empty";
     }
     else if (password.length == 0)
     {
@@ -89,6 +89,10 @@
     else if (password.length <= 6)
     {
         return @"Password cannot be shorter than 6 characters";
+    }
+    else if (![OFHelperMethods validateEmail:email])
+    {
+        return @"Invalid email format";
     }
     else
     {

@@ -163,7 +163,7 @@
     self.signInButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
     self.signInButton.frame = CGRectMake(0, 0, 150.0, 45.0);
-    self.signInButton.center = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
+    self.signInButton.center = CGPointMake(160.0, self.passwordUI.frame.origin.y + 120);
     [self.signInButton setTitleColor:UI_COLOR forState:UIControlStateNormal];
     [self.signInButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:36]];
     //logic
@@ -182,7 +182,6 @@
     [self.backToSignIn addGestureRecognizer:backToSignInTap];
     [self.backToSignIn setHidden:YES];
     [self.scrollContainer addSubview:self.backToSignIn];
-    
     
     //MAIN ICON
     
@@ -210,6 +209,9 @@
     self.connectionManager = [AFHTTPRequestOperationManager manager];
     [self.connectionManager.securityPolicy setAllowInvalidCertificates:YES];
     [self.connectionManager setRequestSerializer: [AFJSONRequestSerializer serializer]];
+    
+    self.loadingView = [[OFLoadingView alloc] init];
+    [self.scrollContainer addSubview:self.loadingView];
     //FOR INITIAL TESTING
     [self.emailUI.textFieldInput setText:@"moiri@oneform.in"];
     [self.passwordUI.textFieldInput setText:@"password"];
@@ -256,10 +258,13 @@
         NSLog(@"%@", parameters);
         NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/auth/users"];
         
+        [self.loadingView show];
         [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", responseObject);
+            [self.loadingView hide];
             [self signIn:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            [self.loadingView hide];
             [self signIn:nil andStatus:-200];
         }];
     }
@@ -277,16 +282,21 @@
     {
         [self showMainScreen:userData];
     }
-    else if (status == 401)
-    {
-        [self.bottomNotificationSignIn.notification setText:@"Wrong password"];
+    else {
+        if (status == 404)
+        {
+            [self.bottomNotificationSignIn.notification setText:@"Account with this email does not exist"];
+        }
+        else if (status == 401)
+        {
+            [self.bottomNotificationSignIn.notification setText:@"Wrong password"];
+        }
+        else
+        {
+            [self.bottomNotificationSignIn.notification setText:@"Error occured"];
+        }
         [self.bottomNotificationSignIn showWithAutohide:YES];
-    }
-    else
-    {
-        [self.bottomNotificationSignIn.notification setText:@"Error occured"];
-        [self.bottomNotificationSignIn showWithAutohide:YES];
-    }
+   }
 }
 
 - (void)showMainScreen:(NSMutableArray*)userData
@@ -314,6 +324,7 @@
     frontViewController.view.backgroundColor = [UIColor whiteColor];
     rearViewController.view.backgroundColor = [UIColor colorWithRed:209.0/255.0 green:203.0/255.0 blue:216.0/255.0 alpha:1];
     self.revealController.delegate = self;
+    [self.revealController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:self.revealController animated:YES completion:nil];
 }
 
@@ -346,7 +357,7 @@
         firstNameFrame.origin.x = 320.0;
         lastNameFrame.origin.x = 320.0;
         udidFrame.origin.x = 320.0;
-        signInCenter = CGPointMake(160.0, self.passwordUI.frame.origin.y + 132);
+        signInCenter = CGPointMake(160.0, self.passwordUI.frame.origin.y + 120);
         newSignInTitle = @"Sign in";
     } else
     {

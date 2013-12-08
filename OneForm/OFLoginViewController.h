@@ -12,6 +12,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "OFBackButton.h"
 #import "SWRevealViewController.h"
+#import "OFLoadingView.h"
 
 @interface OFLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *activeField;
@@ -46,6 +47,8 @@
 @property (strong, nonatomic) UIImageView *mainIcon;
 
 @property (strong, nonatomic) AFHTTPRequestOperationManager *connectionManager;
+
+@property (strong, nonatomic) OFLoadingView *loadingView;
 
 -(void) signUpResponseLogic;
 -(void) signInResponseLogic;

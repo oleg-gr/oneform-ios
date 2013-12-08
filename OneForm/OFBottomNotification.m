@@ -22,6 +22,7 @@
         self.notification.textAlignment = NSTextAlignmentCenter;
         self.notification.textColor = [UIColor whiteColor];
         self.notification.font = [UIFont fontWithName:@"Roboto-Light" size:20];
+        [self.notification setNumberOfLines:2];
         [self addSubview:self.notification];
     }
     return self;
