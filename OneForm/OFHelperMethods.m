@@ -39,7 +39,7 @@
 
 #pragma mark Sign up and Sign in
 
-+(NSString *) signUp:(NSString*) email withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString *)firstName withLastName:(NSString *)lastName
++(NSString *) signUp:(NSString*) email withPassword:(NSString*) password withConfirmPassword:(NSString*) confirmPassword withFirstName:(NSString *)firstName withLastName:(NSString *)lastName withUdid:(NSString *)udid
 {
     if (firstName.length == 0)
     {
@@ -48,6 +48,10 @@
     else if (lastName.length == 0)
     {
         return @"Last Name cannot be empty";
+    }
+    else if (udid.length == 0)
+    {
+        return @"UDID cannot be empty";
     }
     else if (email.length == 0)
     {
@@ -64,6 +68,10 @@
     else if (confirmPassword.length == 0)
     {
         return @"Password confirmation cannot be empty";
+    }
+    else if (password.length < 6 || confirmPassword.length < 6)
+    {
+        return @"Password cannot be less than 6 characters long";
     }
     else if (![confirmPassword isEqualToString: password])
     {

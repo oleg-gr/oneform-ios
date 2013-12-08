@@ -227,45 +227,58 @@
 
 -(void) signUpResponseLogic
 {
-    NSString *response = [OFHelperMethods signUp:[self.emailUI getTextInput]
+    NSString *fieldsCheck = [OFHelperMethods signUp:[self.emailUI getTextInput]
                                     withPassword:[self.passwordUI getTextInput]
                              withConfirmPassword:[self.confirmPasswordUI getTextInput]
                                    withFirstName:[self.firstNameUI getTextInput]
                                     withLastName:[self.lastNameUI getTextInput]
+                                        withUdid:[self.udidUI getTextInput]
                           ];
-    if (![response  isEqual: @"OK"]) {
-        [self.bottomNotificationSignUp.notification setText:response];
-        [self.bottomNotificationSignUp showWithAutohide:YES];
+    if ([fieldsCheck isEqualToString:@"OK"])
+    {
+        NSString *shaReq = [NSString stringWithFormat:@"%@%@%@", [self.emailUI getTextInput], MY_DOMAIN, [self.passwordUI getTextInput]];
+        NSDictionary *parameters = @{@"email": [self.emailUI getTextInput],
+                                     @"secret": [OFHelperMethods createSHA512:shaReq],
+                                     @"firstName": [self.firstNameUI getTextInput],
+                                     @"lastName": [self.lastNameUI getTextInput],
+                                     @"phoneNumber": [self.udidUI getTextInput]}; //change param to UDID when the API is changed
+        NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/users"];
+        
+        [self.loadingView show];
+        [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self.loadingView hide];
+            NSLog(@"%@", responseObject);
+            [self signIn:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            [self.loadingView hide];
+            [self signUp:nil andStatus:-200];
+        }];
     }
     else
     {
-        //data model assignment logic
+        [self.bottomNotificationSignUp.notification setText:fieldsCheck];
+        [self.bottomNotificationSignUp showWithAutohide:YES];
     }
 }
 
 -(void) signInResponseLogic
 {
-    //for quick debugging
-    //[self showMainScreen];
-    
     NSString *fieldsCheck = [OFHelperMethods signIn:[self.emailUI getTextInput] withPassword:[self.passwordUI getTextInput]];
     
     if ([fieldsCheck isEqualToString:@"OK"])
     {
         NSString *shaReq = [NSString stringWithFormat:@"%@%@%@", [self.emailUI getTextInput], MY_DOMAIN, [self.passwordUI getTextInput]];
-        NSLog(@"%@%@%@", [self.emailUI getTextInput], MY_DOMAIN, [self.passwordUI getTextInput]);
-        NSDictionary *parameters = @{@"email": [self.emailUI getTextInput], @"secret": [OFHelperMethods createSHA512:shaReq]};
-        NSLog(@"%@", parameters);
+        NSDictionary *parameters = @{@"email": [self.emailUI getTextInput],
+                                     @"secret": [OFHelperMethods createSHA512:shaReq]};
         NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/auth/users"];
         
         [self.loadingView show];
         [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
             [self.loadingView hide];
-            [self signIn:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
+            [self signUp:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
             [self.loadingView hide];
-            [self signIn:nil andStatus:-200];
+            [self signUp:nil andStatus:-200];
         }];
     }
     else
@@ -274,6 +287,14 @@
         [self.bottomNotificationSignIn showWithAutohide:YES];
     }
     
+}
+
+- (void)signUp:(NSMutableArray*)userData andStatus:(int)status
+{
+    if (status == 200)
+    {
+        [self showMainScreen:userData];
+    }
 }
 
 - (void)signIn:(NSMutableArray*)userData andStatus:(int)status
@@ -304,6 +325,7 @@
     [self.passwordUI setTextFieldText:@""];
     [self.firstNameUI setTextFieldText:@""];
     [self.lastNameUI setTextFieldText:@""];
+    [self.udidUI setTextFieldText:@""];
     [self.emailUI setTextFieldText:@""];
     [self.confirmPasswordUI setTextFieldText:@""];
 
