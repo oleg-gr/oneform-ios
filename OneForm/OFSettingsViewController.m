@@ -31,14 +31,12 @@
     
     self.scrollContainer = [[TPKeyboardAvoidingScrollView alloc]
                             initWithFrame: self.view.frame];
-    self.scrollContainer.contentSize = CGSizeMake(320, 548);
-    [self.scrollContainer setContentOffset:CGPointMake(0,20)];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.scrollContainer.contentSize = CGSizeMake(320, 568);
     
     [self.view addSubview:self.scrollContainer];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    [self.navigationController setNavigationBarHidden:YES];
     
     OFNavigationBar *navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];
     
@@ -213,7 +211,6 @@
 {
     [activeField resignFirstResponder];
     [self hideBottomNotifications];
-    [self.scrollContainer setContentOffset:CGPointMake(0,0)];
 }
 
 - (void)hideBottomNotifications

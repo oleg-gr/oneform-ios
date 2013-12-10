@@ -16,11 +16,40 @@
 
 @implementation OFFormViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.userData = userData;
+        self.formData = [[userData objectForKey:@"forms"] objectAtIndex:[[[userData objectForKey:@"forms_reverse_lookup"] objectForKey:formId] integerValue]];
+        NSLog(@"%@", self.formData);
+        formName = [self.formData objectForKey:@"name"];
+        NSMutableArray *fields = [self.formData objectForKey:@"fields"];
+        myData = [[NSMutableArray alloc] init];
+        for (NSString *field in fields)
+        {
+            NSMutableDictionary *field_obj = [[self.userData objectForKey:@"fields"] objectAtIndex:[[[self.userData objectForKey:@"fields_reverse_lookup"] objectForKey:field] integerValue]];
+            NSString *name = [field_obj objectForKey:@"name"];
+            NSDictionary *tmpValue = [[[self.userData objectForKey:@"user"] objectForKey:@"data"] objectForKey:field];
+            NSString *value;
+            if (tmpValue == nil)
+            {
+                value = @"";
+            }
+            else
+            {
+                value = [tmpValue objectForKey:@"value"];
+            }
+            NSString *type = [field_obj objectForKey:@"htmlType"];
+            if ([type isEqualToString:@"select"])
+            {
+                [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field]]];
+            }
+            else
+            {
+                [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field, [field_obj objectForKey:@"choices"]]]];
+            }
+        }
     }
     return self;
 }
@@ -30,8 +59,6 @@
     [super viewDidLoad];
     
     //dummy
-    
-    formName = @"UAE Driver's License Form";
     isEditing = NO;
     status = nil;
     textFields = [[NSMutableArray alloc] init];
@@ -69,22 +96,9 @@
                                             action:@selector(goNextEmpty)];
     [self.forwardButton addGestureRecognizer:goNextEmpty];
     
-    UITapGestureRecognizer *test =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(test)];
-    [self.formTitle addGestureRecognizer:test];
-    
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-    myData = @[
-               [[NSMutableArray alloc] initWithArray: @[@"Name", @"Mariko Kuroda", @"text"]],
-               [[NSMutableArray alloc] initWithArray: @[@"Birthdate", @"09-23-1993", @"date"]],
-               [[NSMutableArray alloc] initWithArray: @[@"Gender", @"", @"radio", @[@"Male", @"Female"]]],
-               [[NSMutableArray alloc] initWithArray: @[@"Occupation", @"", @"text"]],
-               [[NSMutableArray alloc] initWithArray: @[@"Address", @"Sama Tower", @"text"]],
-               [[NSMutableArray alloc] initWithArray: @[@"Nationality", @"Japan", @"radio", @[@"UAE", @"Japan", @"Russia", @"Australia", @"USA", @"France"]]],
-               ];
     
     self.myDataTable = [[UITableView alloc] initWithFrame:CGRectMake(33.5f, 215, 320 - 33.5f, 270) style:UITableViewStylePlain];
     [self.myDataTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -113,7 +127,7 @@
             }
             [textField.textFieldInput setInputView:datePicker];
         }
-        else if ([myData[i][2] isEqualToString:@"radio"])
+        else if ([myData[i][2] isEqualToString:@"select"])
         {
             UIPickerView *pickerView = [[UIPickerView alloc] init];
             pickerView.dataSource = self;
@@ -143,15 +157,39 @@
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
     
     [self updateProgressBar];
+    
+    self.bottomEditing = [[OFBottomNotification alloc] initWithHeight: 69];
+    [self.view addSubview:self.bottomEditing];
+    [self.bottomEditing.notification setText:@"Complete all fields to submit form"];
+    self.bottomNotEditing = [[OFBottomNotification alloc] initWithHeight: 84];
+    [self.view addSubview:self.bottomNotEditing];
+    [self.bottomNotEditing.notification setText:@"Complete all fields to submit form"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+
 }
 
--(void)test
+- (void)keyboardWasShown:(NSNotification *)notification
 {
+    keyboardSize = 568 - [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
 }
 
 -(void)submitForm
 {
-    
+    if (counter != 0)
+    {
+        if (isEditing) {
+            [self.bottomEditing setFrame:CGRectMake(0, keyboardSize, 320, 69)];
+            [self.bottomEditing showWithAutohide:YES];
+        }
+        else
+        {
+            [self.bottomNotEditing showWithAutohide:YES];
+        }
+    }
 }
 
 -(void)datePickerValueChanged:(id)sender
@@ -163,7 +201,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [myData[current][3] count];
+    return [myData[current][4] count];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -173,13 +211,13 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return myData[current][3][row];
+    return myData[current][4][row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [activefield setText:myData[current][3][row]];
-    myData[current][1] = myData[current][3][row];
+    [activefield setText:myData[current][4][row]];
+    myData[current][1] = myData[current][4][row];
     [self updateProgressBar];
 }
 
@@ -220,9 +258,9 @@
     activefield = textField;
     if ([activefield.inputView isMemberOfClass:[UIPickerView class]])
     {
-        int myRow = (int)[myData[current][3] indexOfObject:myData[current][1]];
+        int myRow = (int)[myData[current][4] indexOfObject:myData[current][1]];
         
-        if (myRow > [myData[current][3] count])
+        if (myRow > [myData[current][4] count])
         {
             myRow = 0;
         }
@@ -373,6 +411,12 @@
         [activefield resignFirstResponder];
         isEditing = NO;
     }
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    SWRevealViewController *revealController = [self revealViewController];
+    [self.view addGestureRecognizer:revealController.panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning

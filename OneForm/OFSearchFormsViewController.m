@@ -155,12 +155,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *formId = [[self.userData objectForKey:@"forms_lookup"] objectForKey:[NSNumber numberWithInt:indexPath.row]];
-    UIAlertView *messageAlert = [[UIAlertView alloc]
-                                 initWithTitle:@"Row Selected" message:formId delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    // Display Alert Message
-    [messageAlert show];
-    
+    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId];
+    [self.navigationController pushViewController:form animated:YES];
 }
 
 -(void)goToForm

@@ -45,13 +45,15 @@
 
 -(void) animate:(NSNumber*) mode
 {
+    [self setHidden:NO];
     if([mode intValue ] == (self.isShown ? 1:-1))
     {
         [UIView animateWithDuration:0.2
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
-                             self.center = CGPointMake(160.0, 568.0 + [mode intValue]*height/2);
+                             self.center = CGPointMake(160.0, self.frame.origin.y + height/2 + [mode intValue]*height);
+                             
                          }
                          completion:^(BOOL finished){
                              if([mode intValue] == -1)
@@ -60,6 +62,7 @@
                              }
                              else
                              {
+                                 [self setHidden:YES];
                                  [self setIsShown:NO];
                              }
                          }];

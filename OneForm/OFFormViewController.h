@@ -11,6 +11,7 @@
 #import "OFFormTitle.h"
 #import "OFBackButton.h"
 #import "OFForwardButton.h"
+#import "OFBottomNotification.h"
 
 @interface OFFormViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {
@@ -19,13 +20,14 @@
     int counter;
     int previous;
     NSString *formName;
-    NSArray *myData;
+    NSMutableArray *myData;
     NSString *status;
     BOOL isEditing;
     BOOL initialScroll;
     NSMutableArray *textFields;
     UITextField *activefield;
     NSDateFormatter *df;
+    float keyboardSize;
 }
 
 @property (strong, nonatomic) UIButton *submitButton;
@@ -34,5 +36,12 @@
 @property (strong, nonatomic) OFFormTitle *formTitle;
 @property (strong, nonatomic) OFBackButton *backButton;
 @property (strong, nonatomic) OFForwardButton *forwardButton;
+@property (strong, nonatomic) NSMutableDictionary *userData;
+@property (strong, nonatomic) NSMutableDictionary *formData;
+@property (strong, nonatomic) OFBottomNotification *bottomEditing;
+@property (strong, nonatomic) OFBottomNotification *bottomNotEditing;
+
+
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId;
 
 @end

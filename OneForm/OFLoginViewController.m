@@ -276,6 +276,7 @@
                 {
                     [response setObject:[responseObject objectForKey:@"result"] forKey:@"forms"];
                     [response setObject:[OFHelperMethods formsToLookup:[responseObject objectForKey:@"result"]] forKey:@"forms_lookup"];
+                    [response setObject:[OFHelperMethods formsToRevLookup:[responseObject objectForKey:@"result"]] forKey:@"forms_reverse_lookup"];
                     
                     newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/orgs"];
                     
@@ -291,7 +292,7 @@
                                 if ((int) [[responseObject objectForKey:@"status"] integerValue] == 200)
                                 {
                                     [response setObject:[responseObject objectForKey:@"result"] forKey:@"fields"];
-                                    [response setObject:[OFHelperMethods fieldsToLookup:[responseObject objectForKey:@"result"]] forKey:@"fields_reverse_lookup"];
+                                    [response setObject:[OFHelperMethods fieldsToRevLookup:[responseObject objectForKey:@"result"]] forKey:@"fields_reverse_lookup"];
                                     if (isSignIn)
                                     {
                                         [self signIn:response andStatus:status];

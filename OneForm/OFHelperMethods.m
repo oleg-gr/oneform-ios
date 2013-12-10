@@ -129,7 +129,17 @@
     return result;
 }
 
-+(NSMutableDictionary*) fieldsToLookup:(NSMutableArray*)fields
++(NSMutableDictionary*) formsToRevLookup:(NSMutableArray*)forms
+{
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for (NSInteger i = 0; i < [forms count]; i++)
+    {
+        [result setObject:[NSNumber numberWithInteger:i] forKey:[[forms objectAtIndex:i] objectForKey:@"_id"]];
+    }
+    return result;
+}
+
++(NSMutableDictionary*) fieldsToRevLookup:(NSMutableArray*)fields
 {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     for (NSInteger i = 0; i < [fields count]; i++)

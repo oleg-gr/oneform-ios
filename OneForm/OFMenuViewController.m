@@ -52,12 +52,12 @@
                                             action:@selector(goToMyData)];
     [self.myDataLabel addGestureRecognizer:goToMyData];
     
-    self.settingsLabel = [self getMenuItemWithYcoord:486.5 andLabel:@"Settings"];
-    [self.view addSubview:self.settingsLabel];
-    UITapGestureRecognizer *goToSettings =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(goToSettings)];
-    [self.settingsLabel addGestureRecognizer:goToSettings];
+//    self.settingsLabel = [self getMenuItemWithYcoord:486.5 andLabel:@"Settings"];
+//    [self.view addSubview:self.settingsLabel];
+//    UITapGestureRecognizer *goToSettings =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                            action:@selector(goToSettings)];
+//    [self.settingsLabel addGestureRecognizer:goToSettings];
     
     self.logOutLabel = [self getMenuItemWithYcoord:523.5 andLabel:@"Log out"];
     [self.view addSubview:self.logOutLabel];
@@ -89,12 +89,12 @@
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
-- (void) goToSettings
-{
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.settings];
-    [frontViewController setNavigationBarHidden:YES];
-    [[self revealViewController] setFrontViewController:frontViewController animated:YES];
-}
+//- (void) goToSettings
+//{
+//    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.settings];
+//    [frontViewController setNavigationBarHidden:YES];
+//    [[self revealViewController] setFrontViewController:frontViewController animated:YES];
+//}
 
 - (void) logout
 {
