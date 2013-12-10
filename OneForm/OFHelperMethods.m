@@ -124,7 +124,7 @@
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     for (NSInteger i = 0; i < [forms count]; i++)
     {
-        [result setObject:[NSNumber numberWithInteger:i] forKey:[[forms objectAtIndex:i] objectForKey:@"_id"]];
+        [result setObject:[[forms objectAtIndex:i] objectForKey:@"_id"] forKey:[NSNumber numberWithInteger:i]];
     }
     return result;
 }

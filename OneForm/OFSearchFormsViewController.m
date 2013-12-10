@@ -30,11 +30,14 @@
         NSMutableDictionary *orgs_lookup = [userData objectForKey:@"orgs_lookup"];
         for (NSMutableDictionary *form in [userData objectForKey:@"forms"])
         {
-            for (NSString *org in [form objectForKey:@"orgs"])
-                 {
-                     [self.popularForms addObject:
-                      @[[form objectForKey:@"name"], [orgs_lookup objectForKey:org], [form objectForKey:@"_id"]]];
-                 }
+            NSArray *orgs = [form objectForKey:@"orgs" ];
+            NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
+            for (int i = 1; i < [orgs count]; i++)
+             {
+                 orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+             }
+            [self.popularForms addObject:
+            @[[form objectForKey:@"name"], orgs_string, [form objectForKey:@"_id"]]];
         }
         
     }
@@ -127,14 +130,6 @@
         [organizationName setTextColor:UI_COLOR];
         [organizationName setNumberOfLines:2];
         [organizationName setFont:[UIFont fontWithName:@"Roboto-Light" size:16]];
-        
-        UITapGestureRecognizer *goToForm = [[UITapGestureRecognizer alloc]
-                                                       initWithTarget:self
-                                                       action:@selector(goToForm)];
-        [goToForm setCancelsTouchesInView:NO];
-        [cell.contentView setUserInteractionEnabled:YES];
-        [cell.contentView  addGestureRecognizer:goToForm];
-    
         NSArray *info = [self.popularForms objectAtIndex:indexPath.row];
         [cellLabel setText:info[0]];
         [cellLabel sizeToFit];
@@ -149,6 +144,17 @@
     }
     
     return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *formId = [[self.userData objectForKey:@"forms_lookup"] objectForKey:[NSNumber numberWithInt:indexPath.row]];
+    UIAlertView *messageAlert = [[UIAlertView alloc]
+                                 initWithTitle:@"Row Selected" message:formId delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    // Display Alert Message
+    [messageAlert show];
     
 }
 
