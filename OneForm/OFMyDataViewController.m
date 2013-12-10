@@ -22,9 +22,35 @@
 {
     self = [super init];
     if (self) {
-        // Custom initialization
+        self.userData = userData;
+        [self updateMyData];
     }
     return self;
+}
+
+- (void)updateMyData
+{
+    self.myData = [[NSMutableArray alloc] init];
+    
+    NSMutableDictionary *data = [[self.userData objectForKey:@"user"] objectForKey:@"data"];
+    
+    for (NSString *data_id in data)
+    {
+        NSMutableDictionary *field = [data objectForKey:data_id];
+        NSString *name = [[[self.userData objectForKey:@"fields"] objectAtIndex:[[[self.userData objectForKey:@"fields_reverse_lookup"] objectForKey:data_id] integerValue]] objectForKey:@"name"];
+        
+        [self.myData addObject: @[name, [field objectForKey:@"value"], [NSNumber numberWithInteger:[[field objectForKey:@"access"] count]], data_id]];
+    }
+    
+//    myData = @[
+//               @[@"Name", @"Mariko Kuroda", @15],
+//               @[@"Birthdate", @"09-23-1993", @15],
+//               @[@"Gender", @"Female", @20],
+//               @[@"Occupation", @"Student", @7],
+//               @[@"Address", @"Sama Tower", @1],
+//               @[@"Nationality", @"Japan", @2],
+//               ];
+
 }
 
 - (void)viewDidLoad
@@ -43,14 +69,6 @@
     
     [self.view addSubview:formTitle];
     
-    myData = @[
-                     @[@"Name", @"Mariko Kuroda", @15],
-                     @[@"Birthdate", @"09-23-1993", @15],
-                     @[@"Gender", @"Female", @20],
-                     @[@"Occupation", @"Student", @7],
-                     @[@"Address", @"Sama Tower", @1],
-                     @[@"Nationality", @"Japan", @2],
-                     ];
     
     self.myDataTable = [[UITableView alloc] initWithFrame:CGRectMake(33.5f, 165, 320 - 33.5f, 342) style:UITableViewStylePlain];
     [self.myDataTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -66,7 +84,7 @@
 #pragma mark Table view related logic
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [myData count];
+    return [self.myData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +117,7 @@
         [bottomLabel setUserInteractionEnabled:YES];
         [bottomLabel addGestureRecognizer:organizationsAccess];
         
-        NSArray *info = [myData objectAtIndex:indexPath.row];
+        NSArray *info = [self.myData objectAtIndex:indexPath.row];
         textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, width, 65) andLabel:info[0] andEditable:NO];
         [textfield setTextFieldText:info[1]];
         [bottomLabel setText:[NSString stringWithFormat:@"%@ have access", info[2]]];

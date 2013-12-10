@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface OFMyDataViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    NSArray *myData;
-}
 
+@property (strong, nonatomic) NSMutableArray *myData;;
 @property (strong, nonatomic) UIView *qrCodeInteractionView;
 @property (strong, nonatomic) UITableView *myDataTable;
+@property (strong, nonatomic) NSMutableDictionary *userData;
 
 -(id) initWithUserData:(NSMutableDictionary*)userData;
 

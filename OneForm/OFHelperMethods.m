@@ -129,4 +129,14 @@
     return result;
 }
 
++(NSMutableDictionary*) fieldsToLookup:(NSMutableArray*)fields
+{
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for (NSInteger i = 0; i < [fields count]; i++)
+    {
+        [result setObject:[NSNumber numberWithInteger:i] forKey:[[fields objectAtIndex:i] objectForKey:@"_id"]];
+    }
+    return result;
+}
+
 @end

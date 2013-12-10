@@ -24,24 +24,29 @@
     self = [super init];
     if (self) {
         self.userData = userData;
-        [userData setObject:[OFHelperMethods formsToLookup:[userData objectForKey:@"forms"]] forKey:@"forms_lookup"];
+        [self updatePopularForms];
+        
         NSLog(@"%@", userData);
-        self.popularForms = [[NSMutableArray alloc] init];
-        NSMutableDictionary *orgs_lookup = [userData objectForKey:@"orgs_lookup"];
-        for (NSMutableDictionary *form in [userData objectForKey:@"forms"])
-        {
-            NSArray *orgs = [form objectForKey:@"orgs" ];
-            NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
-            for (int i = 1; i < [orgs count]; i++)
-             {
-                 orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
-             }
-            [self.popularForms addObject:
-            @[[form objectForKey:@"name"], orgs_string, [form objectForKey:@"_id"]]];
-        }
         
     }
     return self;
+}
+
+-(void) updatePopularForms
+{
+    self.popularForms = [[NSMutableArray alloc] init];
+    NSMutableDictionary *orgs_lookup = [self.userData objectForKey:@"orgs_lookup"];
+    for (NSMutableDictionary *form in [self.userData objectForKey:@"forms"])
+    {
+        NSArray *orgs = [form objectForKey:@"orgs" ];
+        NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
+        for (int i = 1; i < [orgs count]; i++)
+        {
+            orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+        }
+        [self.popularForms addObject:
+         @[[form objectForKey:@"name"], orgs_string, [form objectForKey:@"_id"]]];
+    }
 }
 
 - (void)viewDidLoad

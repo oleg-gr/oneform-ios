@@ -15,4 +15,5 @@
 +(NSString *) signIn:(NSString*) username withPassword:(NSString*) password;
 +(NSMutableDictionary*) orgToLookup:(NSMutableArray*)orgs;
 +(NSMutableDictionary*) formsToLookup:(NSMutableArray*)forms;
++(NSMutableDictionary*) fieldsToLookup:(NSMutableArray*)forms;
 @end

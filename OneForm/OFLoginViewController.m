@@ -241,7 +241,7 @@
                                      @"secret": [OFHelperMethods createSHA512:shaReq],
                                      @"firstName": [self.firstNameUI getTextInput],
                                      @"lastName": [self.lastNameUI getTextInput],
-                                     @"profileId": [self.udidUI getTextInput]}; //change param to UDID when the API is changed
+                                     @"uniqueId": [self.udidUI getTextInput]}; //change param to UDID when the API is changed
         NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/users"];
         
         [self buildData:route withParams:parameters isSignIn:NO];
@@ -262,6 +262,8 @@
     
     [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        NSLog(@"%@", responseObject);
+        
         status = (int) [[responseObject objectForKey:@"status"] integerValue];
         
         if (status == 200)
@@ -275,6 +277,7 @@
                 if ((int) [[responseObject objectForKey:@"status"] integerValue] == 200)
                 {
                     [response setObject:[responseObject objectForKey:@"result"] forKey:@"forms"];
+                    [response setObject:[OFHelperMethods formsToLookup:[responseObject objectForKey:@"result"]] forKey:@"forms_lookup"];
                     
                     newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/orgs"];
                     
@@ -283,14 +286,30 @@
                         {
                             [response setObject:[responseObject objectForKey:@"result"] forKey:@"orgs"];
                             [response setObject:[OFHelperMethods orgToLookup:[responseObject objectForKey:@"result"]] forKey:@"orgs_lookup"];
-                            if (isSignIn)
-                            {
-                                [self signIn:response andStatus:status];
-                            }
-                            else
-                            {
-                                [self signUp:response andStatus:status];
-                            }
+                            
+                            newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/fields"];
+                            
+                            [self.connectionManager GET:newRoute parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                if ((int) [[responseObject objectForKey:@"status"] integerValue] == 200)
+                                {
+                                    [response setObject:[responseObject objectForKey:@"result"] forKey:@"fields"];
+                                    [response setObject:[OFHelperMethods fieldsToLookup:[responseObject objectForKey:@"result"]] forKey:@"fields_reverse_lookup"];
+                                    if (isSignIn)
+                                    {
+                                        [self signIn:response andStatus:status];
+                                    }
+                                    else
+                                    {
+                                        [self signUp:response andStatus:status];
+                                    }
+                                }
+                                else
+                                {
+                                    [self signError:isSignIn];
+                                }
+                            } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+                                [self signError:isSignIn];
+                            }];
                         }
                         else
                         {
@@ -363,6 +382,11 @@
     if (status == 200)
     {
         [self showMainScreen:userData];
+    }
+    else
+    {
+        [self.bottomNotificationSignUp.notification setText:@"Error occured"];
+        [self.bottomNotificationSignUp showWithAutohide:YES];
     }
 }
 
