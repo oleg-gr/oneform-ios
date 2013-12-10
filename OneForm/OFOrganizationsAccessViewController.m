@@ -18,11 +18,15 @@
 
 @implementation OFOrganizationsAccessViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id) initWithOrgs:(NSMutableArray*)orgs andUserData:(NSMutableDictionary*)userData
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.organizations = [[NSMutableArray alloc] init];
+        for (NSString *org in orgs)
+        {
+            [self.organizations addObject:[[userData objectForKey:@"orgs_lookup"] objectForKey:org]];
+        }
     }
     return self;
 }
@@ -50,14 +54,6 @@
     [self.view addSubview:title];
     
     
-    organizations = @[@"Abu Dhabi Customs Administration",
-                      @"Abu Dhabi Chamber of Commerce & Industry",
-                      @"Abu Dhabi Education Council",
-                      @"International Renewable Energy Agency",
-                      @"Abu Dhabi Police Department",
-                      @"United Arab Emirates Customs",
-                      @"Foreign Affairs Department"];
-    
     self.organizationsTable = [[UITableView alloc] initWithFrame:CGRectMake(33.5f, 220, 320 - 33.5f, 330) style:UITableViewStylePlain];
     [self.organizationsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.organizationsTable setShowsVerticalScrollIndicator:NO];
@@ -71,7 +67,7 @@
 #pragma mark Table view related logic
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [organizations count];
+    return [self.organizations count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +93,7 @@
         [text setTextColor:UI_COLOR];
         [text setNumberOfLines:2];
         [text setFont:[UIFont fontWithName:@"Roboto-Light" size:22]];
-        [text setText:[organizations objectAtIndex:indexPath.row]];
+        [text setText:[self.organizations objectAtIndex:indexPath.row]];
         [cell.contentView addSubview:text];
         
         UIView *lineView = [[UIView alloc]

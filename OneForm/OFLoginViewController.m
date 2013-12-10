@@ -262,8 +262,6 @@
     
     [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"%@", responseObject);
-        
         status = (int) [[responseObject objectForKey:@"status"] integerValue];
         
         if (status == 200)

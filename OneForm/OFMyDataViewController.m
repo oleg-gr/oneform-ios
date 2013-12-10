@@ -110,13 +110,6 @@
         [bottomLabel setFont:[UIFont fontWithName:@"Roboto-Light" size:19]];
         [bottomLabel setTextAlignment:NSTextAlignmentRight];
         
-        UITapGestureRecognizer *organizationsAccess = [[UITapGestureRecognizer alloc]
-                                                initWithTarget:self
-                                                       action:@selector(goToOrganizationsWithAccess:)];
-        [organizationsAccess setCancelsTouchesInView:NO];
-        [bottomLabel setUserInteractionEnabled:YES];
-        [bottomLabel addGestureRecognizer:organizationsAccess];
-        
         NSArray *info = [self.myData objectAtIndex:indexPath.row];
         textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, width, 65) andLabel:info[0] andEditable:NO];
         [textfield setTextFieldText:info[1]];
@@ -127,10 +120,12 @@
     return cell;
 }
 
--(void) goToOrganizationsWithAccess:(UILabel*)label
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //grab tag assigned to ID and display respective details
-    OFOrganizationsAccessViewController *organizations = [[OFOrganizationsAccessViewController alloc] init];
+    NSString *fieldId = [[self.myData objectAtIndex:indexPath.row] objectAtIndex:3];
+    NSMutableArray *orgs = [[[[self.userData objectForKey:@"user"] objectForKey:@"data"] objectForKey:fieldId] objectForKey:@"access"];
+    
+    OFOrganizationsAccessViewController *organizations = [[OFOrganizationsAccessViewController alloc] initWithOrgs:orgs andUserData:self.userData];
     [self.navigationController pushViewController:organizations animated:YES];
 }
 

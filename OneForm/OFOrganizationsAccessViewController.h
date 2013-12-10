@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OFOrganizationsAccessViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    NSArray *organizations;
-}
 
 @property (strong, nonatomic) UITableView *organizationsTable;
+@property (strong, nonatomic) NSMutableArray *organizations;
+
+-(id) initWithOrgs:(NSMutableArray*)orgs andUserData:(NSMutableDictionary*)userData;
 
 @end
