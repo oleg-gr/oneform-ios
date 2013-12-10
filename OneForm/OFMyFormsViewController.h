@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UITableView *myFormsTable;
 @property (nonatomic, strong) NSArray *myForms;
 
--(id) initWithUserData:(NSMutableArray*)userData;
+-(id) initWithUserData:(NSMutableDictionary*)userData;
 
 @end

@@ -18,7 +18,7 @@
 
 @implementation OFMyDataViewController
 
--(id) initWithUserData:(NSMutableArray*)userData;
+-(id) initWithUserData:(NSMutableDictionary*)userData;
 {
     self = [super init];
     if (self) {

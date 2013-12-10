@@ -16,6 +16,6 @@
 @property (strong, nonatomic) UIView *qrCodeInteractionView;
 @property (strong, nonatomic) UITableView *myDataTable;
 
--(id) initWithUserData:(NSMutableArray*)userData;
+-(id) initWithUserData:(NSMutableDictionary*)userData;
 
 @end

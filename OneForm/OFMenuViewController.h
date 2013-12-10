@@ -26,6 +26,6 @@
 @property (nonatomic, strong) OFMyDataViewController *myData;
 @property (nonatomic, strong) OFMyFormsViewController *myForms;
 
--(id) initWithUserData:(NSMutableArray*)userData;
+-(id) initWithUserData:(NSMutableDictionary*)userData;
 
 @end

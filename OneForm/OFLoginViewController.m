@@ -241,23 +241,99 @@
                                      @"secret": [OFHelperMethods createSHA512:shaReq],
                                      @"firstName": [self.firstNameUI getTextInput],
                                      @"lastName": [self.lastNameUI getTextInput],
-                                     @"phoneNumber": [self.udidUI getTextInput]}; //change param to UDID when the API is changed
+                                     @"profileId": [self.udidUI getTextInput]}; //change param to UDID when the API is changed
         NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/users"];
         
-        [self.loadingView show];
-        [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self.loadingView hide];
-            NSLog(@"%@", responseObject);
-            [self signIn:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-            [self.loadingView hide];
-            [self signUp:nil andStatus:-200];
-        }];
+        [self buildData:route withParams:parameters isSignIn:NO];
     }
     else
     {
         [self.bottomNotificationSignUp.notification setText:fieldsCheck];
         [self.bottomNotificationSignUp showWithAutohide:YES];
+    }
+}
+
+-(void) buildData:(NSString*)route withParams:(NSDictionary*)parameters isSignIn:(BOOL)isSignIn
+{
+    [self.loadingView show];
+    
+    __block NSMutableDictionary *response = [[NSMutableDictionary alloc] init];
+    __block int status;
+    
+    [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        status = (int) [[responseObject objectForKey:@"status"] integerValue];
+        
+        if (status == 200)
+        {
+            __block NSString *newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/forms"];
+            
+            [response setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+            
+            [self.connectionManager GET:newRoute parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if ((int) [[responseObject objectForKey:@"status"] integerValue] == 200)
+                {
+                    [response setObject:[responseObject objectForKey:@"result"] forKey:@"forms"];
+                    
+                    newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/orgs"];
+                    
+                    [self.connectionManager GET:newRoute parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if ((int) [[responseObject objectForKey:@"status"] integerValue] == 200)
+                        {
+                            [response setObject:[responseObject objectForKey:@"result"] forKey:@"orgs"];
+                            [response setObject:[OFHelperMethods orgToLookup:[responseObject objectForKey:@"result"]] forKey:@"orgs_lookup"];
+                            NSLog(@"%@", response);
+                            if (isSignIn)
+                            {
+                                [self signIn:response andStatus:status];
+                            }
+                            else
+                            {
+                                [self signUp:response andStatus:status];
+                            }
+                        }
+                        else
+                        {
+                            [self signError:isSignIn];
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+                        [self signError:isSignIn];
+                    }];
+                }
+                else
+                {
+                    [self signError:isSignIn];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+                [self signError:isSignIn];
+            }];
+        }
+        else
+        {
+            if (isSignIn)
+            {
+                [self signIn:nil andStatus:status];
+            }
+            else
+            {
+                [self signUp:nil andStatus:status];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        [self signError:isSignIn];
+    }];
+}
+
+-(void)signError:(BOOL)isSignIn
+{
+    if (isSignIn)
+    {
+        [self signIn:nil andStatus:-200];
+    }
+    else
+    {
+        [self signUp:nil andStatus:-200];
     }
 }
 
@@ -272,14 +348,7 @@
                                      @"secret": [OFHelperMethods createSHA512:shaReq]};
         NSString *route = [NSString stringWithFormat:@"%@%@", SERVER, @"/auth/users"];
         
-        [self.loadingView show];
-        [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self.loadingView hide];
-            [self signUp:responseObject andStatus:[[responseObject valueForKey:@"status"] integerValue]];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-            [self.loadingView hide];
-            [self signUp:nil andStatus:-200];
-        }];
+        [self buildData:route withParams:parameters isSignIn:YES];
     }
     else
     {
@@ -289,16 +358,18 @@
     
 }
 
-- (void)signUp:(NSMutableArray*)userData andStatus:(int)status
+- (void)signUp:(NSMutableDictionary*)userData andStatus:(int)status
 {
+    [self.loadingView hide];
     if (status == 200)
     {
         [self showMainScreen:userData];
     }
 }
 
-- (void)signIn:(NSMutableArray*)userData andStatus:(int)status
+- (void)signIn:(NSMutableDictionary*)userData andStatus:(int)status
 {
+    [self.loadingView hide];
     if (status == 200)
     {
         [self showMainScreen:userData];
@@ -320,7 +391,7 @@
    }
 }
 
-- (void)showMainScreen:(NSMutableArray*)userData
+- (void)showMainScreen:(NSMutableDictionary*)userData
 {
     [self.passwordUI setTextFieldText:@""];
     [self.firstNameUI setTextFieldText:@""];

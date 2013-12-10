@@ -108,4 +108,15 @@
     }
 }
 
++(NSMutableDictionary*) orgToLookup:(NSMutableArray*)orgs
+{
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for (NSMutableDictionary *org in orgs)
+    {
+        NSString *name = [[org objectForKey:@"profile"] objectForKey:@"name"];
+        [result setObject:name forKey:[org objectForKey:@"_id"]];
+    }
+    return result;
+}
+
 @end
