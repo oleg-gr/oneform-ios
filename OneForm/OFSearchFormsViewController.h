@@ -17,8 +17,10 @@
 @property (nonatomic, strong) OFNavigationBar *navBar;
 @property (nonatomic, strong) OFDoubleSearch *searchBar;
 @property (nonatomic, strong) UITableView *popularFormsTable;
-@property (nonatomic, strong) NSArray *popularForms;
+@property (nonatomic, strong) NSMutableArray *popularForms;
 @property (nonatomic, strong) UILabel *cellHeightCheck;
+@property (nonatomic, strong) NSMutableDictionary *userData;
+
 
 -(id) initWithUserData:(NSMutableDictionary*)userData;
 

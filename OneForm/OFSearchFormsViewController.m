@@ -11,6 +11,7 @@
 #import "OFSearchBar.h"
 #import "OFFormProgress.h"
 #import "OFFormViewController.h"
+#import "OFHelperMethods.h"
 
 @interface OFSearchFormsViewController ()
 
@@ -22,7 +23,20 @@
 {
     self = [super init];
     if (self) {
-        self.popularForms = @[@[@"UAE driver's license form", @"Abu Dhabi Customs Administration"], @[@"Naturalization form", @"Abu Dhabi Chamber of Commerce and Industry"], @[@"Birth certificate" , @"Abu Dhabi Education Council"], @[@"Change of address", @"Abu Dhabi home authority"], @[@"Visa application form", @"UAE Customs"], @[@"Visa renewal form", @"Immigration"]];
+        self.userData = userData;
+        [userData setObject:[OFHelperMethods formsToLookup:[userData objectForKey:@"forms"]] forKey:@"forms_lookup"];
+        NSLog(@"%@", userData);
+        self.popularForms = [[NSMutableArray alloc] init];
+        NSMutableDictionary *orgs_lookup = [userData objectForKey:@"orgs_lookup"];
+        for (NSMutableDictionary *form in [userData objectForKey:@"forms"])
+        {
+            for (NSString *org in [form objectForKey:@"orgs"])
+                 {
+                     [self.popularForms addObject:
+                      @[[form objectForKey:@"name"], [orgs_lookup objectForKey:org], [form objectForKey:@"_id"]]];
+                 }
+        }
+        
     }
     return self;
 }
@@ -30,7 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self.navigationController setNavigationBarHidden:YES];

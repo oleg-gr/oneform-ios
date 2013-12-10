@@ -283,7 +283,6 @@
                         {
                             [response setObject:[responseObject objectForKey:@"result"] forKey:@"orgs"];
                             [response setObject:[OFHelperMethods orgToLookup:[responseObject objectForKey:@"result"]] forKey:@"orgs_lookup"];
-                            NSLog(@"%@", response);
                             if (isSignIn)
                             {
                                 [self signIn:response andStatus:status];

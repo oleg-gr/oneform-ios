@@ -119,4 +119,14 @@
     return result;
 }
 
++(NSMutableDictionary*) formsToLookup:(NSMutableArray*)forms
+{
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for (NSInteger i = 0; i < [forms count]; i++)
+    {
+        [result setObject:[NSNumber numberWithInteger:i] forKey:[[forms objectAtIndex:i] objectForKey:@"_id"]];
+    }
+    return result;
+}
+
 @end

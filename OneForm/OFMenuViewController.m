@@ -71,24 +71,28 @@
 - (void) goToSearch
 {
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.searchController];
+    [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyForms
 {
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myForms];
+    [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyData
 {
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myData];
+    [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToSettings
 {
     UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.settings];
+    [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
