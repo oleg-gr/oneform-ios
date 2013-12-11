@@ -108,7 +108,6 @@
 
 - (void)keyPressed:(NSNotification*)notification
 {
-    NSLog(@"My Forms");
     self.myForms = [[NSMutableArray alloc] init];
     for (NSArray *entry in self.myFormsCheck)
     {

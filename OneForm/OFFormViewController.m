@@ -311,7 +311,6 @@
 
 - (void)keyPressed:(NSNotification*)notification
 {
-    NSLog(@"A Form");
     NSString *prevValue = myData[current][1];
     myData[current][1] = [[textFields objectAtIndex:current] getTextInput];
     NSString *curValue = myData[current][1];

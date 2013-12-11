@@ -213,8 +213,6 @@
     self.loadingView = [[OFLoadingView alloc] init];
     [self.scrollContainer addSubview:self.loadingView];
     //FOR INITIAL TESTING
-    [self.emailUI.textFieldInput setText:@"moiri@oneform.in"];
-    [self.passwordUI.textFieldInput setText:@"password"];
 }
 
 - (void)didReceiveMemoryWarningisNotificationisNotificationisNotification

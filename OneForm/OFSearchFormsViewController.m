@@ -117,7 +117,6 @@
 
 - (void)keyPressed:(NSNotification*)notification
 {
-    NSLog(@"Search Forms");
     self.popularForms = [[NSMutableArray alloc] init];
     for (NSArray *entry in self.popularFormsCheck)
     {
