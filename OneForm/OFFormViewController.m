@@ -311,6 +311,7 @@
 
 - (void)keyPressed:(NSNotification*)notification
 {
+    NSLog(@"A Form");
     NSString *prevValue = myData[current][1];
     myData[current][1] = [[textFields objectAtIndex:current] getTextInput];
     NSString *curValue = myData[current][1];
@@ -363,18 +364,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //    No cell reuse because of the custom contentview
     if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    UITapGestureRecognizer *startEditing = [[UITapGestureRecognizer alloc]
-                                                   initWithTarget:self
-                                            action:@selector(goToField:)];
-    [startEditing setCancelsTouchesInView:NO];
-    [cell.contentView setUserInteractionEnabled:YES];
-    [cell.contentView addGestureRecognizer:startEditing];
-    NSArray *info = [myData objectAtIndex:indexPath.row];
-    OFTextField *textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, self.myDataTable.frame.size.width, 65) andLabel:info[0] andEditable:NO];
-    [textfield setTextFieldText:info[1]];
-    [cell.contentView addSubview:textfield];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        UITapGestureRecognizer *startEditing = [[UITapGestureRecognizer alloc]
+                                                       initWithTarget:self
+                                                action:@selector(goToField:)];
+        [startEditing setCancelsTouchesInView:NO];
+        [cell.contentView setUserInteractionEnabled:YES];
+        if (!isSubmitted)
+        {
+                [cell.contentView addGestureRecognizer:startEditing];
+        }
+        NSArray *info = [myData objectAtIndex:indexPath.row];
+        OFTextField *textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, self.myDataTable.frame.size.width, 65) andLabel:info[0] andEditable:NO];
+        [textfield setTextFieldText:info[1]];
+        [cell.contentView addSubview:textfield];
     }
     return cell;
 }
@@ -444,10 +448,14 @@
     }
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
 }

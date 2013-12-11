@@ -50,10 +50,14 @@
         }
         
         NSArray *orgs = [form_def objectForKey:@"orgs" ];
-        NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
-        for (int i = 1; i < [orgs count]; i++)
+        NSString *orgs_string = @"No organizations";
+        if (orgs != nil)
         {
-            orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+            orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
+            for (int i = 1; i < [orgs count]; i++)
+            {
+                orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+            }
         }
         NSArray *entry = @[name, progress, status, orgs_string, form_id];
         [self.myForms addObject:entry];
@@ -104,6 +108,7 @@
 
 - (void)keyPressed:(NSNotification*)notification
 {
+    NSLog(@"My Forms");
     self.myForms = [[NSMutableArray alloc] init];
     for (NSArray *entry in self.myFormsCheck)
     {
@@ -113,6 +118,11 @@
         }
     }
     [self.myFormsTable reloadData];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark Table view related logic
@@ -181,7 +191,6 @@
     [self.myFormsTable reloadData];
     [self.searchBar.searchQuery setText:@""];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
 }
 
 #pragma mark Keyboard dismiss

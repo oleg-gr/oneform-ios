@@ -108,11 +108,16 @@
     [self.searchBar.searchQuery setText:@""];
     [self.searchBar.secondSearchQuery setText:@""];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)keyPressed:(NSNotification*)notification
 {
+    NSLog(@"Search Forms");
     self.popularForms = [[NSMutableArray alloc] init];
     for (NSArray *entry in self.popularFormsCheck)
     {
