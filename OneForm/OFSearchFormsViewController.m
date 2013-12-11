@@ -62,6 +62,7 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.navigationController setNavigationBarHidden:YES];
     

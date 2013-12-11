@@ -50,6 +50,8 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     OFNavigationBar *navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];

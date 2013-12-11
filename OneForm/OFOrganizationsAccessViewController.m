@@ -36,6 +36,7 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     OFNavigationBar *navBar = [[OFNavigationBar alloc] initWithRevealController:[self revealViewController]];
     

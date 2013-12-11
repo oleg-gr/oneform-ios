@@ -73,6 +73,7 @@
     textFields = [[NSMutableArray alloc] init];
     df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"MM-dd-yyyy"];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
