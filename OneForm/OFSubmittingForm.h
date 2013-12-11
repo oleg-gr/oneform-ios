@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *myData;
 @property (strong, nonatomic) OFFormProgress *progressBar;
 @property (strong, nonatomic) AFHTTPRequestOperationManager *connectionManager;
+@property (strong, nonatomic) UITextField *loading;
 
 -(id)initWithUserData:(NSMutableDictionary*)userData andFields:(NSMutableArray*)myData andForm:(NSMutableDictionary*)formData;
 

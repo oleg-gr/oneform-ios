@@ -20,11 +20,7 @@
 @property (nonatomic, strong) UIButton *myDataLabel;
 @property (nonatomic, strong) UIButton *settingsLabel;
 @property (nonatomic, strong) UIButton *logOutLabel;
-
-@property (nonatomic, strong) OFSearchFormsViewController *searchController;
-@property (nonatomic, strong) OFSettingsViewController *settings;
-@property (nonatomic, strong) OFMyDataViewController *myData;
-@property (nonatomic, strong) OFMyFormsViewController *myForms;
+@property (nonatomic, strong) NSMutableDictionary *userData;
 
 -(id) initWithUserData:(NSMutableDictionary*)userData;
 

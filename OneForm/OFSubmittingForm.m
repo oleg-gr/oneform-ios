@@ -25,9 +25,17 @@
 {
     NSLog(@"myData: %@", self.myData);
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    self.loading = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
+    [self.loading setCenter:CGPointMake(160, 240)];
+    [self.loading setText:@"Sending..."];
+    [self.loading setTextColor:UI_COLOR];
+    [self.loading setFont:[UIFont fontWithName:@"Roboto-Thin" size:30]];
+    
+    [self.view addSubview:self.loading];
+    
     self.progressBar = [[OFFormProgress alloc] initWithFrame:CGRectMake(60, 260, 200, 30) andProgress:0.0 andText:@"" andTextSize:26 andTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:self.progressBar];
-    
     self.connectionManager = [AFHTTPRequestOperationManager manager];
     [self.connectionManager.securityPolicy setAllowInvalidCertificates:YES];
     [self.connectionManager setRequestSerializer: [AFJSONRequestSerializer serializer]];
@@ -36,7 +44,7 @@
 
 -(void)sendForm
 {
-    int total_requests = [self.myData count]*2 + 1;
+    int total_requests = (int) [self.myData count]*2 + 1;
     __block int current_request = 0;
     __block int status;
     NSMutableArray *requests;
@@ -101,6 +109,8 @@
         }
         current_request++;
         [self.progressBar setProgress:1.0/total_requests * current_request];
+        [self.loading setText:@"Sent"];
+        sleep(1);
         [self.navigationController popToRootViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
         NSLog(@"%d error %@", current_request, err);
