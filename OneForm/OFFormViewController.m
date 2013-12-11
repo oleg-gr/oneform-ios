@@ -18,42 +18,50 @@
 
 @implementation OFFormViewController
 
--(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId fromSearch:(BOOL)isFromSearch
 {
     self = [super init];
     if (self) {
         self.userData = userData;
-        self.formData = [[userData objectForKey:@"forms"] objectAtIndex:[[[userData objectForKey:@"forms_reverse_lookup"] objectForKey:formId] integerValue]];
-        NSLog(@"%@", self.formData);
-        formName = [self.formData objectForKey:@"name"];
-        NSMutableArray *fields = [self.formData objectForKey:@"fields"];
-        myData = [[NSMutableArray alloc] init];
-        for (NSString *field in fields)
-        {
-            NSMutableDictionary *field_obj = [[self.userData objectForKey:@"fields"] objectAtIndex:[[[self.userData objectForKey:@"fields_reverse_lookup"] objectForKey:field] integerValue]];
-            NSString *name = [field_obj objectForKey:@"name"];
-            NSDictionary *tmpValue = [[[self.userData objectForKey:@"user"] objectForKey:@"data"] objectForKey:field];
-            NSString *value;
-            if (tmpValue == nil)
-            {
-                value = @"";
-            }
-            else
-            {
-                value = [tmpValue objectForKey:@"value"];
-            }
-            NSString *type = [field_obj objectForKey:@"htmlType"];
-            if (![type isEqualToString:@"select"])
-            {
-                [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field]]];
-            }
-            else
-            {
-                [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field, [field_obj objectForKey:@"choices"]]]];
-            }
-        }
+        self.formId = formId;
+        isFromMySearch = isFromSearch;
+        [self updateFormData];
     }
     return self;
+}
+
+- (void)updateFormData
+{
+    self.formData = [[self.userData objectForKey:@"forms"] objectAtIndex:[[[self.userData objectForKey:@"forms_reverse_lookup"] objectForKey:self.formId] integerValue]];
+    NSLog(@"%@", self.formData);
+    formName = [self.formData objectForKey:@"name"];
+    NSMutableArray *fields = [self.formData objectForKey:@"fields"];
+    myData = [[NSMutableArray alloc] init];
+    for (NSString *field in fields)
+    {
+        NSMutableDictionary *field_obj = [[self.userData objectForKey:@"fields"] objectAtIndex:[[[self.userData objectForKey:@"fields_reverse_lookup"] objectForKey:field] integerValue]];
+        NSString *name = [field_obj objectForKey:@"name"];
+        NSDictionary *tmpValue = [[[self.userData objectForKey:@"user"] objectForKey:@"data"] objectForKey:field];
+        NSString *value;
+        if (tmpValue == nil)
+        {
+            value = @"";
+        }
+        else
+        {
+            value = [tmpValue objectForKey:@"value"];
+        }
+        NSString *type = [field_obj objectForKey:@"htmlType"];
+        if (![type isEqualToString:@"select"])
+        {
+            [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field]]];
+        }
+        else
+        {
+            [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field, [field_obj objectForKey:@"choices"]]]];
+        }
+    }
+
 }
 
 - (void)viewDidLoad

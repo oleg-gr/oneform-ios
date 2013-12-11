@@ -90,6 +90,8 @@
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+    [self updatePopularForms];
+    [self.popularFormsTable reloadData];
 }
 
 
@@ -154,8 +156,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *formId = [[self.userData objectForKey:@"forms_lookup"] objectForKey:[NSNumber numberWithInt:indexPath.row]];
-    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId];
+    NSString *formId = [[self.userData objectForKey:@"forms_lookup"] objectForKey:[NSNumber numberWithInt:(int) indexPath.row]];
+    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId fromSearch:YES];
     [self.navigationController pushViewController:form animated:YES];
 }
 

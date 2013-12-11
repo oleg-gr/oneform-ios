@@ -41,15 +41,6 @@
         
         [self.myData addObject: @[name, [field objectForKey:@"value"], [NSNumber numberWithInteger:[[field objectForKey:@"access"] count]], data_id]];
     }
-    
-//    myData = @[
-//               @[@"Name", @"Mariko Kuroda", @15],
-//               @[@"Birthdate", @"09-23-1993", @15],
-//               @[@"Gender", @"Female", @20],
-//               @[@"Occupation", @"Student", @7],
-//               @[@"Address", @"Sama Tower", @1],
-//               @[@"Nationality", @"Japan", @2],
-//               ];
 
 }
 
@@ -132,8 +123,10 @@
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+    NSLog(@"%@", self.myData);
+    [self updateMyData];
+    NSLog(@"%@", self.myData);
     [self.myDataTable reloadData];
-    NSLog(@"%@", self.userData);
 }
 
 - (void)didReceiveMemoryWarning

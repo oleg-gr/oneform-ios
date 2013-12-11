@@ -13,7 +13,8 @@
 
 @property (nonatomic, strong) OFSearchBar *searchBar;
 @property (nonatomic, strong) UITableView *myFormsTable;
-@property (nonatomic, strong) NSArray *myForms;
+@property (nonatomic, strong) NSMutableArray *myForms;
+@property (nonatomic, strong) NSMutableDictionary *userData;
 
 -(id) initWithUserData:(NSMutableDictionary*)userData;
 

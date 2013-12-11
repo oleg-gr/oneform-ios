@@ -26,11 +26,13 @@
     NSLog(@"myData: %@", self.myData);
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    self.loading = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 260, 30)];
-    [self.loading setCenter:CGPointMake(160, 240)];
+    self.loading = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 260, 50)];
+    [self.loading setCenter:CGPointMake(160, 320)];
     [self.loading setText:@"Sending..."];
     [self.loading setTextColor:UI_COLOR];
     [self.loading setFont:[UIFont fontWithName:@"Roboto-Thin" size:30]];
+    [self.loading setTextAlignment:NSTextAlignmentCenter];
+    [self.loading setUserInteractionEnabled:NO];
     
     [self.view addSubview:self.loading];
     
@@ -64,10 +66,17 @@
                                      @"fieldId": data_id,
                                      @"value": [field objectAtIndex:1]};
         AFHTTPRequestOperation *operation1 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%d/%d sent successfully", current_request, total_requests);
-            status = (int) [[responseObject objectForKey:@"status"] integerValue];
             current_request++;
+            NSLog(@"%d/%d sent successfully operation1", current_request, total_requests);
+            status = (int) [[responseObject objectForKey:@"status"] integerValue];
+            if (status == 200)
+            {
+                [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+            }
             [self.progressBar setProgress:1.0/total_requests * current_request];
+            if (current_request == total_requests) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
              NSLog(@"%d error %@", current_request, err);
         }];
@@ -81,14 +90,20 @@
                        @"orgs": [self.formData objectForKey:@"orgs"]};
         
         AFHTTPRequestOperation *operation2 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%d/%d sent successfully", current_request, total_requests);
-            status = (int) [[responseObject objectForKey:@"status"] integerValue];
             current_request++;
+            NSLog(@"%d/%d sent successfully operation2", current_request, total_requests);
+            status = (int) [[responseObject objectForKey:@"status"] integerValue];
+            if (status == 200)
+            {
+                [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+            }
             [self.progressBar setProgress:1.0/total_requests * current_request];
+            if (current_request == total_requests) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
             NSLog(@"%d error %@", current_request, err);
         }];
-        
         [requests addObject:operation2];
         
     }
@@ -100,18 +115,17 @@
                    @"formId": [self.formData objectForKey:@"_id"]};
     
     AFHTTPRequestOperation *operation3 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%d/%d sent successfully", current_request, total_requests);
+        current_request++;
+        NSLog(@"%d/%d sent successfully operation3", current_request, total_requests);
         status = (int) [[responseObject objectForKey:@"status"] integerValue];
         if (status == 200)
         {
-            NSLog(@"%@", [responseObject objectForKey:@"result"]);
             [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
         }
-        current_request++;
         [self.progressBar setProgress:1.0/total_requests * current_request];
-        [self.loading setText:@"Sent"];
-        sleep(1);
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if (current_request == total_requests) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
         NSLog(@"%d error %@", current_request, err);
     }];

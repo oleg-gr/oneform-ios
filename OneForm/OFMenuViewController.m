@@ -20,7 +20,10 @@
 {
     self = [super init];
     if (self) {
-        self.userData = userData;
+        self.searchController= [[OFSearchFormsViewController alloc] initWithUserData:userData];
+        self.myForms= [[OFMyFormsViewController alloc] initWithUserData:userData];
+        self.myData= [[OFMyDataViewController alloc] initWithUserData:userData];
+        self.settings= [[OFSettingsViewController alloc] initWithUserData:userData];
     }
     return self;
 }
@@ -67,31 +70,27 @@
 
 - (void) goToSearch
 {
-    OFSearchFormsViewController *searchController= [[OFSearchFormsViewController alloc] initWithUserData:self.userData];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:searchController];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.searchController];
     [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyForms
 {
-    OFMyFormsViewController *myForms= [[OFMyFormsViewController alloc] initWithUserData:self.userData];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myForms];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myForms];
     [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 - (void) goToMyData
 {
-    OFMyDataViewController *myData= [[OFMyDataViewController alloc] initWithUserData:self.userData];
-    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:myData];
+    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.myData];
     [frontViewController setNavigationBarHidden:YES];
     [[self revealViewController] setFrontViewController:frontViewController animated:YES];
 }
 
 //- (void) goToSettings
 //{
-//    self.settings= [[OFSettingsViewController alloc] initWithUserData:userData];
 //    UINavigationController *frontViewController = [[UINavigationController alloc] initWithRootViewController:self.settings];
 //    [frontViewController setNavigationBarHidden:YES];
 //    [[self revealViewController] setFrontViewController:frontViewController animated:YES];

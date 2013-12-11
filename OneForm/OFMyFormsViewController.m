@@ -20,9 +20,44 @@
 {
     self = [super init];
     if (self) {
-        // Custom initialization
+        self.userData = userData;
+        [self updateMyForms];
     }
     return self;
+}
+
+-(void) updateMyForms
+{
+    self.myForms = [[NSMutableArray alloc] init];
+    NSMutableArray *forms = [[self.userData objectForKey:@"user"] objectForKey:@"forms"];
+    NSMutableDictionary *orgs_lookup = [self.userData objectForKey:@"orgs_lookup"];
+    
+    for (NSMutableDictionary *form in forms)
+    {
+        NSString *form_id = [form objectForKey:@"_id"];
+        NSMutableDictionary *form_def = [[self.userData objectForKey:@"forms"] objectAtIndex:[[[self.userData objectForKey:@"forms_reverse_lookup"] objectForKey:form_id] integerValue]];
+        NSString *name = [form_def objectForKey:@"name"];
+        NSString *status = [form objectForKey:@"status"];
+        NSNumber *progress;
+        if ([status isEqualToString:@"submitted"])
+        {
+            progress = [NSNumber numberWithFloat:1.0f];
+        }
+        else
+        {
+            progress = [NSNumber numberWithFloat:0.0f];
+        }
+        
+        NSArray *orgs = [form_def objectForKey:@"orgs" ];
+        NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
+        for (int i = 1; i < [orgs count]; i++)
+        {
+            orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+        }
+        NSArray *entry = @[name, progress, status, orgs_string, form_id];
+        [self.myForms addObject:entry];
+    }
+    NSLog(@"%@", self.myForms);
 }
 
 - (void)viewDidLoad
@@ -46,17 +81,6 @@
                                             action:@selector(dismissKeyboard)];
     [tapOutOfText setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapOutOfText];
-    
-    //DUMMY
-    
-    self.myForms = @[
-                     @[@"UAE driver's license", @0.9f, @"2 more", @"Abu Dhabi Customs Administration"],
-                     @[@"Birth certificate", @1.0f, @"Reviewed", @"Abu Dhabi Chamber of Commerce and Industry"],
-                     @[@"Change of address", @1.0f, @"Ready to submit", @"Abu Dhabi Education Council"],
-                     @[@"Visa application form", @0.0f, @"New data requested", @"Abu Dhabi home authority"],
-                     @[@"Visa renewal form", @1.0f, @"Government processing in action", @"UAE Customs"],
-                     @[@"Naturalization form", @0.5f, @"5 more", @"Immigration"],
-                     @[@"Emirates ID application", @0.7f, @"1 more", @"Abu Dhabi Chamber of Commerce and Industry"]];
     
     self.myFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 234.5f, 246.75f, 314) style:UITableViewStylePlain];
     [self.myFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -122,6 +146,8 @@
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+    [self updateMyForms];
+    [self.myFormsTable reloadData];
 }
 
 #pragma mark Keyboard dismiss

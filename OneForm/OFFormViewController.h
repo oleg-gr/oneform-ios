@@ -28,6 +28,7 @@
     UITextField *activefield;
     NSDateFormatter *df;
     float keyboardSize;
+    BOOL isFromMySearch;
 }
 
 @property (strong, nonatomic) UIButton *submitButton;
@@ -40,8 +41,9 @@
 @property (strong, nonatomic) NSMutableDictionary *formData;
 @property (strong, nonatomic) OFBottomNotification *bottomEditing;
 @property (strong, nonatomic) OFBottomNotification *bottomNotEditing;
+@property (strong, nonatomic) NSString *formId;
 
 
--(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId;
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId fromSearch:(BOOL)isFromSearch;
 
 @end
