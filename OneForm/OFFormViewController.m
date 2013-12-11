@@ -9,6 +9,8 @@
 #import "OFFormViewController.h"
 #import "OFNavigationBar.h"
 #import "OFTextField.h"
+#import "OFSubmittingForm.h"
+#import "OFInternetUtility.h"
 
 @interface OFFormViewController ()
 
@@ -41,7 +43,7 @@
                 value = [tmpValue objectForKey:@"value"];
             }
             NSString *type = [field_obj objectForKey:@"htmlType"];
-            if ([type isEqualToString:@"select"])
+            if (![type isEqualToString:@"select"])
             {
                 [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field]]];
             }
@@ -189,6 +191,17 @@
         {
             [self.bottomNotEditing showWithAutohide:YES];
         }
+    }
+    else
+    {
+        [OFInternetUtility checkInternetConnection]; //need to change to AFNetworking reachibility to get notifications if connection is lost
+        OFSubmittingForm *submittingForm = [[OFSubmittingForm alloc] initWithUserData:self.userData andFields:myData andForm:self.formData];
+         CATransition *transition = [CATransition animation];
+         transition.duration = 0.3f;
+         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+         transition.type = kCATransitionFade;
+         [self.view.layer addAnimation:transition forKey:nil];
+         [self.navigationController pushViewController:submittingForm animated:NO];
     }
 }
 

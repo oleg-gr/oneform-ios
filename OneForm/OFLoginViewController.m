@@ -269,6 +269,7 @@
             __block NSString *newRoute = [NSString stringWithFormat:@"%@%@", SERVER, @"/forms"];
             
             [response setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+            [response setObject:[parameters objectForKey:@"secret"] forKey:@"secret"];
             
             [self.connectionManager GET:newRoute parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
@@ -446,6 +447,7 @@
 #pragma mark Sign in adn Sign up button logic
 - (void) signInButonAction
 {
+    [OFInternetUtility checkInternetConnection];
     if (isJoinScreen)
     {
         [self signUpResponseLogic];

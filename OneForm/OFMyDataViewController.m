@@ -109,7 +109,6 @@
         [bottomLabel setNumberOfLines:1];
         [bottomLabel setFont:[UIFont fontWithName:@"Roboto-Light" size:19]];
         [bottomLabel setTextAlignment:NSTextAlignmentRight];
-        
         NSArray *info = [self.myData objectAtIndex:indexPath.row];
         textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, width, 65) andLabel:info[0] andEditable:NO];
         [textfield setTextFieldText:info[1]];
@@ -133,6 +132,8 @@
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
+    [self.myDataTable reloadData];
+    NSLog(@"%@", self.userData);
 }
 
 - (void)didReceiveMemoryWarning
