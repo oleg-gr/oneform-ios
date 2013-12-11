@@ -57,7 +57,6 @@
         NSArray *entry = @[name, progress, status, orgs_string, form_id];
         [self.myForms addObject:entry];
     }
-    NSLog(@"%@", self.myForms);
 }
 
 - (void)viewDidLoad
@@ -142,12 +141,21 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *formId = [[self.myForms objectAtIndex:(int)indexPath.row] objectAtIndex:4];
+    NSString *submitted = [[self.myForms objectAtIndex:(int)indexPath.row] objectAtIndex:2];
+    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId isSubmitted:[submitted isEqualToString:@"submitted"]];
+    [self.navigationController pushViewController:form animated:YES];
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
     [self updateMyForms];
     [self.myFormsTable reloadData];
+    [self.searchBar.searchQuery setText:@""];
 }
 
 #pragma mark Keyboard dismiss

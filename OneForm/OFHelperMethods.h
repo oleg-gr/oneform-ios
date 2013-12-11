@@ -17,4 +17,5 @@
 +(NSMutableDictionary*) formsToLookup:(NSMutableArray*)forms;
 +(NSMutableDictionary*) fieldsToRevLookup:(NSMutableArray*)forms;
 +(NSMutableDictionary*) formsToRevLookup:(NSMutableArray*)forms;
++(void) getLookUps:(NSMutableDictionary*)userData;
 @end

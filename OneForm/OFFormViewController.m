@@ -18,13 +18,14 @@
 
 @implementation OFFormViewController
 
--(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId fromSearch:(BOOL)isFromSearch
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId isSubmitted:(BOOL)isSub
 {
     self = [super init];
     if (self) {
+        isSubmitted = isSub;
         self.userData = userData;
         self.formId = formId;
-        isFromMySearch = isFromSearch;
+        isFromMySearch = isSub;
         [self updateFormData];
     }
     return self;
@@ -33,7 +34,6 @@
 - (void)updateFormData
 {
     self.formData = [[self.userData objectForKey:@"forms"] objectAtIndex:[[[self.userData objectForKey:@"forms_reverse_lookup"] objectForKey:self.formId] integerValue]];
-    NSLog(@"%@", self.formData);
     formName = [self.formData objectForKey:@"name"];
     NSMutableArray *fields = [self.formData objectForKey:@"fields"];
     myData = [[NSMutableArray alloc] init];
@@ -61,7 +61,6 @@
             [myData addObject:[[NSMutableArray alloc] initWithArray:@[name, value, type, field, [field_obj objectForKey:@"choices"]]]];
         }
     }
-
 }
 
 - (void)viewDidLoad
@@ -127,6 +126,10 @@
     for( int i = 0; i < [myData count]; i++)
     {
         OFTextField *textField = [[OFTextField alloc] initWithFrame:CGRectMake(240*i+20, 10, 200, 80) andLabel:myData[i][0]];
+        if (isSubmitted)
+        {
+            [textField setUserInteractionEnabled:NO];
+        }
         [textField setTextFieldText:myData[i][1]];
         if ([myData[i][2] isEqualToString:@"date"])
         {
@@ -179,6 +182,15 @@
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification
                                                object:nil];
+    
+    if (isSubmitted)
+    {
+        [self.submitButton setUserInteractionEnabled:NO];
+        [self.submitButton setTitle:@"Successfully submitted" forState:UIControlStateNormal];
+        [self.submitButton setFrame:CGRectMake(0, 510, 320, 40)];
+        [self.submitButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.submitButton.titleLabel setFont: [UIFont fontWithName:@"Roboto-Thin" size:26]];
+    }
 
 }
 

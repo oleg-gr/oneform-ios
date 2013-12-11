@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OFSearchBar.h"
+#import "OFFormViewController.h"
 
 @interface OFMyFormsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

@@ -12,6 +12,7 @@
 #import "OFBackButton.h"
 #import "OFForwardButton.h"
 #import "OFBottomNotification.h"
+#import "OFHelperMethods.h"
 
 @interface OFFormViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 {
@@ -29,6 +30,7 @@
     NSDateFormatter *df;
     float keyboardSize;
     BOOL isFromMySearch;
+    BOOL isSubmitted;
 }
 
 @property (strong, nonatomic) UIButton *submitButton;
@@ -44,6 +46,6 @@
 @property (strong, nonatomic) NSString *formId;
 
 
--(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId fromSearch:(BOOL)isFromSearch;
+-(id)initWithUserData:(NSMutableDictionary*)userData andFormId:(NSString*)formId isSubmitted:(BOOL)isSub;
 
 @end

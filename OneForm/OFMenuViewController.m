@@ -20,6 +20,7 @@
 {
     self = [super init];
     if (self) {
+        [OFHelperMethods getLookUps:userData];
         self.searchController= [[OFSearchFormsViewController alloc] initWithUserData:userData];
         self.myForms= [[OFMyFormsViewController alloc] initWithUserData:userData];
         self.myData= [[OFMyDataViewController alloc] initWithUserData:userData];

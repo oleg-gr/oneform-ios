@@ -25,9 +25,6 @@
     if (self) {
         self.userData = userData;
         [self updatePopularForms];
-        
-        NSLog(@"%@", userData);
-        
     }
     return self;
 }
@@ -39,11 +36,16 @@
     for (NSMutableDictionary *form in [self.userData objectForKey:@"forms"])
     {
         NSArray *orgs = [form objectForKey:@"orgs" ];
-        NSString *orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
-        for (int i = 1; i < [orgs count]; i++)
+        NSString *orgs_string = @"No organizations";
+        if (orgs != nil)
         {
-            orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+            orgs_string = [orgs_lookup objectForKey:[orgs objectAtIndex:0]];
+            for (int i = 1; i < [orgs count]; i++)
+            {
+                orgs_string = [orgs_string stringByAppendingString:[NSString stringWithFormat:@", %@", [orgs_lookup objectForKey:[orgs objectAtIndex:i]]]];
+            }
         }
+        
         [self.popularForms addObject:
          @[[form objectForKey:@"name"], orgs_string, [form objectForKey:@"_id"]]];
     }
@@ -92,6 +94,8 @@
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
     [self updatePopularForms];
     [self.popularFormsTable reloadData];
+    [self.searchBar.searchQuery setText:@""];
+    [self.searchBar.secondSearchQuery setText:@""];
 }
 
 
@@ -156,8 +160,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *formId = [[self.userData objectForKey:@"forms_lookup"] objectForKey:[NSNumber numberWithInt:(int) indexPath.row]];
-    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId fromSearch:YES];
+    NSString *formId = [[self.popularForms objectAtIndex:(int)indexPath.row] objectAtIndex:2];
+    OFFormViewController *form = [[OFFormViewController alloc] initWithUserData:self.userData andFormId:formId isSubmitted:NO];
     [self.navigationController pushViewController:form animated:YES];
 }
 

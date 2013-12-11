@@ -149,4 +149,15 @@
     return result;
 }
 
++(void) getLookUps:(NSMutableDictionary*)userData
+{
+    NSMutableArray *forms = [userData objectForKey:@"forms"];
+    [userData setObject:[OFHelperMethods formsToLookup:forms] forKey:@"forms_lookup"];
+    [userData setObject:[OFHelperMethods formsToRevLookup:forms] forKey:@"forms_reverse_lookup"];
+    NSMutableArray *orgs = [userData objectForKey:@"orgs"];
+    [userData setObject:[OFHelperMethods orgToLookup:orgs] forKey:@"orgs_lookup"];
+    NSMutableArray *fields = [userData objectForKey:@"fields"];
+    [userData setObject:[OFHelperMethods fieldsToRevLookup:fields] forKey:@"fields_reverse_lookup"];
+}
+
 @end

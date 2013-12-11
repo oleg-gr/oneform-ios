@@ -23,7 +23,6 @@
 
 -(void)viewDidLoad
 {
-    NSLog(@"myData: %@", self.myData);
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     self.loading = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 260, 50)];
@@ -67,18 +66,16 @@
                                      @"value": [field objectAtIndex:1]};
         AFHTTPRequestOperation *operation1 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             current_request++;
-            NSLog(@"%d/%d sent successfully operation1", current_request, total_requests);
             status = (int) [[responseObject objectForKey:@"status"] integerValue];
-            if (status == 200)
-            {
-                [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
-            }
             [self.progressBar setProgress:1.0/total_requests * current_request];
             if (current_request == total_requests) {
+                if (status == 200)
+                {
+                    [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+                }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-             NSLog(@"%d error %@", current_request, err);
         }];
         
         [requests addObject:operation1];
@@ -91,18 +88,16 @@
         
         AFHTTPRequestOperation *operation2 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             current_request++;
-            NSLog(@"%d/%d sent successfully operation2", current_request, total_requests);
             status = (int) [[responseObject objectForKey:@"status"] integerValue];
-            if (status == 200)
-            {
-                [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
-            }
             [self.progressBar setProgress:1.0/total_requests * current_request];
             if (current_request == total_requests) {
+                if (status == 200)
+                {
+                    [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+                }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-            NSLog(@"%d error %@", current_request, err);
         }];
         [requests addObject:operation2];
         
@@ -116,18 +111,16 @@
     
     AFHTTPRequestOperation *operation3 = [self.connectionManager POST:route parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         current_request++;
-        NSLog(@"%d/%d sent successfully operation3", current_request, total_requests);
         status = (int) [[responseObject objectForKey:@"status"] integerValue];
-        if (status == 200)
-        {
-            [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
-        }
         [self.progressBar setProgress:1.0/total_requests * current_request];
         if (current_request == total_requests) {
+            if (status == 200)
+            {
+                [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+            }
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-        NSLog(@"%d error %@", current_request, err);
     }];
     
     [requests addObject:operation3];

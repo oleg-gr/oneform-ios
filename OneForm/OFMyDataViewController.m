@@ -123,9 +123,7 @@
 {
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
-    NSLog(@"%@", self.myData);
     [self updateMyData];
-    NSLog(@"%@", self.myData);
     [self.myDataTable reloadData];
 }
 
