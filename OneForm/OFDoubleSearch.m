@@ -26,7 +26,7 @@
         [searchImage setImage:[UIImage imageNamed:@"search_icon.png"]];
         [self addSubview:searchImage];
         
-        self.searchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 32.5f, textfieldWidth, 29.5f)];
+        self.searchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 32.5f, textfieldWidth - 34.75f, 29.5f)];
         [self.searchQuery setFont:[UIFont fontWithName:@"Roboto-Light" size:25]];
         [self.searchQuery setTextColor:UI_COLOR];
         [self.searchQuery setPlaceholder:top];
@@ -47,7 +47,6 @@
         UITapGestureRecognizer *tapSearchAgency =
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(textFieldResponderAgency)];
-        [self.secondTextFieldInteractionView addGestureRecognizer:tapSearchAgency];
         
         self.secondSearchQuery = [[UITextField alloc] initWithFrame:CGRectMake(34.75f, 96.5f, textfieldWidth - 34.75f, 30)];
         [self.secondSearchQuery setTextColor:UI_COLOR];
@@ -56,6 +55,7 @@
         [self.secondSearchQuery setAdjustsFontSizeToFitWidth:YES];
         [self.secondSearchQuery setValue:UI_COLOR forKeyPath:@"_placeholderLabel.textColor"];
         [self addSubview:self.secondSearchQuery];
+        [self.secondSearchQuery addGestureRecognizer:tapSearchAgency];
         
         UIImageView *searchImageAgency = [[UIImageView alloc] initWithFrame:CGRectMake(textfieldWidth + 15, 96.5, 25, 28.75f)];
         [searchImageAgency setImage:[UIImage imageNamed:@"search_icon.png"]];

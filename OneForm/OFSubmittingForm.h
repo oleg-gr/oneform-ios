@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OFFormProgress.h"
+#import "OFHelperMethods.h"
 
 
 @interface OFSubmittingForm : UIViewController

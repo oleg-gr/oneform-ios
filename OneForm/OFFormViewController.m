@@ -166,9 +166,6 @@
     
     [self.view addSubview:self.submitButton];
     
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
-    
     [self updateProgressBar];
     
     self.bottomEditing = [[OFBottomNotification alloc] initWithHeight: 69];
@@ -364,7 +361,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //    No cell reuse because of the custom contentview
-//    if (cell == nil) {
+    if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     UITapGestureRecognizer *startEditing = [[UITapGestureRecognizer alloc]
@@ -377,7 +374,7 @@
     OFTextField *textfield = [[OFTextField alloc] initWithFrame:CGRectMake(0, 0, self.myDataTable.frame.size.width, 65) andLabel:info[0] andEditable:NO];
     [textfield setTextFieldText:info[1]];
     [cell.contentView addSubview:textfield];
-//    }
+    }
     return cell;
 }
 
@@ -448,6 +445,8 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
     SWRevealViewController *revealController = [self revealViewController];
     [self.view addGestureRecognizer:revealController.panGestureRecognizer];
 }

@@ -72,6 +72,7 @@
                 if (status == 200)
                 {
                     [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+                    [OFHelperMethods getLookUps:self.userData];
                 }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -94,6 +95,7 @@
                 if (status == 200)
                 {
                     [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+                    [OFHelperMethods getLookUps:self.userData];
                 }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -117,6 +119,7 @@
             if (status == 200)
             {
                 [self.userData setObject:[responseObject objectForKey:@"result"] forKey:@"user"];
+                [OFHelperMethods getLookUps:self.userData];
             }
             [self.navigationController popToRootViewControllerAnimated:YES];
         }

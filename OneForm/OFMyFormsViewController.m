@@ -29,6 +29,7 @@
 -(void) updateMyForms
 {
     self.myForms = [[NSMutableArray alloc] init];
+    self.myFormsCheck = [[NSMutableArray alloc] init];
     NSMutableArray *forms = [[self.userData objectForKey:@"user"] objectForKey:@"forms"];
     NSMutableDictionary *orgs_lookup = [self.userData objectForKey:@"orgs_lookup"];
     
@@ -57,6 +58,12 @@
         NSArray *entry = @[name, progress, status, orgs_string, form_id];
         [self.myForms addObject:entry];
     }
+    self.myFormsCheck = [[NSMutableArray arrayWithArray:self.myForms] mutableCopy];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activefield = textField;
 }
 
 - (void)viewDidLoad
@@ -72,6 +79,8 @@
     [self.view addSubview:navBar];
     
     self.searchBar = [[OFSearchBar alloc] initWithBottomLabel:@"My forms" withQR:NO];
+    
+    [self.searchBar.searchQuery setDelegate:self];
     
     [self.view addSubview:self.searchBar];
     
@@ -91,6 +100,19 @@
 
 }
 
+- (void)keyPressed:(NSNotification*)notification
+{
+    self.myForms = [[NSMutableArray alloc] init];
+    for (NSArray *entry in self.myFormsCheck)
+    {
+        if ([[[entry objectAtIndex:0] lowercaseString] rangeOfString:[activefield.text lowercaseString]].location != NSNotFound || [activefield.text isEqualToString:@""])
+        {
+            [self.myForms addObject:entry];
+        }
+    }
+    [self.myFormsTable reloadData];
+}
+
 #pragma mark Table view related logic
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -104,7 +126,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)[[self.myForms objectAtIndex:indexPath.row] objectAtIndex:4]];
     OFFormProgress *progress;
     UILabel *cellLabel;
     UILabel *organizationName;
@@ -156,6 +178,8 @@
     [self updateMyForms];
     [self.myFormsTable reloadData];
     [self.searchBar.searchQuery setText:@""];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
 }
 
 #pragma mark Keyboard dismiss

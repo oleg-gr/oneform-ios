@@ -32,6 +32,7 @@
 -(void) updatePopularForms
 {
     self.popularForms = [[NSMutableArray alloc] init];
+    self.popularFormsCheck = [[NSMutableArray alloc] init];
     NSMutableDictionary *orgs_lookup = [self.userData objectForKey:@"orgs_lookup"];
     for (NSMutableDictionary *form in [self.userData objectForKey:@"forms"])
     {
@@ -49,6 +50,12 @@
         [self.popularForms addObject:
          @[[form objectForKey:@"name"], orgs_string, [form objectForKey:@"_id"]]];
     }
+    self.popularFormsCheck = [[NSMutableArray arrayWithArray:self.popularForms] mutableCopy];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activefield = textField;
 }
 
 - (void)viewDidLoad
@@ -64,6 +71,11 @@
     
     self.searchBar = [[OFDoubleSearch alloc] initWithTopPlaceholder:@"form name" andBottom:@"agency name"];
     
+    [self.searchBar.searchQuery setDelegate:self];
+    [self.searchBar.secondSearchQuery setDelegate:self];
+    [self.searchBar.searchQuery setTag:0];
+    [self.searchBar.secondSearchQuery setTag:1];
+    
     [self.view addSubview:self.searchBar];
 
     UITapGestureRecognizer *tapOutOfText = [[UITapGestureRecognizer alloc]
@@ -71,8 +83,6 @@
                                             action:@selector(dismissKeyboard)];
     [tapOutOfText setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:tapOutOfText];
-    
-    //DUMMY
     
     self.popularFormsTable = [[UITableView alloc] initWithFrame:CGRectMake(34.75f, 252.5f, 237.75f, 275) style:UITableViewStylePlain];
     [self.popularFormsTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -96,8 +106,22 @@
     [self.popularFormsTable reloadData];
     [self.searchBar.searchQuery setText:@""];
     [self.searchBar.secondSearchQuery setText:@""];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextFieldTextDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyPressed:) name: UITextViewTextDidChangeNotification object: nil];
 }
 
+- (void)keyPressed:(NSNotification*)notification
+{
+    self.popularForms = [[NSMutableArray alloc] init];
+    for (NSArray *entry in self.popularFormsCheck)
+    {
+        if ([[[entry objectAtIndex:activefield.tag] lowercaseString] rangeOfString:[activefield.text lowercaseString]].location != NSNotFound || [activefield.text isEqualToString:@""])
+        {
+            [self.popularForms addObject:entry];
+        }
+    }
+    [self.popularFormsTable reloadData];
+}
 
 #pragma mark Table view related logic
 
@@ -119,7 +143,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)indexPath.row];
+    
+    ;
+    NSString *cellIdentifier = [NSString stringWithFormat:@"Cell%li",(long)[[self.popularForms objectAtIndex:indexPath.row] objectAtIndex:2]];
     UILabel *cellLabel;
     UILabel *organizationName;
     UIImageView *arrow;
