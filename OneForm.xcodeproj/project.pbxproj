@@ -506,6 +506,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = nyuad;
 				TargetAttributes = {
+					7AAE391B1827962C009BE7B3 = {
+						DevelopmentTeam = 68BKCT869S;
+					};
 					7AAE39361827962C009BE7B3 = {
 						TestTargetID = 7AAE391B1827962C009BE7B3;
 					};
@@ -754,9 +757,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneForm/OneForm-Prefix.pch";
 				INFOPLIST_FILE = "OneForm/OneForm-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -769,9 +774,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneForm/OneForm-Prefix.pch";
 				INFOPLIST_FILE = "OneForm/OneForm-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
